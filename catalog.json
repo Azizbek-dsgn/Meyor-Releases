@@ -24,13 +24,23 @@
   },
   "uzscribe": {
     "version": "0.8.3",
-    "revision": "b42e49b23cb652b13b959441206c569a5e916475",
+    "revision": "1d7197384ffef20ee40a9bdae4aae64c26ea0a06",
     "channel": "beta",
     "assets": {
       "mac-arm64": {
-        "url": "https://raw.githubusercontent.com/Azizbek-dsgn/Meyor-Releases/433a3bca695d40811c010a52fb1b3b2d4c31a179/bootstrap/UzScribe-0.8.3-mac-arm64.zip",
-        "sha256": "8801d40039aa011598a2a38236edb7796cea0cc0ae479ccdab18c1b1e9837257",
-        "bytes": 1422984
+        "url": "https://raw.githubusercontent.com/Azizbek-dsgn/Meyor-Releases/d9fc11cfd4e9a486b1a249278c96ab12f17b2bfd/bootstrap/UzScribe-0.8.3-mac-arm64.zip",
+        "sha256": "f25923ba1f033f94d47487d2f21ef9cce05af3e5815cd5c62b81ba268da6d9de",
+        "bytes": 2682040
+      },
+      "mac-x64": {
+        "url": "https://raw.githubusercontent.com/Azizbek-dsgn/Meyor-Releases/d9fc11cfd4e9a486b1a249278c96ab12f17b2bfd/bootstrap/UzScribe-0.8.3-mac-x64.zip",
+        "sha256": "cd1f18a8c2a3d7076c60566dd985014e25f5fa2bbc08139eea4c7c0287441e16",
+        "bytes": 2682038
+      },
+      "win-x64": {
+        "url": "https://raw.githubusercontent.com/Azizbek-dsgn/Meyor-Releases/d9fc11cfd4e9a486b1a249278c96ab12f17b2bfd/bootstrap/UzScribe-0.8.3-win-x64.zip",
+        "sha256": "eef5dea73235d2cabf288f22e3b82a8e9fe0a9fe54586aed5ba2721866af7b37",
+        "bytes": 1196859
       }
     }
   },
