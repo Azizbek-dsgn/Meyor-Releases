@@ -29,8 +29,8 @@
     "assets": {
       "mac-arm64": {
         "url": "https://raw.githubusercontent.com/Azizbek-dsgn/Meyor-Releases/main/bootstrap/UzScribe-0.8.3-mac-arm64.zip",
-        "sha256": "1b381c448fc0f3327d5649187dc1f10d222412d6086e8b3598a07c59d6bee9cc",
-        "bytes": 1423331
+        "sha256": "8801d40039aa011598a2a38236edb7796cea0cc0ae479ccdab18c1b1e9837257",
+        "bytes": 1422984
       }
     }
   }
