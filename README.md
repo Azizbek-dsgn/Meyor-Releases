@@ -1,10 +1,12 @@
 # Meyor — downloads and update catalog
 
-[Download Meyor 0.2.1 for Apple Silicon Mac, Intel Mac and Windows x64](https://github.com/Azizbek-dsgn/Meyor-Releases/releases/tag/v0.2.1).
+[Download Meyor 0.3.1 for Apple Silicon Mac, Intel Mac and Windows x64](https://github.com/Azizbek-dsgn/Meyor-Releases/releases/tag/v0.3.1).
+
+Meyor 0.3.1 includes managed Python 3.12 for Windows UzScribe installation, download and phase progress, and a saved installation folder. [UzScribe Desktop 0.8.5](https://github.com/Azizbek-dsgn/Meyor-Releases/releases/tag/uzscribe-v0.8.5) also has a local-browser fallback when the Windows native window cannot open. Choose the runtime folder before the first installation; updates reuse that folder. Existing ready installations are not automatically moved between disks.
 
 This repository distributes compiled installers, protected plugin packages and the public update catalog. Editable product source repositories (Meyor, UzScribe and Tempo) are private. No GitHub credentials are embedded in the user application.
 
-macOS 13+ / Windows 10 and 11 x64. Native installation, reinstallation and installed-app launch were verified on macOS 15 ARM64, macOS 15 Intel and Windows Server 2022; ARM64 was also verified on the developer's Mac. Windows uninstall was verified. These checks do not guarantee operation on every device or automatic Gatekeeper / SmartScreen acceptance.
+macOS 13+ / Windows 10 and 11 x64. Native installation, reinstallation and installed-app launch were verified on macOS 15 ARM64, macOS 15 Intel and Windows Server 2022; ARM64 was also verified on the developer's Mac. These checks do not guarantee operation on every device or automatic Gatekeeper / SmartScreen acceptance.
 
 For the free Mac terminal installation, download the matching DMG, `Install-Meyor-mac.sh` and `SHA256SUMS` from the release into one folder, then run `bash Install-Meyor-mac.sh` there. The installer verifies SHA-256, architecture, app identity and ad-hoc signature, then installs into `~/Applications/Meyor.app` without sudo. It does not alter system security settings.
 
