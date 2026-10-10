@@ -42,7 +42,7 @@ jobs:
           PYTHONIOENCODING: 'utf-8'
         run: |
           cd "$RUNNER_TEMP/meyor-private-build/uzscribe"
-          npm install --ignore-scripts --prefix packaging > "$RUNNER_TEMP/uzscribe-private-build.log" 2>&1
+          npm install --ignore-scripts --prefix packaging javascript-obfuscator@4.1.1 > "$RUNNER_TEMP/uzscribe-private-build.log" 2>&1
           python packaging/build-uzscribe.py --source . --version 0.8.5 --revision 10190925d294d99eb9c79c569c7c7641b1cc300b --output "dist/UzScribe-0.8.5-$PLATFORM.zip" >> "$RUNNER_TEMP/uzscribe-private-build.log" 2>&1
       - name: Test protected native UzScribe
         shell: bash
