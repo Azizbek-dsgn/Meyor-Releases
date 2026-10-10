@@ -1,0 +1,138 @@
+name: Build encrypted product updates
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: product-release
+  cancel-in-progress: false
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-2022
+            platform: win-x64
+            bundles: nsis
+          - os: macos-15
+            platform: mac-arm64
+            bundles: app,dmg
+          - os: macos-15-intel
+            platform: mac-x64
+            bundles: app,dmg
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    env:
+      PYTHONUTF8: '1'
+      PYTHONIOENCODING: 'utf-8'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: '11.25.0'
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install build dependencies
+        run: python -m pip install cryptography Cython==3.1.8 setuptools==80.9.0 tqdm
+      - name: Authenticate encrypted source input
+        shell: bash
+        env:
+          MEYOR_BUILD_KEY: ${{ secrets.MEYOR_BUILD_KEY }}
+        run: python build-tools/decrypt-products.py
+      - name: Build and test Tempo
+        shell: bash
+        env:
+          BUNDLES: ${{ matrix.bundles }}
+          PLATFORM: ${{ matrix.platform }}
+        run: |
+          cd "$RUNNER_TEMP/meyor-private-build/tempo"
+          pnpm install --frozen-lockfile > "$RUNNER_TEMP/tempo-private-build.log" 2>&1
+          python scripts/package_adapters.py >> "$RUNNER_TEMP/tempo-private-build.log" 2>&1
+          cargo fetch --locked >> "$RUNNER_TEMP/tempo-private-build.log" 2>&1
+          python scripts/collect_notices.py >> "$RUNNER_TEMP/tempo-private-build.log" 2>&1
+          cargo test -p tempo-core --locked >> "$RUNNER_TEMP/tempo-private-build.log" 2>&1
+          pnpm test >> "$RUNNER_TEMP/tempo-private-build.log" 2>&1
+          pnpm desktop build --bundles "$BUNDLES" --config '{"mainBinaryName":"tempo"}' >> "$RUNNER_TEMP/tempo-private-build.log" 2>&1
+          mkdir -p "$RUNNER_TEMP/product-release"
+          if [ "$PLATFORM" = win-x64 ]; then
+            cp target/release/bundle/nsis/*.exe "$RUNNER_TEMP/product-release/Tempo-0.2.0-$PLATFORM.exe"
+          else
+            hdiutil verify target/release/bundle/dmg/*.dmg >> "$RUNNER_TEMP/tempo-private-build.log" 2>&1
+            cp target/release/bundle/dmg/*.dmg "$RUNNER_TEMP/product-release/Tempo-0.2.0-$PLATFORM.dmg"
+          fi
+      - name: Windows Tempo install and reinstall
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $installer = Join-Path $env:RUNNER_TEMP 'product-release/Tempo-0.2.0-win-x64.exe'
+          $destination = Join-Path $env:RUNNER_TEMP 'Tempo installed with spaces'
+          foreach ($attempt in 1..2) {
+            $p = Start-Process $installer -ArgumentList "/S /D=$destination" -PassThru
+            if (-not $p.WaitForExit(120000)) { $p.Kill(); throw 'Tempo installation timed out' }
+            if ($p.ExitCode -ne 0) { throw 'Tempo installation failed' }
+            $exe = Join-Path $destination 'tempo.exe'
+            if (-not (Test-Path -LiteralPath $exe)) { throw 'Tempo executable missing at selected location' }
+            if ((Get-Item -LiteralPath $exe).VersionInfo.ProductVersion -notlike '0.2.0*') { throw 'Tempo version mismatch' }
+          }
+          @{installed=$true;reinstalled=$true;version='0.2.0';pathWithSpaces=$true} | ConvertTo-Json | Set-Content "$env:RUNNER_TEMP/product-release/tempo-install-test.json"
+      - name: Build and test protected UzScribe
+        shell: bash
+        env:
+          PLATFORM: ${{ matrix.platform }}
+        run: |
+          cd "$RUNNER_TEMP/meyor-private-build/uzscribe"
+          npm install --ignore-scripts --prefix packaging javascript-obfuscator@4.1.1 > "$RUNNER_TEMP/uzscribe-private-build.log" 2>&1
+          python packaging/build-uzscribe.py --source . --version 0.8.6 --revision 2a9350ff66624504d4d9328bc9ccb93d6f6a6c4c --output "$RUNNER_TEMP/product-release/UzScribe-0.8.6-$PLATFORM.zip" >> "$RUNNER_TEMP/uzscribe-private-build.log" 2>&1
+          python -m pip install Pillow numpy av==18.1.0 imageio-ffmpeg==0.6.0 uv==0.13.0 >> "$RUNNER_TEMP/uzscribe-private-build.log" 2>&1
+          python -c "import zipfile,os;zipfile.ZipFile(os.environ['RUNNER_TEMP']+'/product-release/UzScribe-0.8.6-'+os.environ['PLATFORM']+'.zip').extractall('native-smoke')"
+          python packaging/validate-desktop-package.py native-smoke "$RUNNER_TEMP/product-release/desktop-test.json" >> "$RUNNER_TEMP/uzscribe-private-build.log" 2>&1
+          if [ "$PLATFORM" = win-x64 ]; then
+            python packaging/validate-windows-bootstrap.py native-smoke "$RUNNER_TEMP/product-release/windows-bootstrap.json" >> "$RUNNER_TEMP/uzscribe-private-build.log" 2>&1
+          fi
+      - name: Encrypt failure diagnostics
+        if: failure()
+        shell: bash
+        env:
+          MEYOR_BUILD_KEY: ${{ secrets.MEYOR_BUILD_KEY }}
+        run: python build-tools/encrypt-diagnostics.py
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: Product-diagnostics-${{ matrix.platform }}
+          retention-days: 3
+          path: ${{ runner.temp }}/encrypted-diagnostics/*.enc
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Product-release-${{ matrix.platform }}
+          retention-days: 3
+          if-no-files-found: error
+          path: ${{ runner.temp }}/product-release/*
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: Product-release-win-x64
+          path: downloads/win-x64
+      - uses: actions/download-artifact@v4
+        with:
+          name: Product-release-mac-arm64
+          path: downloads/mac-arm64
+      - uses: actions/download-artifact@v4
+        with:
+          name: Product-release-mac-x64
+          path: downloads/mac-x64
+      - name: Publish verified binary releases and update catalog
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python build-tools/publish-products.py
