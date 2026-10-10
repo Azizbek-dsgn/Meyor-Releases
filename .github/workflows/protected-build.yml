@@ -1,6 +1,11 @@
 name: Build encrypted Meyor distribution
 on:
   workflow_dispatch:
+    inputs:
+      platform:
+        type: choice
+        default: all
+        options: [all, win-x64]
 permissions:
   contents: read
 jobs:
@@ -8,19 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - os: windows-2022
-            platform: win-x64
-            target: win
-            arch: x64
-          - os: macos-15
-            platform: mac-arm64
-            target: mac
-            arch: arm64
-          - os: macos-15-intel
-            platform: mac-x64
-            target: mac
-            arch: x64
+        include: ${{ fromJSON(inputs.platform == 'win-x64' && '[{"os":"windows-2022","platform":"win-x64","target":"win","arch":"x64"}]' || '[{"os":"windows-2022","platform":"win-x64","target":"win","arch":"x64"},{"os":"macos-15","platform":"mac-arm64","target":"mac","arch":"arm64"},{"os":"macos-15-intel","platform":"mac-x64","target":"mac","arch":"x64"}]') }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 45
     steps:
@@ -51,6 +44,14 @@ jobs:
           cd "$RUNNER_TEMP/meyor-private-build/uzscribe"
           npm install --ignore-scripts --prefix packaging > "$RUNNER_TEMP/uzscribe-private-build.log" 2>&1
           python packaging/build-uzscribe.py --source . --version 0.8.5 --revision 10190925d294d99eb9c79c569c7c7641b1cc300b --output "dist/UzScribe-0.8.5-$PLATFORM.zip" >> "$RUNNER_TEMP/uzscribe-private-build.log" 2>&1
+      - name: Test protected native UzScribe
+        shell: bash
+        env:
+          PLATFORM: ${{ matrix.platform }}
+          PYTHONUTF8: '1'
+          PYTHONIOENCODING: 'utf-8'
+        run: |
+          cd "$RUNNER_TEMP/meyor-private-build/uzscribe"
           python -m pip install Pillow numpy av==18.1.0 imageio-ffmpeg==0.6.0 uv==0.13.0 >> "$RUNNER_TEMP/uzscribe-private-build.log" 2>&1
           python -c "import glob,zipfile; zipfile.ZipFile(glob.glob('dist/*.zip')[0]).extractall('native-smoke')"
           python packaging/validate-desktop-package.py native-smoke "desktop-results/$PLATFORM.json" >> "$RUNNER_TEMP/uzscribe-private-build.log" 2>&1
@@ -103,6 +104,18 @@ jobs:
           node scripts/smoke-app.cjs "$MEYOR_INSTALL_DIR/Meyor.app/Contents/MacOS/Meyor" "$RUNNER_TEMP/Meyor-smoke-results" >> "$RUNNER_TEMP/meyor-private-ui.log" 2>&1
           bash scripts/install-mac.sh "$FILE" "$SHA" >> "$RUNNER_TEMP/meyor-private-ui.log" 2>&1
           cp scripts/install-mac.sh dist/Install-Meyor-mac.sh
+      - name: Encrypt failure diagnostics
+        if: failure()
+        shell: bash
+        env:
+          MEYOR_BUILD_KEY: ${{ secrets.MEYOR_BUILD_KEY }}
+        run: python build-tools/encrypt-diagnostics.py
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: Encrypted-diagnostics-${{ matrix.platform }}
+          retention-days: 3
+          path: ${{ runner.temp }}/encrypted-diagnostics/*.enc
       - uses: actions/upload-artifact@v4
         with:
           name: Protected-release-${{ matrix.platform }}
