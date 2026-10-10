@@ -3,8 +3,8 @@ import hashlib, io, os, urllib.request, zipfile
 from pathlib import Path
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
-URL = 'https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/build-input-0.4.0/meyor-build-0.4.0-r2.enc'
-SHA256 = '3361fe61881bb5e48d5233e7a4afc379e12afed8a571acdc46f059f03b3d7532'
+URL = 'https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/build-input-0.4.0/meyor-build-0.4.0-r3.enc'
+SHA256 = '77025b33638542665dbe9c425d19a2c64bfb370f15c9c1e97c4cbd727be9afa0'
 try:
     key = bytes.fromhex(os.environ['MEYOR_BUILD_KEY'])
     assert len(key) == 32
