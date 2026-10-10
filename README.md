@@ -1,8 +1,8 @@
 # Meyor — downloads and update catalog
 
-[Download Meyor 0.3.1 for Apple Silicon Mac, Intel Mac and Windows x64](https://github.com/Azizbek-dsgn/Meyor-Releases/releases/tag/v0.3.1).
+[Download Meyor 0.4.0 for Apple Silicon Mac, Intel Mac and Windows x64](https://github.com/Azizbek-dsgn/Meyor-Releases/releases/tag/v0.4.0).
 
-Meyor 0.3.1 includes managed Python 3.12 for Windows UzScribe installation, download and phase progress, and a saved installation folder. [UzScribe Desktop 0.8.5](https://github.com/Azizbek-dsgn/Meyor-Releases/releases/tag/uzscribe-v0.8.5) also has a local-browser fallback when the Windows native window cannot open. Choose the runtime folder before the first installation; updates reuse that folder. Existing ready installations are not automatically moved between disks.
+Meyor 0.4.0 includes managed Python 3.12 for Windows UzScribe installation, download and phase progress, and a saved installation folder. [UzScribe Desktop 0.8.5](https://github.com/Azizbek-dsgn/Meyor-Releases/releases/tag/uzscribe-v0.8.5) also has a local-browser fallback when the Windows native window cannot open. Choose the runtime folder before the first installation; updates reuse that folder. Existing ready installations are not automatically moved between disks.
 
 This repository distributes compiled installers, protected plugin packages and the public update catalog. Editable product source repositories (Meyor, UzScribe and Tempo) are private. No GitHub credentials are embedded in the user application.
 
@@ -13,3 +13,7 @@ For the free Mac terminal installation, download the matching DMG, `Install-Meyo
 Mac builds are ad-hoc signed and not Apple notarized. Windows builds are unsigned. First-open security prompts may appear. See [Apple's per-app Open Anyway instructions](https://support.apple.com/en-us/102445) and [Microsoft's SmartScreen explanation](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/smartscreen-reputation).
 
 The GitHub-generated “Source code” archives on this distribution repository contain this repository's public catalog and packaged distribution files, not editable product source. Obfuscation and native compilation do not prevent all reverse engineering. Original product code © Meyor Vision; free distribution does not grant an open-source license. Third-party components retain their own licenses.
+
+## Meyor 0.4.0 interface
+
+The library has All / Installed filters and separate Open / Update actions. Download progress stays visible at the bottom, and installation folder settings live in one place. The application icon uses the same portrait as UzScribe and Tempo.
