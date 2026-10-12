@@ -1,0 +1,36 @@
+name: Publish verified product artifacts
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: product-release
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: Product-release-win-x64
+          path: downloads/win-x64
+          run-id: 38064311450
+          github-token: ${{ github.token }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: Product-release-mac-arm64
+          path: downloads/mac-arm64
+          run-id: 38064311450
+          github-token: ${{ github.token }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: Product-release-mac-x64
+          path: downloads/mac-x64
+          run-id: 38064311450
+          github-token: ${{ github.token }}
+      - name: Publish verified binary releases and update catalog
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python build-tools/publish-products.py

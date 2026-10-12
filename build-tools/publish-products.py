@@ -26,7 +26,8 @@ for product,version,revision in [('tempo','0.2.0',TEMPO_REV),('uzscribe','0.8.6'
         gh('release','create',tag,'--repo',REPO,'--draft','--title',f'{name} {version}',
             '--notes',f'Compiled packages for Windows x64, Intel Mac and Apple Silicon Mac. Source revision: {revision}. Existing user data and UzScribe models remain in their selected location. Unsigned distribution.')
         gh('release','upload',tag,'--repo',REPO,*files)
-    release=api(f'repos/{REPO}/releases/tags/{tag}')
+    release_id=json.loads(gh('release','view',tag,'--repo',REPO,'--json','databaseId'))['databaseId']
+    release=api(f'repos/{REPO}/releases/{release_id}')
     published={a['name']:a for a in release['assets']}
     for key, asset in assets.items():
         info=published[pathlib.PurePosixPath(asset['url']).name]
