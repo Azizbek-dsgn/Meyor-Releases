@@ -1,0 +1,121 @@
+name: Build and publish product
+on:
+  workflow_dispatch:
+    inputs:
+      product:
+        description: Mahsulot id (meyor.json dagi id)
+        required: true
+      version:
+        description: Versiya, masalan 1.0.0
+        required: true
+      input_sha256:
+        description: encrypt-source.py chiqargan SHA-256
+        required: true
+permissions:
+  contents: read
+concurrency:
+  group: product-release
+  cancel-in-progress: false
+env:
+  PRODUCT: ${{ inputs.product }}
+  PRODUCT_VERSION: ${{ inputs.version }}
+  INPUT_SHA256: ${{ inputs.input_sha256 }}
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-2022
+            platform: win-x64
+          - os: macos-15
+            platform: mac-arm64
+          - os: macos-15-intel
+            platform: mac-x64
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
+    env:
+      PYTHONUTF8: '1'
+      PYTHONIOENCODING: 'utf-8'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install decrypt dependency
+        run: python -m pip install cryptography
+      - name: Authenticate encrypted source input
+        id: source
+        shell: bash
+        env:
+          MEYOR_BUILD_KEY: ${{ secrets.MEYOR_BUILD_KEY }}
+        run: python build-tools/decrypt-source.py
+      - if: steps.source.outputs.node != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ steps.source.outputs.node }}
+      - if: steps.source.outputs.pnpm != ''
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ steps.source.outputs.pnpm }}
+      - if: steps.source.outputs.python != '' && steps.source.outputs.python != '3.12'
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ steps.source.outputs.python }}
+      - if: steps.source.outputs.rust != ''
+        uses: dtolnay/rust-toolchain@stable
+      - name: Build and test product
+        shell: bash
+        env:
+          PLATFORM: ${{ matrix.platform }}
+        run: |
+          out="$RUNNER_TEMP/product-release"; mkdir -p "$out" "$RUNNER_TEMP/build-out"
+          cd "$SOURCE_DIR"
+          OUT_DIR="$RUNNER_TEMP/build-out" VERSION="$PRODUCT_VERSION" REVISION="$SOURCE_REVISION" bash meyor-build.sh > "$RUNNER_TEMP/product-private-build.log" 2>&1
+          shopt -s nullglob
+          case "$PLATFORM" in win-*) files=("$RUNNER_TEMP"/build-out/*.zip "$RUNNER_TEMP"/build-out/*.exe);; *) files=("$RUNNER_TEMP"/build-out/*.dmg "$RUNNER_TEMP"/build-out/*.zip);; esac
+          if [ "${#files[@]}" -ne 1 ]; then echo "meyor-build.sh bitta paket chiqarishi kerak (topildi: ${#files[@]})"; exit 1; fi
+          ext="${files[0]##*.}"
+          cp "${files[0]}" "$out/$PRODUCT-$PRODUCT_VERSION-$PLATFORM.$ext"
+          cp meyor.json "$out/meyor.json"; echo "$SOURCE_REVISION" > "$out/SOURCE_REVISION"
+      - name: Encrypt failure diagnostics
+        if: failure()
+        shell: bash
+        env:
+          MEYOR_BUILD_KEY: ${{ secrets.MEYOR_BUILD_KEY }}
+        run: python build-tools/encrypt-diagnostics.py
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: Product-diagnostics-${{ matrix.platform }}
+          retention-days: 3
+          path: ${{ runner.temp }}/encrypted-diagnostics/*.enc
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Product-release-${{ matrix.platform }}
+          retention-days: 3
+          if-no-files-found: error
+          path: ${{ runner.temp }}/product-release/*
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: Product-release-win-x64
+          path: downloads/win-x64
+      - uses: actions/download-artifact@v4
+        with:
+          name: Product-release-mac-arm64
+          path: downloads/mac-arm64
+      - uses: actions/download-artifact@v4
+        with:
+          name: Product-release-mac-x64
+          path: downloads/mac-x64
+      - name: Publish verified binary releases and update catalog
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python build-tools/publish-product.py

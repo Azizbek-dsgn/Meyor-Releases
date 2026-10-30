@@ -6,8 +6,18 @@ on:
         type: choice
         default: all
         options: [all, win-x64]
+      version:
+        description: Meyor versiyasi (encrypt-source.py chiqargan)
+        required: true
+      input_sha256:
+        description: Shifrlangan input SHA-256
+        required: true
 permissions:
   contents: read
+env:
+  PRODUCT: meyor
+  PRODUCT_VERSION: ${{ inputs.version }}
+  INPUT_SHA256: ${{ inputs.input_sha256 }}
 jobs:
   build:
     strategy:
@@ -74,7 +84,7 @@ jobs:
         run: |
           cd "$RUNNER_TEMP/meyor-private-build/meyor"
           export MEYOR_INSTALL_DIR="$RUNNER_TEMP/Meyor installed with spaces"
-          FILE="dist/Meyor-0.4.0-mac-$ARCH.dmg"
+          FILE="dist/Meyor-$PRODUCT_VERSION-mac-$ARCH.dmg"
           SHA=$(shasum -a 256 "$FILE" | awk '{print $1}')
           bash scripts/install-mac.sh "$FILE" "$SHA" > "$RUNNER_TEMP/meyor-private-ui.log" 2>&1
           node scripts/smoke-app.cjs "$MEYOR_INSTALL_DIR/Meyor.app/Contents/MacOS/Meyor" "$RUNNER_TEMP/Meyor-smoke-results" >> "$RUNNER_TEMP/meyor-private-ui.log" 2>&1
@@ -101,5 +111,22 @@ jobs:
             ${{ runner.temp }}/meyor-private-build/meyor/dist/*.dmg
             ${{ runner.temp }}/meyor-private-build/meyor/dist/*.exe
             ${{ runner.temp }}/meyor-private-build/meyor/dist/Install-Meyor-mac.sh
+            ${{ runner.temp }}/meyor-private-build/meyor/SOURCE_REVISION
             ${{ runner.temp }}/Meyor-smoke-results/*.json
             ${{ runner.temp }}/Meyor-smoke-results/*.png
+  publish:
+    needs: build
+    if: inputs.platform == 'all'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: Meyor-release-*
+          path: downloads
+      - name: Publish Meyor release and update catalog
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python build-tools/publish-meyor.py
