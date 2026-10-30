@@ -10,8 +10,12 @@ if not re.fullmatch(r'[a-z0-9][a-z0-9-]{1,40}', PRODUCT) or not re.fullmatch(r'\
 URL = f'https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/build-input-{PRODUCT}-{VERSION}/{PRODUCT}-{VERSION}.enc'
 try:
     key = bytes.fromhex(os.environ['MEYOR_BUILD_KEY']); assert len(key) == 32
-    with urllib.request.urlopen(URL, timeout=120) as response:
-        packet = response.read(32 * 1024**2)
+    local = Path(f'build-inputs/{PRODUCT}-{VERSION}.enc')
+    if local.is_file():
+        packet = local.read_bytes()
+    else:
+        with urllib.request.urlopen(URL, timeout=120) as response:
+            packet = response.read(32 * 1024**2)
     assert hashlib.sha256(packet).hexdigest() == EXPECTED
     plaintext = AESGCM(key).decrypt(packet[:12], packet[28:] + packet[12:28], None)
     destination = Path(os.environ['RUNNER_TEMP']) / 'meyor-private-build'
