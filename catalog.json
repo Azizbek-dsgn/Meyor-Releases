@@ -91,35 +91,38 @@
   "products": {
     "uzdictate": {
       "name": "Voxly",
-      "detail": "Tugmani bosib gapiring \u2014 matn istalgan dasturda kursor turgan joyga yoziladi. O\u2018zbekcha, shevalar va aralash nutq; lotin yoki kirill; internetsiz.",
-      "note": "Birinchi ochilishda o\u2018zbekcha nutq modeli (~2.3 GB) bir marta yuklanadi; Swible o\u2018rnatilgan bo\u2018lsa, uning modeli ishlatiladi.",
+      "detail": "Tugmani bosib gapiring — matn istalgan dasturda kursor turgan joyga yoziladi. O‘zbekcha, shevalar va aralash nutq; lotin yoki kirill; internetsiz.",
+      "note": "Birinchi ochilishda o‘zbekcha nutq modeli (~2.3 GB) bir marta yuklanadi; Swible o‘rnatilgan bo‘lsa, uning modeli ishlatiladi.",
       "host": "Mustaqil ilova",
       "mac": {
-        "app": "UzDictate.app",
+        "app": "Voxly.app",
+        "previous": [
+          "UzDictate.app"
+        ],
         "bundleId": "com.meyorvision.uzdictate"
       },
       "win": {
         "exe": "UzDictate.exe"
       },
       "data": "UzDictate",
-      "version": "0.1.6",
-      "revision": "69e4f49856362d3971c2790636ff5ffbf91e6a5d",
+      "version": "0.1.7",
+      "revision": "b4cf4afa4e33bba03dfebff896153736827560fa",
       "channel": "beta",
       "assets": {
         "mac-arm64": {
-          "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzdictate-v0.1.6-69e4f49/uzdictate-0.1.6-mac-arm64.zip",
-          "bytes": 40927185,
-          "sha256": "ed3673ac15fa1006c0acecdcf30b6347bd464c66cf8c0abfaf062eeceb2653f9"
+          "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzdictate-v0.1.7-b4cf4af/uzdictate-0.1.7-mac-arm64.zip",
+          "bytes": 40949082,
+          "sha256": "ceb6d1896b4f0622c799eae61bbb35c268b2f8dea53c65956589967cf1c7c353"
         },
         "mac-x64": {
-          "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzdictate-v0.1.6-69e4f49/uzdictate-0.1.6-mac-x64.zip",
-          "bytes": 44264908,
-          "sha256": "49af631214091dbc5c542cc8efdafd1fd977fb8b564d6080c7819c86a41f7dfa"
+          "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzdictate-v0.1.7-b4cf4af/uzdictate-0.1.7-mac-x64.zip",
+          "bytes": 44286835,
+          "sha256": "7bf34c02cf66c520871942138a15b5a0782b3d197f52db077a76de2e0ef3556e"
         },
         "win-x64": {
-          "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzdictate-v0.1.6-69e4f49/uzdictate-0.1.6-win-x64.zip",
-          "bytes": 35106564,
-          "sha256": "d28dfa7bc0355f7f20adeaef3a4050136c7e005de46603b42daecd857fba07f3"
+          "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzdictate-v0.1.7-b4cf4af/uzdictate-0.1.7-win-x64.zip",
+          "bytes": 35120324,
+          "sha256": "f69069a0a01a233619a30bf8d29094a9c2ec4f8b618147980dc040f76052b9e1"
         }
       }
     }
