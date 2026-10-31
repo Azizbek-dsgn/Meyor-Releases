@@ -61,7 +61,7 @@ jobs:
           python -m pip install Pillow numpy av==18.1.0 imageio-ffmpeg==0.6.0 uv==0.13.0 >> "$RUNNER_TEMP/uzscribe-private-build.log" 2>&1
           python -c "import zipfile,sys;zipfile.ZipFile(sys.argv[1]).extractall('native-smoke')" "$package"
           python packaging/validate-desktop-package.py native-smoke "$RUNNER_TEMP/product-release/desktop-test.json" >> "$RUNNER_TEMP/uzscribe-private-build.log" 2>&1
-          python -m unittest tests.test_dictation >> "$RUNNER_TEMP/uzscribe-private-build.log" 2>&1
+          python -m unittest tests.test_shared_models tests.test_old_dictation_cleanup >> "$RUNNER_TEMP/uzscribe-private-build.log" 2>&1
           if [ "$PLATFORM" = win-x64 ]; then
             python packaging/validate-windows-bootstrap.py native-smoke "$RUNNER_TEMP/product-release/windows-bootstrap.json" >> "$RUNNER_TEMP/uzscribe-private-build.log" 2>&1
           fi
