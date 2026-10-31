@@ -25,6 +25,24 @@ assert re.fullmatch(r'[0-9a-f]{40}', REVISION)
 meta = json.loads((ROOT / 'mac-arm64' / 'meyor.json').read_text(encoding='utf-8'))
 assert meta['id'] == PRODUCT
 
+def check_meta(m):
+    """Same rules as Meyor's products.cjs, so a bad entry never reaches the catalog."""
+    if not isinstance(m.get('name'), str) or not m['name'].strip() or len(m['name']) > 60:
+        raise SystemExit('meyor.json: name noto‘g‘ri (1–60 belgi).')
+    for field in ('detail', 'note', 'host'):
+        if field in m and (not isinstance(m[field], str) or len(m[field]) > 400):
+            raise SystemExit(f'meyor.json: {field} 400 belgidan oshmasin.')
+    mac, win = m.get('mac') or {}, m.get('win') or {}
+    if not re.fullmatch(r'\w[\w .-]{0,60}\.app', mac.get('app', '')) or not re.fullmatch(r'[A-Za-z0-9-]+(\.[A-Za-z0-9-]+){2,}', mac.get('bundleId', '')):
+        raise SystemExit('meyor.json: mac.app / mac.bundleId noto‘g‘ri.')
+    if not re.fullmatch(r'\w[\w .-]{0,60}\.exe', win.get('exe', ''), re.IGNORECASE):
+        raise SystemExit('meyor.json: win.exe noto‘g‘ri.')
+    args = win.get('args', [])
+    if not isinstance(args, list) or len(args) > 8 or any(not isinstance(a, str) or len(a) > 80 for a in args):
+        raise SystemExit('meyor.json: win.args noto‘g‘ri.')
+
+check_meta(meta)
+
 tag = f'{PRODUCT}-v{VERSION}-{REVISION[:7]}'
 assets, files = {}, []
 for platform, allowed in EXT.items():
