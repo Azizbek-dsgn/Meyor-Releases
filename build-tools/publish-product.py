@@ -35,6 +35,9 @@ def check_meta(m):
     mac, win = m.get('mac') or {}, m.get('win') or {}
     if not re.fullmatch(r'\w[\w .-]{0,60}\.app', mac.get('app', '')) or not re.fullmatch(r'[A-Za-z0-9-]+(\.[A-Za-z0-9-]+){2,}', mac.get('bundleId', '')):
         raise SystemExit('meyor.json: mac.app / mac.bundleId noto‘g‘ri.')
+    previous = mac.get('previous', [])
+    if not isinstance(previous, list) or len(previous) > 3 or any(not isinstance(n, str) or not re.fullmatch(r'\w[\w .-]{0,60}\.app', n) or n == mac['app'] for n in previous):
+        raise SystemExit('meyor.json: mac.previous noto‘g‘ri (eski .app nomlari, ko‘pi bilan 3 ta).')
     if not re.fullmatch(r'\w[\w .-]{0,60}\.exe', win.get('exe', ''), re.IGNORECASE):
         raise SystemExit('meyor.json: win.exe noto‘g‘ri.')
     if 'data' in m and (not isinstance(m['data'], str) or not re.fullmatch(r'[A-Za-z][A-Za-z0-9 ._-]{1,40}', m['data'])

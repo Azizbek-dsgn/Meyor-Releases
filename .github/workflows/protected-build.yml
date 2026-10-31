@@ -86,7 +86,7 @@ jobs:
           $destination = Join-Path $env:RUNNER_TEMP 'Meyor installed with spaces'
           $p = Start-Process $installer -ArgumentList "/S /D=$destination" -Wait -PassThru
           if ($p.ExitCode -ne 0) { throw 'Windows installation failed' }
-          node scripts/smoke-app.cjs "$destination/Meyor.exe" "$env:RUNNER_TEMP/Meyor-smoke-results" *> "$env:RUNNER_TEMP/meyor-private-ui.log"
+          node scripts/smoke-app.cjs "$destination/Hustler.exe" "$env:RUNNER_TEMP/Meyor-smoke-results" *> "$env:RUNNER_TEMP/meyor-private-ui.log"
           if ($LASTEXITCODE -ne 0) { throw 'Windows application test failed' }
           $p = Start-Process $installer -ArgumentList "/S /D=$destination" -Wait -PassThru
           if ($p.ExitCode -ne 0) { throw 'Windows reinstall failed' }
@@ -101,7 +101,7 @@ jobs:
           FILE="dist/Meyor-0.3.1-mac-$ARCH.dmg"
           SHA=$(shasum -a 256 "$FILE" | awk '{print $1}')
           bash scripts/install-mac.sh "$FILE" "$SHA" > "$RUNNER_TEMP/meyor-private-ui.log" 2>&1
-          node scripts/smoke-app.cjs "$MEYOR_INSTALL_DIR/Meyor.app/Contents/MacOS/Meyor" "$RUNNER_TEMP/Meyor-smoke-results" >> "$RUNNER_TEMP/meyor-private-ui.log" 2>&1
+          node scripts/smoke-app.cjs "$MEYOR_INSTALL_DIR/Hustler.app/Contents/MacOS/Hustler" "$RUNNER_TEMP/Meyor-smoke-results" >> "$RUNNER_TEMP/meyor-private-ui.log" 2>&1
           bash scripts/install-mac.sh "$FILE" "$SHA" >> "$RUNNER_TEMP/meyor-private-ui.log" 2>&1
           cp scripts/install-mac.sh dist/Install-Meyor-mac.sh
       - name: Encrypt failure diagnostics
