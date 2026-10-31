@@ -101,24 +101,24 @@
       "win": {
         "exe": "UzDictate.exe"
       },
-      "version": "0.1.1",
-      "revision": "ac86d703a7629274d7b78ac64390faa5baea30fb",
+      "version": "0.1.2",
+      "revision": "33b6b225984424f1020771862b6e9a908a84ee3c",
       "channel": "beta",
       "assets": {
         "mac-arm64": {
-          "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzdictate-v0.1.1-ac86d70/uzdictate-0.1.1-mac-arm64.zip",
-          "bytes": 40730548,
-          "sha256": "ee7eb634e83cdfd3cb0105937d6f48192e2a707dfb430a152b9bc10934246ef3"
+          "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzdictate-v0.1.2-33b6b22/uzdictate-0.1.2-mac-arm64.zip",
+          "bytes": 40731662,
+          "sha256": "78083b762dee08a8687708a79338834bc883977e2ae9a1d9a58736bba6758b04"
         },
         "mac-x64": {
-          "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzdictate-v0.1.1-ac86d70/uzdictate-0.1.1-mac-x64.zip",
-          "bytes": 44068296,
-          "sha256": "9e0ade7ec3d57641f8e3a336fb4d9a1efdde618ebbbae934aa4d30d157bfb65d"
+          "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzdictate-v0.1.2-33b6b22/uzdictate-0.1.2-mac-x64.zip",
+          "bytes": 44069397,
+          "sha256": "4192d9ccb2587c8d9feb327a9f57ed6292c62dec5f145fcc2c2a49ab2a05b638"
         },
         "win-x64": {
-          "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzdictate-v0.1.1-ac86d70/uzdictate-0.1.1-win-x64.zip",
-          "bytes": 35039134,
-          "sha256": "268909822eb528970256b72605150a7a6b2990c47ea305468c2887348546b919"
+          "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzdictate-v0.1.2-33b6b22/uzdictate-0.1.2-win-x64.zip",
+          "bytes": 35040235,
+          "sha256": "593ecb56d44f0c9fb8c5fcaadc7ff4f5276979188cc5e8f7b66b08d06eea5de6"
         }
       }
     }
