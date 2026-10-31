@@ -37,3 +37,7 @@ Testlarni shu skript ichida ishga tushiring: xato bo‘lsa reliz chiqmaydi.
 3. Actions → **Build and publish product** → `product`, `version`, `input_sha256`.
 
 Uchala platforma o‘tsa, reliz chiqadi va `catalog.json` yangilanadi; Meyor keyingi tekshiruvda yangilanishni ko‘rsatadi.
+
+## Bir nechta relizni chiqarish
+
+Barcha chiqarish workflow’lari bitta `product-release` navbatida ishlaydi (katalogga navbat bilan yoziladi). GitHub bu navbatda **bitta ishlayotgan va bitta kutayotgan** run qoldiradi: uchinchisi yuborilsa, kutayotgani bekor bo‘ladi. Shuning uchun keyingi relizni oldingisi ishga tushgandan keyin (navbatda kutayotgan run qolmaganda) yuboring.
