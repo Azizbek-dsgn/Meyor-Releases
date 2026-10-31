@@ -37,6 +37,9 @@ def check_meta(m):
         raise SystemExit('meyor.json: mac.app / mac.bundleId noto‘g‘ri.')
     if not re.fullmatch(r'\w[\w .-]{0,60}\.exe', win.get('exe', ''), re.IGNORECASE):
         raise SystemExit('meyor.json: win.exe noto‘g‘ri.')
+    if 'data' in m and (not isinstance(m['data'], str) or not re.fullmatch(r'[A-Za-z][A-Za-z0-9 ._-]{1,40}', m['data'])
+                        or re.fullmatch(r'(?i)meyor|uzbeksubtitles|adobe|apple|microsoft|google|library|application support|appdata|local|roaming|programs|documents|desktop|downloads|system|windows', m['data'].strip())):
+        raise SystemExit('meyor.json: data papka nomi noto‘g‘ri.')
     args = win.get('args', [])
     if not isinstance(args, list) or len(args) > 8 or any(not isinstance(a, str) or len(a) > 80 for a in args):
         raise SystemExit('meyor.json: win.args noto‘g‘ri.')
@@ -69,7 +72,7 @@ for asset in assets.values():
         raise RuntimeError('Release asset integrity mismatch')
 gh('release', 'edit', tag, '--repo', REPO, '--draft=false', '--latest=false')
 
-entry = {k: meta[k] for k in ('name', 'detail', 'note', 'host', 'mac', 'win') if k in meta}
+entry = {k: meta[k] for k in ('name', 'detail', 'note', 'host', 'mac', 'win', 'data') if k in meta}
 entry.update(version=VERSION, revision=REVISION, channel=meta.get('channel', 'beta'), assets=assets)
 catalog.setdefault('products', {})[PRODUCT] = entry
 request = {'message': f"Publish {meta['name']} {VERSION}", 'sha': old['sha'],
