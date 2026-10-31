@@ -12,6 +12,8 @@ def load_key():
     raw = os.environ.get('MEYOR_BUILD_KEY', '').strip()
     if not raw and os.environ.get('MEYOR_KEY_FILE'):
         raw = pathlib.Path(os.environ['MEYOR_KEY_FILE']).read_text().strip().split('=')[-1].strip().strip('"\'')
+    # Tolerate how people paste secrets: <key>, "key", 'key', NAME=key, surrounding spaces.
+    raw = raw.split('=')[-1].strip().strip('<>"\'').strip()
     key = bytes.fromhex(raw)
     if len(key) != 32:
         raise ValueError
