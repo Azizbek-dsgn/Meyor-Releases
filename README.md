@@ -1,19 +1,24 @@
-# Meyor — downloads and update catalog
+# Hustler — yuklab olish va yangilanishlar
 
-[Download Meyor 0.4.0 for Apple Silicon Mac, Intel Mac and Windows x64](https://github.com/Azizbek-dsgn/Meyor-Releases/releases/tag/v0.4.0).
+**Hustler by Meyor Vision** — video montajchilar uchun bepul ilovalar: **Swible** (Premiere Pro / After Effects plagini), **Swible Lab**, **Voxly** va **Tempass**.
 
-Meyor 0.4.0 includes managed Python 3.12 for Windows UzScribe installation, download and phase progress, and a saved installation folder. [UzScribe Desktop 0.8.5](https://github.com/Azizbek-dsgn/Meyor-Releases/releases/tag/uzscribe-v0.8.5) also has a local-browser fallback when the Windows native window cannot open. Choose the runtime folder before the first installation; updates reuse that folder. Existing ready installations are not automatically moved between disks.
+- Sayt: https://azizbek-dsgn.github.io/Meyor-Releases/
+- Yuklab olish: [Releases](https://github.com/Azizbek-dsgn/Meyor-Releases/releases) — macOS (Apple Silicon, Intel) va Windows x64
 
-This repository distributes compiled installers, protected plugin packages and the public update catalog. Editable product source repositories (Meyor, UzScribe and Tempo) are private. No GitHub credentials are embedded in the user application.
+## Bu repo nima
 
-macOS 13+ / Windows 10 and 11 x64. Native installation, reinstallation and installed-app launch were verified on macOS 15 ARM64, macOS 15 Intel and Windows Server 2022; ARM64 was also verified on the developer's Mac. These checks do not guarantee operation on every device or automatic Gatekeeper / SmartScreen acceptance.
+Bu repo faqat **tayyor dasturlarni tarqatadi**: kompilyatsiya qilingan installerlar, himoyalangan paketlar va Hustler o‘qiydigan yangilanish katalogi (`catalog.json`).
 
-For the free Mac terminal installation, download the matching DMG, `Install-Meyor-mac.sh` and `SHA256SUMS` from the release into one folder, then run `bash Install-Meyor-mac.sh` there. The installer verifies SHA-256, architecture, app identity and ad-hoc signature, then installs into `~/Applications/Meyor.app` without sudo. It does not alter system security settings.
+**Bu ochiq manbali loyiha emas.** Ilovalarning manba kodi yopiq repolarda saqlanadi. Yig‘ish uchun kod faqat shifrlangan holda (`build-inputs/*.enc`) keladi, kalit esa faqat GitHub Secrets’da. Relizlardagi paketlar mashina kodiga kompilyatsiya qilingan va chalkashtirilgan (obfuscated).
 
-Mac builds are ad-hoc signed and not Apple notarized. Windows builds are unsigned. First-open security prompts may appear. See [Apple's per-app Open Anyway instructions](https://support.apple.com/en-us/102445) and [Microsoft's SmartScreen explanation](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/smartscreen-reputation).
+GitHub har bir relizga avtomatik “Source code (zip / tar.gz)” arxivini qo‘shadi. Unda faqat shu tarqatish reposi (katalog, yig‘ish skriptlari, shifrlangan fayllar) bor — ilovalarning kodi emas.
 
-The GitHub-generated “Source code” archives on this distribution repository contain this repository's public catalog and packaged distribution files, not editable product source. Obfuscation and native compilation do not prevent all reverse engineering. Original product code © Meyor Vision; free distribution does not grant an open-source license. Third-party components retain their own licenses.
+## Huquqlar
 
-## Meyor 0.4.0 interface
+© 2026 Meyor Vision. Barcha huquqlar himoyalangan. Bepul tarqatish ochiq manba litsenziyasini bermaydi: dasturlarni nusxalash, qayta sotish yoki teskari muhandislik qilish mumkin emas. Uchinchi tomon komponentlari o‘z litsenziyalariga ega.
 
-The library has All / Installed filters and separate Open / Update actions. Download progress stays visible at the bottom, and installation folder settings live in one place. The application icon uses the same portrait as UzScribe and Tempo.
+[Maxfiylik siyosati](https://azizbek-dsgn.github.io/Meyor-Releases/privacy.html) · [Foydalanish shartlari](https://azizbek-dsgn.github.io/Meyor-Releases/terms.html)
+
+---
+
+**English.** This repository only distributes compiled Hustler apps and the update catalog. It is **not open source**: product source code is private, build inputs are encrypted, and GitHub’s automatic “Source code” archives contain only this distribution repository. © 2026 Meyor Vision, all rights reserved.

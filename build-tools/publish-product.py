@@ -65,7 +65,7 @@ catalog = json.loads(base64.b64decode(old['content']))
 existing = json.loads(gh('release', 'list', '--repo', REPO, '--limit', '100', '--json', 'tagName'))
 if tag not in [r['tagName'] for r in existing]:
     gh('release', 'create', tag, '--repo', REPO, '--draft', '--title', f"{meta['name']} {VERSION}",
-       '--notes', f"Compiled packages for Windows x64, Intel Mac and Apple Silicon Mac. Install with Meyor 0.5.0 or newer. Source revision: {REVISION}. Unsigned distribution.")
+       '--notes', f"Compiled packages for Windows x64, Intel Mac and Apple Silicon Mac. Install with Hustler. Unsigned distribution.")
     gh('release', 'upload', tag, '--repo', REPO, *files)
 release_id = json.loads(gh('release', 'view', tag, '--repo', REPO, '--json', 'databaseId'))['databaseId']
 published = {a['name']: a for a in api(f'repos/{REPO}/releases/{release_id}')['assets']}

@@ -26,8 +26,8 @@ upload += [sums] + ([installer] if installer else [])
 tag = f'v{VERSION}'
 existing = [r['tagName'] for r in json.loads(gh('release', 'list', '--repo', REPO, '--limit', '100', '--json', 'tagName'))]
 if tag not in existing:
-    gh('release', 'create', tag, '--repo', REPO, '--draft', '--title', f'Meyor {VERSION}',
-       '--notes', f'Meyor {VERSION} for Apple Silicon Mac, Intel Mac and Windows x64. Source revision: {REVISION}. Mac builds are ad-hoc signed, Windows builds unsigned.')
+    gh('release', 'create', tag, '--repo', REPO, '--draft', '--title', f'Hustler {VERSION}',
+       '--notes', f'Hustler {VERSION} for Apple Silicon Mac, Intel Mac and Windows x64. Mac builds are ad-hoc signed, Windows builds unsigned.')
     gh('release', 'upload', tag, '--repo', REPO, *map(str, upload))
 release = json.loads(gh('api', f"repos/{REPO}/releases/{json.loads(gh('release', 'view', tag, '--repo', REPO, '--json', 'databaseId'))['databaseId']}"))
 published = {a['name']: a for a in release['assets']}

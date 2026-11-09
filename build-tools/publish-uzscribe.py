@@ -26,8 +26,8 @@ for platform in ['win-x64', 'mac-arm64', 'mac-x64']:
     files.append(str(file))
 existing = json.loads(gh('release', 'list', '--repo', REPO, '--limit', '100', '--json', 'tagName'))
 if tag not in [r['tagName'] for r in existing]:
-    gh('release', 'create', tag, '--repo', REPO, '--draft', '--title', f'UzScribe {VERSION}',
-       '--notes', f'Compiled packages for Windows x64, Intel Mac and Apple Silicon Mac. Includes UzScribe Diktant (push-to-talk dictation). Source revision: {REVISION}. Existing user data and UzScribe models remain in their selected location. Unsigned distribution.')
+    gh('release', 'create', tag, '--repo', REPO, '--draft', '--title', f'Swible {VERSION}',
+       '--notes', f'Compiled packages for Windows x64, Intel Mac and Apple Silicon Mac. Existing user data and Swible models remain in their selected location. Unsigned distribution.')
     gh('release', 'upload', tag, '--repo', REPO, *files)
 release_id = json.loads(gh('release', 'view', tag, '--repo', REPO, '--json', 'databaseId'))['databaseId']
 published = {a['name']: a for a in api(f'repos/{REPO}/releases/{release_id}')['assets']}

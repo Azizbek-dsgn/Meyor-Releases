@@ -24,7 +24,7 @@ for product,version,revision in [('tempo','0.2.0',TEMPO_REV),('uzscribe','0.8.6'
     existing=json.loads(gh('release','list','--repo',REPO,'--limit','100','--json','tagName'))
     if tag not in [r['tagName'] for r in existing]:
         gh('release','create',tag,'--repo',REPO,'--draft','--title',f'{name} {version}',
-            '--notes',f'Compiled packages for Windows x64, Intel Mac and Apple Silicon Mac. Source revision: {revision}. Existing user data and UzScribe models remain in their selected location. Unsigned distribution.')
+            '--notes',f'Compiled packages for Windows x64, Intel Mac and Apple Silicon Mac. Existing user data and UzScribe models remain in their selected location. Unsigned distribution.')
         gh('release','upload',tag,'--repo',REPO,*files)
     release_id=json.loads(gh('release','view',tag,'--repo',REPO,'--json','databaseId'))['databaseId']
     release=api(f'repos/{REPO}/releases/{release_id}')
