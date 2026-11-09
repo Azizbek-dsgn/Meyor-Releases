@@ -1,0 +1,23 @@
+name: Clean release notes
+# One-off maintenance: removes private source revisions and old product names from release notes.
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Rewrite release notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh api --paginate "repos/$REPO/releases?per_page=100" --jq '.[] | @base64' | while read -r row; do
+            id=$(echo "$row" | base64 -d | jq -r .id)
+            body=$(echo "$row" | base64 -d | jq -r '.body // ""')
+            clean=$(printf '%s' "$body" | sed -E 's/ ?Source revision: [0-9a-f]{40}\.//g; s/ ?Includes UzScribe Diktant \(push-to-talk dictation\)\.//g')
+            if [ "$clean" != "$body" ]; then
+              gh api -X PATCH "repos/$REPO/releases/$id" -f body="$clean" --jq '.tag_name' 
+            fi
+          done
