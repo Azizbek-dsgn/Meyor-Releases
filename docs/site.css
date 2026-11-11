@@ -87,3 +87,17 @@ footer:not(.foot){border-top:1px solid var(--line);padding:24px 0 40px;color:var
 @media(max-width:860px){.menu{display:block}.bar>.langs{display:none}}
 .wrap.doc{padding:48px 20px 64px}
 .tabs{flex-wrap:wrap}.tabs a{white-space:nowrap}
+/* download block: one button for this computer, the others as links, the one-line install */
+.get{display:flex;flex-direction:column;align-items:center;gap:12px}
+.dl-main{display:inline-flex;flex-direction:column;align-items:center;gap:2px;padding:16px 36px;border-radius:18px;background:var(--text);color:#000;text-decoration:none;min-width:280px;transition:transform .15s}
+.dl-main b{font-size:18px}.dl-main small{font-size:12px;color:#4d4d54}.dl-main:hover{transform:translateY(-1px)}
+.others{margin:0;color:var(--muted);font-size:14px}.others a{color:var(--soft)}.others a.mine{color:var(--text);font-weight:600}
+.cmd-box{width:100%;max-width:720px;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin-top:6px}
+.cmd-box>b{display:block;margin-bottom:10px;font-size:15px}
+.cmd{margin:0 0 10px}.cmd span{display:block;color:var(--muted);font-size:13px;margin-bottom:6px}
+.cmd .line{display:flex;gap:8px;align-items:stretch}.cmd code{flex:1;min-width:0;overflow-x:auto;white-space:nowrap;padding:10px 12px;font-size:13px;border-radius:10px;background:#0c0c0e;display:block}
+.cmd button{border:1px solid var(--line);background:var(--card2);color:var(--text);border-radius:10px;padding:0 14px;font:inherit;font-size:13px;cursor:pointer;white-space:nowrap}
+.cmd.other{opacity:.7}.cmd-note{margin:4px 0 0;color:var(--muted);font-size:12.5px}
+.hero.small .get,.doc .get{align-items:flex-start}
+.contact a{font-weight:600}
+@media(max-width:520px){.dl-main{min-width:0;width:100%}.cmd .line{flex-direction:column}.cmd button{padding:9px}}

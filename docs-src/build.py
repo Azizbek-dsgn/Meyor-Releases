@@ -42,21 +42,28 @@ def layout(lang, title, body, page, description=""):
   <details class="menu"><summary aria-label="Menu"><span></span><span></span><span></span></summary><nav>{links}<div class="langs">{langs}</div></nav></details>
 </div></header>
 <main>{body}</main>
-<footer class="foot"><div class="wrap"><p>{t['footer_local']}</p><div><span>© 2026 Meyor Vision</span><a href="{up}privacy.html">{t['privacy']}</a><a href="{up}terms.html">{t['terms']}</a><a href="https://github.com/Azizbek-dsgn/Meyor-Releases/issues">{t['contact']}</a></div></div></footer>
+<footer class="foot"><div class="wrap"><p>{t['footer_local']}</p><div><span>© 2026 Meyor Vision</span><a href="{up}privacy.html">{t['privacy']}</a><a href="{up}terms.html">{t['terms']}</a><a href="https://t.me/Abdulaziz_kbv" rel="noopener">{t['contact']}: Telegram @Abdulaziz_kbv</a></div></div></footer>
 <script src="{up}download.js"></script>
 </body>
 </html>
 """
 
 
+PS = "irm https://azizbek-dsgn.github.io/Meyor-Releases/install.ps1 | iex"
+SH = "curl -fsSL https://azizbek-dsgn.github.io/Meyor-Releases/install.sh | bash"
+
+
 def downloads(lang):
     t = UI[lang]
-    return f"""<div class="downloads" id="download">
-  <a class="dl" data-asset="win-x64" href="{REL}"><b>{t['win']}</b><small>{t['win_sub']}</small></a>
-  <a class="dl" data-asset="mac-arm64" href="{REL}"><b>{t['arm']}</b><small>{t['arm_sub']}</small></a>
-  <a class="dl" data-asset="mac-x64" href="{REL}"><b>{t['intel']}</b><small>{t['intel_sub']}</small></a>
-</div>
-<p class="hint"><span id="version">Hustler</span> · {t['free']} · <a href="{prefix(lang)}install.html">{t['guide']}</a></p>"""
+    return f"""<div class="get" data-get>
+  <a class="dl-main" data-main href="{REL}"><b>{t['get']}</b><small data-main-label>Windows · macOS</small></a>
+  <p class="others">{t['others']} <a data-asset="win-x64" href="{REL}">{t['win']}</a> · <a data-asset="mac-arm64" href="{REL}">{t['mac_arm']}</a> · <a data-asset="mac-x64" href="{REL}">{t['mac_intel']}</a></p>
+  <div class="cmd-box"><b>{t['cmd_title']}</b>
+    <div class="cmd" data-os="win"><span>{t['cmd_win']}</span><div class="line"><code>{PS}</code><button type="button" data-copy="{PS}" data-done="{t['copied']}">{t['copy']}</button></div></div>
+    <div class="cmd" data-os="mac"><span>{t['cmd_mac']}</span><div class="line"><code>{SH}</code><button type="button" data-copy="{SH}" data-done="{t['copied']}">{t['copy']}</button></div></div>
+    <p class="cmd-note">{t['cmd_note']}</p></div>
+  <p class="hint"><span id="version">Hustler</span> · {t['free']} · <a href="{prefix(lang)}install.html">{t['guide']}</a></p>
+</div>"""
 
 
 def product_block(lang, p, flip):
@@ -116,7 +123,7 @@ def help_page(lang):
     t = UI[lang]
     items = "".join(f"<details class=\"faq\"><summary>{escape(q)}</summary><p>{escape(a)}</p></details>" for q, a in HELP[lang])
     body = f"""<section class="hero small"><div class="wrap"><h1>{t['nav_help']}</h1></div></section>
-<section class="wrap faqs">{items}<p class="hint"><a href="{prefix(lang)}install.html">{t['guide']}</a></p></section>"""
+<section class="wrap faqs">{items}<div class="card contact"><b>{t['contact']}</b><p><a href="https://t.me/Abdulaziz_kbv" rel="noopener">{t['telegram']}</a></p></div><p class="hint"><a href="{prefix(lang)}install.html">{t['guide']}</a></p></section>"""
     return layout(lang, f"{t['nav_help']} — Hustler", body, "help")
 
 
@@ -127,6 +134,7 @@ def doc_page(name):
     title = re.search(r"<!-- title: (.*?) -->", text).group(1)
     description = re.search(r"<!-- description: (.*?) -->", text).group(1)
     body = re.sub(r"<!--.*?-->\n?", "", text, count=2)
+    body = body.replace("<!--DOWNLOADS-->", downloads("uz"))
     return layout("uz", title, f'<section class="wrap doc">{body}</section>', name, description)
 
 

@@ -3,17 +3,17 @@
 LANGS = {"uz": "O‘zbekcha", "ru": "Русский", "en": "English"}
 
 UI = {
- "uz": dict(nav_apps="Ilovalar", nav_install="O‘rnatish", nav_news="Yangiliklar", nav_help="Yordam", download="Yuklab olish",
+ "uz": dict(get="Yuklab olish", for_sys="siz uchun", others="Boshqa tizim:", mac_arm="Mac (Apple Silicon)", mac_intel="Mac (Intel)", cmd_title="Ogohlantirishsiz o‘rnatish (tavsiya)", cmd_win="Windows: PowerShell’ni oching va joylang", cmd_mac="Mac: Terminal’ni oching va joylang", copy="Nusxa", copied="Olindi ✓", cmd_note="Faylni o‘zi yuklaydi, rasmiy SHA-256 bilan tekshiradi, o‘rnatadi va ochadi — brauzer va tizim ogohlantirishlarisiz.", telegram="Telegram: @Abdulaziz_kbv", nav_apps="Ilovalar", nav_install="O‘rnatish", nav_news="Yangiliklar", nav_help="Yordam", download="Yuklab olish",
    win="Windows", win_sub="10 / 11 · 64-bit", arm="macOS · Apple Silicon", arm_sub="M1, M2, M3, M4", intel="macOS · Intel", intel_sub="2020 va undan eski",
    free="bepul", guide="O‘rnatish qo‘llanmasi (rasmlar bilan) →", more="Batafsil →", install_with="Hustler orqali bir tugmada o‘rnatiladi",
    footer_local="Hammasi kompyuteringizda ishlaydi. Video, ovoz va matn hech qayerga yuborilmaydi.", privacy="Maxfiylik", terms="Shartlar", contact="Aloqa",
    back="← Bosh sahifa", current="Hozirgi versiyalar"),
- "ru": dict(nav_apps="Приложения", nav_install="Установка", nav_news="Новости", nav_help="Помощь", download="Скачать",
+ "ru": dict(get="Скачать", for_sys="для вас", others="Другая система:", mac_arm="Mac (Apple Silicon)", mac_intel="Mac (Intel)", cmd_title="Установка без предупреждений (рекомендуем)", cmd_win="Windows: откройте PowerShell и вставьте", cmd_mac="Mac: откройте Терминал и вставьте", copy="Копировать", copied="Скопировано ✓", cmd_note="Сам скачает, проверит официальным SHA-256, установит и откроет — без предупреждений браузера и системы.", telegram="Telegram: @Abdulaziz_kbv", nav_apps="Приложения", nav_install="Установка", nav_news="Новости", nav_help="Помощь", download="Скачать",
    win="Windows", win_sub="10 / 11 · 64-bit", arm="macOS · Apple Silicon", arm_sub="M1, M2, M3, M4", intel="macOS · Intel", intel_sub="2020 и старше",
    free="бесплатно", guide="Инструкция по установке (с картинками) →", more="Подробнее →", install_with="Устанавливается в Hustler одной кнопкой",
    footer_local="Всё работает на вашем компьютере. Видео, звук и текст никуда не отправляются.", privacy="Конфиденциальность", terms="Условия", contact="Связь",
    back="← Главная", current="Текущие версии"),
- "en": dict(nav_apps="Apps", nav_install="Install", nav_news="What’s new", nav_help="Help", download="Download",
+ "en": dict(get="Download", for_sys="for you", others="Other system:", mac_arm="Mac (Apple Silicon)", mac_intel="Mac (Intel)", cmd_title="Install without warnings (recommended)", cmd_win="Windows: open PowerShell and paste", cmd_mac="Mac: open Terminal and paste", copy="Copy", copied="Copied ✓", cmd_note="Downloads, checks the official SHA-256, installs and opens — no browser or system warnings.", telegram="Telegram: @Abdulaziz_kbv", nav_apps="Apps", nav_install="Install", nav_news="What’s new", nav_help="Help", download="Download",
    win="Windows", win_sub="10 / 11 · 64-bit", arm="macOS · Apple Silicon", arm_sub="M1, M2, M3, M4", intel="macOS · Intel", intel_sub="2020 and older",
    free="free", guide="Installation guide (with pictures) →", more="Learn more →", install_with="Installs from Hustler in one click",
    footer_local="Everything runs on your computer. Video, audio and text never leave it.", privacy="Privacy", terms="Terms", contact="Contact",
@@ -108,7 +108,9 @@ PRODUCTS = [
 ]
 
 NEWS = {
- "uz": [("Swible 1.4.0", "Sizning 8 ta montaj skill’ingiz Swible ichida (avto montaj ular bo‘yicha), AI tokenlari ancha kam sarflanadi, model va kuch tanlash (Gemini 4 Argon ham), Tempass bilan bog‘lanish o‘rnatiladi."),
+ "uz": [("Hustler 0.8.1", "AI kartalarida: o‘rnatilgan, akkauntga kirilgan (email) va Swible’ga ulangan — alohida belgilar bilan."),
+        ("Voxly 0.3.1", "Mikrofon ovozi tanishdan oldin tozalanadi va tekislanadi — xatolar kamayadi."),
+        ("Swible 1.4.0", "Sizning 8 ta montaj skill’ingiz Swible ichida (avto montaj ular bo‘yicha), AI tokenlari ancha kam sarflanadi, model va kuch tanlash (Gemini 4 Argon ham), Tempass bilan bog‘lanish o‘rnatiladi."),
         ("Tempass 0.3.1", "Yangi nom, logo va ikonka; hisobotda ilova nomlari tushunarli."),
         ("Hustler 0.8.0", "Skill do‘koni, serversiz sinxronlash (parolli fayl), ilovalar uchun umumiy akkaunt va AI holati."),
         ("Swible 1.3.0", "Swible Lab’da bir tugmali zanjirlar; Hustler Skills papkasidagi skill’lar."),
@@ -118,7 +120,9 @@ NEWS = {
         ("Voxly 0.2.0", "Ovozli buyruqlar, shaxsiy lug‘at, ruscha va inglizcha tarjima."),
         ("Hustler 0.7.6", "O‘zini o‘zi yangilaydi — installer oynasisiz, qayta ochiladi."),
         ("Swible 1.1.0", "Avto montaj, sizning skill’laringiz, After Effects va Premiere’da motion, Gemini modellari.")],
- "ru": [("Swible 1.4.0", "8 скиллов монтажа внутри Swible (автомонтаж по ним), AI тратит заметно меньше токенов, выбор модели и силы (и Gemini 4 Argon), связь с Tempass устанавливается."),
+ "ru": [("Hustler 0.8.1", "В карточках AI: установлен, вход в аккаунт (email) и подключение к Swible — отдельными отметками."),
+        ("Voxly 0.3.1", "Звук микрофона очищается и выравнивается перед распознаванием — меньше ошибок."),
+        ("Swible 1.4.0", "8 скиллов монтажа внутри Swible (автомонтаж по ним), AI тратит заметно меньше токенов, выбор модели и силы (и Gemini 4 Argon), связь с Tempass устанавливается."),
         ("Tempass 0.3.1", "Новое имя, логотип и иконка; понятные названия приложений в отчёте."),
         ("Hustler 0.8.0", "Магазин скиллов, синхронизация без сервера (файл с паролем), общий аккаунт и статус AI для приложений."),
         ("Swible 1.3.0", "Цепочки в одну кнопку в Swible Lab; скиллы из папки Hustler Skills."),
@@ -128,7 +132,9 @@ NEWS = {
         ("Voxly 0.2.0", "Голосовые команды, личный словарь, перевод на русский и английский."),
         ("Hustler 0.7.6", "Обновляется сам — без окна установщика, перезапускается."),
         ("Swible 1.1.0", "Автомонтаж, ваши скиллы, моушн в After Effects и Premiere, модели Gemini.")],
- "en": [("Swible 1.4.0", "Eight montage skills built in (auto montage follows them), the AI uses far fewer tokens, model and effort choice (Gemini 4 Argon too), the Tempass link is installed."),
+ "en": [("Hustler 0.8.1", "AI cards show installed, signed in (email) and connected to Swible as separate marks."),
+        ("Voxly 0.3.1", "Microphone audio is cleaned and levelled before recognition — fewer mistakes."),
+        ("Swible 1.4.0", "Eight montage skills built in (auto montage follows them), the AI uses far fewer tokens, model and effort choice (Gemini 4 Argon too), the Tempass link is installed."),
         ("Tempass 0.3.1", "New name, logo and icon; readable app names in reports."),
         ("Hustler 0.8.0", "Skill store, serverless sync (a password file), shared account and AI status for the apps."),
         ("Swible 1.3.0", "One-click chains in Swible Lab; skills from the Hustler Skills folder."),
