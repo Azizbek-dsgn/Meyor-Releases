@@ -15,7 +15,8 @@ def gh(*args):
 def api(endpoint):
     return json.loads(gh('api', endpoint))
 
-assert re.fullmatch(r'[a-z0-9][a-z0-9-]{1,40}', PRODUCT) and PRODUCT not in BUILT_IN
+# Tempass is built-in in Hustler (catalog.tempo) but builds through this generic workflow.
+assert re.fullmatch(r'[a-z0-9][a-z0-9-]{1,40}', PRODUCT) and (PRODUCT not in BUILT_IN or PRODUCT == 'tempo')
 assert re.fullmatch(r'\d+\.\d+\.\d+', VERSION)
 revisions = {(ROOT / p / 'SOURCE_REVISION').read_text().strip() for p in EXT}
 if len(revisions) != 1:
@@ -77,7 +78,10 @@ gh('release', 'edit', tag, '--repo', REPO, '--draft=false', '--latest=false')
 
 entry = {k: meta[k] for k in ('name', 'detail', 'note', 'host', 'mac', 'win', 'data') if k in meta}
 entry.update(version=VERSION, revision=REVISION, channel=meta.get('channel', 'beta'), assets=assets)
-catalog.setdefault('products', {})[PRODUCT] = entry
+if PRODUCT == 'tempo':
+    catalog['tempo'] = {'version': VERSION, 'revision': REVISION, 'channel': 'beta', 'assets': assets}
+else:
+    catalog.setdefault('products', {})[PRODUCT] = entry
 request = {'message': f"Publish {meta['name']} {VERSION}", 'sha': old['sha'],
            'content': base64.b64encode((json.dumps(catalog, indent=2, ensure_ascii=False) + '\n').encode()).decode()}
 pathlib.Path('catalog-request.json').write_text(json.dumps(request), encoding='utf-8')
