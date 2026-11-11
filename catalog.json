@@ -23,24 +23,24 @@
     }
   },
   "uzscribe": {
-    "version": "1.2.0",
-    "revision": "ab9c63b6b3452de5c98dd6897436a1ea8c697e62",
+    "version": "1.3.0",
+    "revision": "051335f370375b84fb7ac4e8456d1ece9244bebc",
     "channel": "beta",
     "assets": {
       "win-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzscribe-v1.2.0-ab9c63b/UzScribe-1.2.0-win-x64.zip",
-        "bytes": 2185033,
-        "sha256": "d2a840aa182c92a641333352dcd720c92dcd0582c083f43abaa387fa48f4fadf"
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzscribe-v1.3.0-051335f/UzScribe-1.3.0-win-x64.zip",
+        "bytes": 2197181,
+        "sha256": "5b2cde3c0a2c388c6c822b327611729bcadcc5f8a7fae56effd7c934d9c09c2e"
       },
       "mac-arm64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzscribe-v1.2.0-ab9c63b/UzScribe-1.2.0-mac-arm64.zip",
-        "bytes": 4912001,
-        "sha256": "4502aefe9ccbb98c32537034397caf308174bd6f7ff76c2613cb82914f6f0130"
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzscribe-v1.3.0-051335f/UzScribe-1.3.0-mac-arm64.zip",
+        "bytes": 4942523,
+        "sha256": "2e043a45cb012f00617411b263c3331c5000bbdbfa2895b332d2776430938b14"
       },
       "mac-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzscribe-v1.2.0-ab9c63b/UzScribe-1.2.0-mac-x64.zip",
-        "bytes": 4911913,
-        "sha256": "828a7d5409cb8782129009da930417dab22410358c140a5f63a5ca00376c1d43"
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzscribe-v1.3.0-051335f/UzScribe-1.3.0-mac-x64.zip",
+        "bytes": 4942544,
+        "sha256": "0444c50031c6b8e1a986614f7bf5a09c8c7b81c56f568b3cc6a3b947e01ca4ae"
       }
     }
   },
@@ -66,24 +66,24 @@
     }
   },
   "uzscribeDesktop": {
-    "version": "1.2.0",
-    "revision": "ab9c63b6b3452de5c98dd6897436a1ea8c697e62",
+    "version": "1.3.0",
+    "revision": "051335f370375b84fb7ac4e8456d1ece9244bebc",
     "channel": "beta",
     "assets": {
       "win-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzscribe-v1.2.0-ab9c63b/UzScribe-1.2.0-win-x64.zip",
-        "bytes": 2185033,
-        "sha256": "d2a840aa182c92a641333352dcd720c92dcd0582c083f43abaa387fa48f4fadf"
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzscribe-v1.3.0-051335f/UzScribe-1.3.0-win-x64.zip",
+        "bytes": 2197181,
+        "sha256": "5b2cde3c0a2c388c6c822b327611729bcadcc5f8a7fae56effd7c934d9c09c2e"
       },
       "mac-arm64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzscribe-v1.2.0-ab9c63b/UzScribe-1.2.0-mac-arm64.zip",
-        "bytes": 4912001,
-        "sha256": "4502aefe9ccbb98c32537034397caf308174bd6f7ff76c2613cb82914f6f0130"
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzscribe-v1.3.0-051335f/UzScribe-1.3.0-mac-arm64.zip",
+        "bytes": 4942523,
+        "sha256": "2e043a45cb012f00617411b263c3331c5000bbdbfa2895b332d2776430938b14"
       },
       "mac-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzscribe-v1.2.0-ab9c63b/UzScribe-1.2.0-mac-x64.zip",
-        "bytes": 4911913,
-        "sha256": "828a7d5409cb8782129009da930417dab22410358c140a5f63a5ca00376c1d43"
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzscribe-v1.3.0-051335f/UzScribe-1.3.0-mac-x64.zip",
+        "bytes": 4942544,
+        "sha256": "0444c50031c6b8e1a986614f7bf5a09c8c7b81c56f568b3cc6a3b947e01ca4ae"
       }
     },
     "desktop": true
