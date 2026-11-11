@@ -21,6 +21,9 @@ def layout(lang, title, body, page, description=""):
     t, up = UI[lang], prefix(lang)
     langs = "".join(f'<a href="{(up + ("" if l == "uz" else l + "/")) + page}.html"{" aria-current=\"true\"" if l == lang else ""}>{l.upper()}</a>' for l in LANGS)
     install = up + "install.html"
+    home = ("index.html" if lang != "uz" or not up else "index.html")
+    links = (f'<a href="{home}#apps">{t['nav_apps']}</a><a href="{install}">{t['nav_install']}</a>'
+             f'<a href="changelog.html">{t['nav_news']}</a><a href="help.html">{t['nav_help']}</a>')
     return f"""<!doctype html>
 <html lang="{lang}">
 <head>
@@ -34,8 +37,9 @@ def layout(lang, title, body, page, description=""):
 <body>
 <header class="top"><div class="wrap bar">
   <a class="brand" href="index.html"><img src="{up}hustler.png" alt=""><span><strong>Hustler</strong><small>by Meyor Vision</small></span></a>
-  <nav class="links"><a href="index.html#apps">{t['nav_apps']}</a><a href="{install}">{t['nav_install']}</a><a href="changelog.html">{t['nav_news']}</a><a href="help.html">{t['nav_help']}</a></nav>
+  <nav class="links">{links}</nav>
   <div class="langs">{langs}</div>
+  <details class="menu"><summary aria-label="Menu"><span></span><span></span><span></span></summary><nav>{links}<div class="langs">{langs}</div></nav></details>
 </div></header>
 <main>{body}</main>
 <footer class="foot"><div class="wrap"><p>{t['footer_local']}</p><div><span>© 2026 Meyor Vision</span><a href="{up}privacy.html">{t['privacy']}</a><a href="{up}terms.html">{t['terms']}</a><a href="https://github.com/Azizbek-dsgn/Meyor-Releases/issues">{t['contact']}</a></div></div></footer>
@@ -116,7 +120,19 @@ def help_page(lang):
     return layout(lang, f"{t['nav_help']} — Hustler", body, "help")
 
 
+def doc_page(name):
+    """Install guide and legal pages: their own content (Uzbek) in the site layout."""
+    import re
+    text = (Path(__file__).parent / "pages" / f"{name}.html").read_text(encoding="utf-8")
+    title = re.search(r"<!-- title: (.*?) -->", text).group(1)
+    description = re.search(r"<!-- description: (.*?) -->", text).group(1)
+    body = re.sub(r"<!--.*?-->\n?", "", text, count=2)
+    return layout("uz", title, f'<section class="wrap doc">{body}</section>', name, description)
+
+
 def main():
+    for name in ("install", "privacy", "terms"):
+        (DOCS / f"{name}.html").write_text(doc_page(name), encoding="utf-8")
     for lang in LANGS:
         out = DOCS if lang == "uz" else DOCS / lang
         out.mkdir(parents=True, exist_ok=True)

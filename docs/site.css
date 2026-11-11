@@ -76,3 +76,14 @@ footer:not(.foot){border-top:1px solid var(--line);padding:24px 0 40px;color:var
 @media(max-width:860px){.links{display:none}.points{grid-template-columns:1fr 1fr}.product-row,.product-row.tall,.product-row.tall.flip{grid-template-columns:1fr;gap:28px}
 .product-row.flip .copy{order:0}.three,.cards{grid-template-columns:1fr}.hero{padding-top:56px}.dl{min-width:0;flex:1 1 100%}}
 @media(max-width:520px){.points{grid-template-columns:1fr}.bar{gap:10px}.brand small{display:none}}
+
+/* anchors below the sticky header; mobile menu */
+[id]{scroll-margin-top:84px}
+.menu{display:none;position:relative}.menu summary{list-style:none;cursor:pointer;width:40px;height:40px;border:1px solid var(--line);border-radius:12px;display:flex;flex-direction:column;justify-content:center;gap:4px;padding:0 11px}
+.menu summary::-webkit-details-marker{display:none}.menu summary span{display:block;height:2px;background:var(--text);border-radius:2px}
+.menu nav{position:absolute;right:0;top:48px;background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:10px;display:flex;flex-direction:column;min-width:220px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.menu nav a{padding:10px 12px;border-radius:10px;text-decoration:none}.menu nav a:hover{background:rgba(255,255,255,.06)}.menu nav .langs{margin-top:8px;align-self:flex-start}
+.doc .downloads .dl{min-width:190px}
+@media(max-width:860px){.menu{display:block}.bar>.langs{display:none}}
+.wrap.doc{padding:48px 20px 64px}
+.tabs{flex-wrap:wrap}.tabs a{white-space:nowrap}

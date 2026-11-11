@@ -1,0 +1,44 @@
+<!-- title: Hustler’ni o‘rnatish — Meyor Vision -->
+<!-- description: Hustler’ni Windows va macOS’ga o‘rnatish: rasmlar bilan qadam-baqadam qo‘llanma. -->
+<h1>Hustler’ni o‘rnatish</h1>
+    <p class="date">Windows va macOS · 5 daqiqa · bepul</p>
+    <div class="downloads" style="margin-top:20px">
+      <a class="dl" data-asset="win-x64" href="https://github.com/Azizbek-dsgn/Meyor-Releases/releases/latest"><b>Windows</b><small>10 / 11 · 64-bit</small></a>
+      <a class="dl" data-asset="mac-arm64" href="https://github.com/Azizbek-dsgn/Meyor-Releases/releases/latest"><b>macOS · Apple Silicon</b><small>M1, M2, M3, M4</small></a>
+      <a class="dl" data-asset="mac-x64" href="https://github.com/Azizbek-dsgn/Meyor-Releases/releases/latest"><b>macOS · Intel</b><small>2020 va undan eski Mac</small></a>
+    </div>
+    <div class="note">Hustler bepul va hali Apple / Microsoft’ning pullik “tasdiqlangan dasturchi” sertifikatisiz chiqadi. Shuning uchun birinchi ochishda tizim ogohlantiradi — bu odatiy holat. Quyida bir marta ruxsat berish ko‘rsatilgan; keyin Hustler o‘zi yangilanadi va qayta so‘ramaydi.</div>
+    <nav class="tabs"><a href="#windows">Windows</a><a href="#mac">macOS</a><a href="#first">Birinchi ishga tushirish</a></nav>
+
+    <h2 id="windows">Windows</h2>
+    <div class="note"><b>Edge “isn't commonly downloaded” desa</b> — fayl buzilmagan, Edge faqat yangi va kam yuklangan dasturni shunday belgilaydi. Yuklashlar ro‘yxatida faylning <b>⋯</b> menyusi → <b>Keep</b> → <b>Show more</b> → <b>Keep anyway</b>.</div>
+    <img class="shot" src="guide/edge-1.jpg" alt="Edge yuklashlar: ⋯ menyusi va Keep" loading="lazy" style="margin-bottom:10px">
+    <img class="shot" src="guide/edge-2.jpg" alt="Edge: Keep anyway" loading="lazy" style="margin-bottom:24px">
+    <ol class="steps">
+      <li><strong>Yuklab oling va oching.</strong><p>Yuqoridagi “Windows” tugmasini bosing. Yuklangan <code>Meyor-…-win-x64.exe</code> faylini ikki marta bosing.</p></li>
+      <li><strong>“More info” (Batafsil) ni bosing.</strong><p>Moviy “Windows protected your PC” oynasi chiqsa, matn ostidagi <b>More info</b> havolasini bosing.</p><img class="shot" src="guide/win-1.jpg" alt="Windows SmartScreen oynasi, More info havolasi belgilangan" loading="lazy"></li>
+      <li><strong>“Run anyway” (Baribir ishga tushirish) ni bosing.</strong><p>Pastda yangi tugma paydo bo‘ladi.</p><img class="shot" src="guide/win-2.jpg" alt="Run anyway tugmasi belgilangan" loading="lazy"></li>
+      <li><strong>“Install” ni bosing.</strong><p>Papkani o‘zgartirish shart emas. Administrator paroli so‘ralmaydi. Tugagach Hustler o‘zi ochiladi.</p><img class="shot" src="guide/win-3.jpg" alt="Hustler o‘rnatuvchisi, Install tugmasi belgilangan" loading="lazy"></li>
+    </ol>
+
+    <h2 id="mac">macOS</h2>
+    <p>Mac’ingiz qaysi ekanini bilmasangiz: chap yuqoridagi Apple menyusi → <b>About This Mac</b>. “Chip: Apple M…” bo‘lsa — <b>Apple Silicon</b>, “Processor: Intel” bo‘lsa — <b>Intel</b>.</p>
+    <ol class="steps">
+      <li><strong>DMG’ni oching va Hustler’ni Applications’ga torting.</strong><p>Yuklangan <code>Meyor-…-mac-….dmg</code> faylini oching. Chiqqan oynada Hustler belgisini <b>Applications</b> papkasiga sudrab tashlang.</p><img class="shot" src="guide/mac-1.jpg" alt="DMG oynasi: Hustler’ni Applications papkasiga tortish" loading="lazy"></li>
+      <li><strong>Hustler’ni oching — ogohlantirishda “Done” ni bosing.</strong><p>Launchpad yoki Applications’dan Hustler’ni oching. “Apple could not verify…” oynasi chiqadi: <b>Done</b> ni bosing (<b>Move to Trash</b> ni emas).</p><img class="shot" src="guide/mac-2.jpg" alt="Hustler Not Opened oynasi, Done tugmasi belgilangan" loading="lazy"></li>
+      <li><strong>System Settings → Privacy &amp; Security → “Open Anyway”.</strong><p>Apple menyusi → <b>System Settings</b> → <b>Privacy &amp; Security</b>. Pastga, <b>Security</b> bo‘limigacha tushing: “Hustler was blocked…” yonidagi <b>Open Anyway</b> ni bosing.</p><img class="shot" src="guide/mac-3.jpg" alt="Privacy and Security sozlamasi, Open Anyway tugmasi belgilangan" loading="lazy"></li>
+      <li><strong>Yana “Open Anyway” va Mac parolingiz.</strong><p>Tasdiqlash oynasida <b>Open Anyway</b> ni bosing, so‘ng Mac parolingizni yoki Touch ID’ni kiriting. Bu bir marta qilinadi.</p><img class="shot" src="guide/mac-4.jpg" alt="Open Anyway tasdiqlash oynasi" loading="lazy"></li>
+    </ol>
+    <div class="note"><b>macOS 13–14 (Ventura, Sonoma):</b> Hustler belgisini <b>Control</b> bosib turib bosing (yoki sichqonchaning o‘ng tugmasi) → <b>Open</b> → yana <b>Open</b>. Shu yetarli.</div>
+    <p><b>Terminal orqali (tezroq yo‘l):</b> Terminal’ni oching va quyidagini yozing — Hustler darrov ochiladi:</p>
+    <pre>xattr -dr com.apple.quarantine /Applications/Hustler.app
+open /Applications/Hustler.app</pre>
+    <img class="shot" src="guide/mac-term.jpg" alt="Terminal’da xattr buyrug‘i" loading="lazy">
+
+    <h2 id="first">Birinchi ishga tushirish</h2>
+    <ol class="steps">
+      <li><strong>Kerakli ilovani o‘rnating.</strong><p><b>Ilovalar</b> bo‘limida Swible (Premiere / After Effects plagini), Swible Lab, Voxly yoki Tempass yonidagi <b>O‘rnatish</b> ni bosing. Hustler hammasini o‘zi yuklaydi va sozlaydi.</p><img class="shot" src="guide/hustler-library.jpg" alt="Hustler oynasi: ilovalar ro‘yxati" loading="lazy"></li>
+      <li><strong>AI’ni ulang (ixtiyoriy).</strong><p><b>Sozlamalar → AI yordamchi</b>: Claude Code, Codex yoki Google Antigravity yonidagi <b>O‘rnatish</b> → Terminal ochiladi, dastur o‘rnatiladi va akkauntingizga kirishni so‘raydi. Keyin Swible ichidagi “✦ AI” va <b>Avto montaj</b> sizning AI’ingiz bilan ishlaydi.</p><img class="shot" src="guide/hustler-ai.jpg" alt="Hustler sozlamalari: AI yordamchi" loading="lazy"></li>
+      <li><strong>Yangilanishlar o‘zi keladi.</strong><p>Hustler ilovalarni va o‘zini yangilab turadi: yangi versiya chiqsa, o‘zi o‘rnatib qayta ochiladi — installer oynasi chiqmaydi.</p></li>
+    </ol>
+    <div class="note">Muammo bo‘lsa: <a href="https://github.com/Azizbek-dsgn/Meyor-Releases/issues">bu yerga yozing</a>. Swible’ni ko‘rish uchun Premiere / After Effects’da <b>Window → Extensions → Swible</b>.</div>

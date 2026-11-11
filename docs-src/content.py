@@ -108,7 +108,9 @@ PRODUCTS = [
 ]
 
 NEWS = {
- "uz": [("Hustler 0.8.0", "Skill do‘koni, serversiz sinxronlash (parolli fayl), ilovalar uchun umumiy akkaunt va AI holati."),
+ "uz": [("Swible 1.4.0", "Sizning 8 ta montaj skill’ingiz Swible ichida (avto montaj ular bo‘yicha), AI tokenlari ancha kam sarflanadi, model va kuch tanlash (Gemini 4 Argon ham), Tempass bilan bog‘lanish o‘rnatiladi."),
+        ("Tempass 0.3.1", "Yangi nom, logo va ikonka; hisobotda ilova nomlari tushunarli."),
+        ("Hustler 0.8.0", "Skill do‘koni, serversiz sinxronlash (parolli fayl), ilovalar uchun umumiy akkaunt va AI holati."),
         ("Swible 1.3.0", "Swible Lab’da bir tugmali zanjirlar; Hustler Skills papkasidagi skill’lar."),
         ("Voxly 0.3.0", "Uchrashuv rejimi: uzoq yozuv, matn va AI xulosasi."),
         ("Swible 1.2.0", "Reels, matn orqali kesish, B-roll, toza ovoz, brend uslubi, dublyaj, waveform."),
@@ -116,7 +118,9 @@ NEWS = {
         ("Voxly 0.2.0", "Ovozli buyruqlar, shaxsiy lug‘at, ruscha va inglizcha tarjima."),
         ("Hustler 0.7.6", "O‘zini o‘zi yangilaydi — installer oynasisiz, qayta ochiladi."),
         ("Swible 1.1.0", "Avto montaj, sizning skill’laringiz, After Effects va Premiere’da motion, Gemini modellari.")],
- "ru": [("Hustler 0.8.0", "Магазин скиллов, синхронизация без сервера (файл с паролем), общий аккаунт и статус AI для приложений."),
+ "ru": [("Swible 1.4.0", "8 скиллов монтажа внутри Swible (автомонтаж по ним), AI тратит заметно меньше токенов, выбор модели и силы (и Gemini 4 Argon), связь с Tempass устанавливается."),
+        ("Tempass 0.3.1", "Новое имя, логотип и иконка; понятные названия приложений в отчёте."),
+        ("Hustler 0.8.0", "Магазин скиллов, синхронизация без сервера (файл с паролем), общий аккаунт и статус AI для приложений."),
         ("Swible 1.3.0", "Цепочки в одну кнопку в Swible Lab; скиллы из папки Hustler Skills."),
         ("Voxly 0.3.0", "Режим встречи: долгая запись, текст и итоги от AI."),
         ("Swible 1.2.0", "Reels, монтаж по тексту, B-roll, чистый звук, фирменный стиль, дубляж, волна."),
@@ -124,7 +128,9 @@ NEWS = {
         ("Voxly 0.2.0", "Голосовые команды, личный словарь, перевод на русский и английский."),
         ("Hustler 0.7.6", "Обновляется сам — без окна установщика, перезапускается."),
         ("Swible 1.1.0", "Автомонтаж, ваши скиллы, моушн в After Effects и Premiere, модели Gemini.")],
- "en": [("Hustler 0.8.0", "Skill store, serverless sync (a password file), shared account and AI status for the apps."),
+ "en": [("Swible 1.4.0", "Eight montage skills built in (auto montage follows them), the AI uses far fewer tokens, model and effort choice (Gemini 4 Argon too), the Tempass link is installed."),
+        ("Tempass 0.3.1", "New name, logo and icon; readable app names in reports."),
+        ("Hustler 0.8.0", "Skill store, serverless sync (a password file), shared account and AI status for the apps."),
         ("Swible 1.3.0", "One-click chains in Swible Lab; skills from the Hustler Skills folder."),
         ("Voxly 0.3.0", "Meeting mode: long recording, text and an AI summary."),
         ("Swible 1.2.0", "Reels, text-based cuts, B-roll, clean audio, brand look, dubbing, waveform."),
