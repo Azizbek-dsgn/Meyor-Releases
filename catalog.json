@@ -45,23 +45,23 @@
     }
   },
   "meyor": {
-    "version": "0.7.5",
-    "revision": "1cd2a26e8a2c340a129457a4765700212df8f75e",
+    "version": "0.7.6",
+    "revision": "5d63dfa027d24bed0e3ca4d71116738decba67e5",
     "assets": {
       "mac-arm64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.7.5/Meyor-0.7.5-mac-arm64.dmg",
-        "sha256": "0c38e880568333a01a51a210af2145539e6777eb42fd5cdfd3d91c13f7658e0c",
-        "bytes": 127942413
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.7.6/Meyor-0.7.6-mac-arm64.dmg",
+        "sha256": "944eb6d0b15242ea45042601c68a2c2b790f4496be7301b2461ea798c216e7f5",
+        "bytes": 127941966
       },
       "mac-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.7.5/Meyor-0.7.5-mac-x64.dmg",
-        "sha256": "f12939ab0505c160874510a242a2556d301d2f832bd5202ffc7ee9e3ea485cab",
-        "bytes": 133546806
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.7.6/Meyor-0.7.6-mac-x64.dmg",
+        "sha256": "7c9f943e75029d02a2ae05b3624972d0f5dfc37172ac69b973a21be4af446901",
+        "bytes": 133550917
       },
       "win-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.7.5/Meyor-0.7.5-win-x64.exe",
-        "sha256": "87a5ad5872cada5a9657ab400dee1e432ea42bebc58260a82bd88c015933b8f8",
-        "bytes": 111546665
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.7.6/Meyor-0.7.6-win-x64.exe",
+        "sha256": "bbfed07a9ca12a4f51870d9a0e15e6ad5821780b1fc193417f07e2bb1d45526b",
+        "bytes": 111548306
       }
     }
   },
@@ -91,8 +91,8 @@
   "products": {
     "uzdictate": {
       "name": "Voxly",
-      "detail": "Tugmani bosib gapiring \u2014 matn istalgan dasturda kursor turgan joyga yoziladi. O\u2018zbekcha, shevalar va aralash nutq; lotin yoki kirill; internetsiz.",
-      "note": "Birinchi ochilishda o\u2018zbekcha nutq modeli (~2.3 GB) bir marta yuklanadi; Swible o\u2018rnatilgan bo\u2018lsa, uning modeli ishlatiladi.",
+      "detail": "Tugmani bosib gapiring — matn istalgan dasturda kursor turgan joyga yoziladi. O‘zbekcha, shevalar va aralash nutq; lotin yoki kirill; internetsiz.",
+      "note": "Birinchi ochilishda o‘zbekcha nutq modeli (~2.3 GB) bir marta yuklanadi; Swible o‘rnatilgan bo‘lsa, uning modeli ishlatiladi.",
       "host": "Mustaqil ilova",
       "mac": {
         "app": "Voxly.app",
