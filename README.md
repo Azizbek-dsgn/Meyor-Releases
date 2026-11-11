@@ -13,6 +13,10 @@ Hustler bepul va hali Apple / Microsoft’ning pullik “tasdiqlangan dasturchi�
 ### Windows
 
 1. Saytdagi **Windows** tugmasini bosing va yuklangan `Meyor-…-win-x64.exe` ni oching.
+
+   Edge “isn't commonly downloaded” desa: faylning **⋯** menyusi → **Keep** → **Show more** → **Keep anyway**.
+
+   <img src="docs/guide/edge-1.jpg" width="440" alt="Keep"> <img src="docs/guide/edge-2.jpg" width="440" alt="Keep anyway">
 2. “Windows protected your PC” chiqsa — **More info** ni bosing.
 
    <img src="docs/guide/win-1.jpg" width="520" alt="More info">
