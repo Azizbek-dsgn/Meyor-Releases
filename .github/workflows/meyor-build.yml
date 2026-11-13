@@ -54,8 +54,13 @@ jobs:
           ARCH: ${{ matrix.arch }}
           PLATFORM: ${{ matrix.platform }}
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+          MEYOR_INBOX_TOKEN: ${{ secrets.MEYOR_INBOX_TOKEN }}
         run: |
           cd "$RUNNER_TEMP/meyor-private-build/meyor"
+          # The app's own token for Meyor-Inbox (issues only) goes into the protected build, never into source.
+          if [ -n "${MEYOR_INBOX_TOKEN:-}" ]; then
+            node -e 'require("fs").writeFileSync("src/cloud-config.cjs", "module.exports = " + JSON.stringify({ inboxToken: process.env.MEYOR_INBOX_TOKEN.trim() }) + ";\n")'
+          fi
           pnpm install --frozen-lockfile --ignore-scripts > "$RUNNER_TEMP/meyor-private-build.log" 2>&1
           node node_modules/electron/install.js >> "$RUNNER_TEMP/meyor-private-build.log" 2>&1
           pnpm check >> "$RUNNER_TEMP/meyor-private-build.log" 2>&1
