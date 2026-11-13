@@ -89,9 +89,12 @@ jobs:
           export MEYOR_INSTALL_DIR="$RUNNER_TEMP/Meyor installed with spaces"
           FILE="dist/Meyor-$PRODUCT_VERSION-mac-$ARCH.dmg"
           SHA=$(shasum -a 256 "$FILE" | awk '{print $1}')
-          bash scripts/install-mac.sh "$FILE" "$SHA" > "$RUNNER_TEMP/meyor-private-ui.log" 2>&1
-          node scripts/smoke-app.cjs "$MEYOR_INSTALL_DIR/Hustler.app/Contents/MacOS/Hustler" "$RUNNER_TEMP/Meyor-smoke-results" >> "$RUNNER_TEMP/meyor-private-ui.log" 2>&1
-          bash scripts/install-mac.sh "$FILE" "$SHA" >> "$RUNNER_TEMP/meyor-private-ui.log" 2>&1
+          LOG="$RUNNER_TEMP/meyor-private-ui.log"
+          # On failure only the one-line reason is shown (no stack, no source); the full log stays encrypted.
+          reason() { echo "::error::$1: $(grep -E 'check failed|AssertionError|did not close|exceeded|xato|error' "$LOG" | grep -v -E '^\s+at ' | tail -3 | cut -c1-240 | tr '\n' ' ')"; exit 1; }
+          bash scripts/install-mac.sh "$FILE" "$SHA" > "$LOG" 2>&1 || reason "Mac install failed"
+          node scripts/smoke-app.cjs "$MEYOR_INSTALL_DIR/Hustler.app/Contents/MacOS/Hustler" "$RUNNER_TEMP/Meyor-smoke-results" >> "$LOG" 2>&1 || reason "Mac app test failed"
+          bash scripts/install-mac.sh "$FILE" "$SHA" >> "$LOG" 2>&1 || reason "Mac reinstall failed"
           cp scripts/install-mac.sh dist/Install-Meyor-mac.sh
       - name: Encrypt failure diagnostics
         if: failure()
