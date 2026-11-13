@@ -1,24 +1,24 @@
 {
   "schema": 1,
   "tempo": {
-    "version": "0.3.1",
-    "revision": "6a1a04e5d18c28f2c8ba7361513b0fbca4fe63fe",
+    "version": "0.3.2",
+    "revision": "f3494bceaaa0bd019e83c9c2d78fb36e376a876d",
     "channel": "beta",
     "assets": {
       "mac-arm64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/tempo-v0.3.1-6a1a04e/tempo-0.3.1-mac-arm64.dmg",
-        "bytes": 5750017,
-        "sha256": "7f00271696a85c3383186bd6edc13cca7662c76bd8b2573c1931467ccd923f2f"
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/tempo-v0.3.2-f3494bc/tempo-0.3.2-mac-arm64.dmg",
+        "bytes": 5749439,
+        "sha256": "5d0a627dd21ce7edad164a413757ad6859e6e71be8045903ee2e58a48561cc0c"
       },
       "mac-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/tempo-v0.3.1-6a1a04e/tempo-0.3.1-mac-x64.dmg",
-        "bytes": 5918778,
-        "sha256": "6f6297310f8c9de1f181d96a662cb88d2e475cf7ac63c6f1854361735f9943b2"
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/tempo-v0.3.2-f3494bc/tempo-0.3.2-mac-x64.dmg",
+        "bytes": 5917686,
+        "sha256": "f48fc0b63efe455c65ba8ebf1e2b7b5bfbcd25c762d2eed4f91c28df092c83bc"
       },
       "win-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/tempo-v0.3.1-6a1a04e/tempo-0.3.1-win-x64.exe",
-        "bytes": 3532370,
-        "sha256": "a027fe8643444435249369ba94f3705b5aa71613596bc7ef01fc5cd6b82f08ad"
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/tempo-v0.3.2-f3494bc/tempo-0.3.2-win-x64.exe",
+        "bytes": 3527215,
+        "sha256": "a1b28c136db0606bc8f6041a5794db69c0c15aa0e8d34a599e9d3677835c0fbb"
       }
     }
   },
@@ -91,8 +91,8 @@
   "products": {
     "uzdictate": {
       "name": "Voxly",
-      "detail": "Tugmani bosib gapiring \u2014 matn istalgan dasturda kursor turgan joyga yoziladi. O\u2018zbekcha, shevalar va aralash nutq; lotin yoki kirill; internetsiz.",
-      "note": "Birinchi ochilishda o\u2018zbekcha nutq modeli (~2.3 GB) bir marta yuklanadi; Swible o\u2018rnatilgan bo\u2018lsa, uning modeli ishlatiladi.",
+      "detail": "Tugmani bosib gapiring — matn istalgan dasturda kursor turgan joyga yoziladi. O‘zbekcha, shevalar va aralash nutq; lotin yoki kirill; internetsiz.",
+      "note": "Birinchi ochilishda o‘zbekcha nutq modeli (~2.3 GB) bir marta yuklanadi; Swible o‘rnatilgan bo‘lsa, uning modeli ishlatiladi.",
       "host": "Mustaqil ilova",
       "mac": {
         "app": "Voxly.app",
