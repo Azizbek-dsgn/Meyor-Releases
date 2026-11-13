@@ -1,24 +1,24 @@
 {
   "schema": 1,
   "tempo": {
-    "version": "0.3.2",
-    "revision": "f3494bceaaa0bd019e83c9c2d78fb36e376a876d",
+    "version": "0.3.3",
+    "revision": "e798175eec128a3d1ecf2609806940039a20aead",
     "channel": "beta",
     "assets": {
       "mac-arm64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/tempo-v0.3.2-f3494bc/tempo-0.3.2-mac-arm64.dmg",
-        "bytes": 5749439,
-        "sha256": "5d0a627dd21ce7edad164a413757ad6859e6e71be8045903ee2e58a48561cc0c"
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/tempo-v0.3.3-e798175/tempo-0.3.3-mac-arm64.dmg",
+        "bytes": 5750336,
+        "sha256": "46b77cbc36317effa001d4bda5d92a705540eb4d54738cf6d6293713bd5e8bb5"
       },
       "mac-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/tempo-v0.3.2-f3494bc/tempo-0.3.2-mac-x64.dmg",
-        "bytes": 5917686,
-        "sha256": "f48fc0b63efe455c65ba8ebf1e2b7b5bfbcd25c762d2eed4f91c28df092c83bc"
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/tempo-v0.3.3-e798175/tempo-0.3.3-mac-x64.dmg",
+        "bytes": 5923100,
+        "sha256": "74474415ced959732f4aff54e8b8c6fba507881f4d46994004174de9772fca57"
       },
       "win-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/tempo-v0.3.2-f3494bc/tempo-0.3.2-win-x64.exe",
-        "bytes": 3527215,
-        "sha256": "a1b28c136db0606bc8f6041a5794db69c0c15aa0e8d34a599e9d3677835c0fbb"
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/tempo-v0.3.3-e798175/tempo-0.3.3-win-x64.exe",
+        "bytes": 3534251,
+        "sha256": "d64501710e7bd251d99f075b63861a2f68b754a0d88b773c1bf6a9d49c699c98"
       }
     }
   },
