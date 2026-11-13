@@ -64,7 +64,7 @@ jobs:
           pnpm install --frozen-lockfile --ignore-scripts > "$RUNNER_TEMP/meyor-private-build.log" 2>&1
           node node_modules/electron/install.js >> "$RUNNER_TEMP/meyor-private-build.log" 2>&1
           pnpm check >> "$RUNNER_TEMP/meyor-private-build.log" 2>&1
-          pnpm test >> "$RUNNER_TEMP/meyor-private-build.log" 2>&1
+          pnpm test >> "$RUNNER_TEMP/meyor-private-build.log" 2>&1 || { echo "::error::Tests failed: $(grep -E '^not ok' "$RUNNER_TEMP/meyor-private-build.log" | head -5 | cut -c1-160 | tr '\n' ' ')"; exit 1; }
           if [ "$PLATFORM" = win-x64 ]; then
             node scripts/windows-python-smoke.cjs >> "$RUNNER_TEMP/meyor-private-build.log" 2>&1
           fi
