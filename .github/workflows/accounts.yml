@@ -1,0 +1,41 @@
+name: Accounts and skill market
+# Runs here (public repo: free Actions minutes). Reads the sealed records in the private Meyor-Inbox, keeps the
+# encrypted state in the private Meyor-Control, publishes the admin-signed control/control.json and the
+# approved skills. Logs show counts only. See accounts/index.cjs.
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: accounts
+  cancel-in-progress: false
+jobs:
+  process:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      READY: ${{ secrets.ADMIN_BOX_PRIVATE != '' && secrets.ADMIN_SIGN_PRIVATE != '' && secrets.MEYOR_BOT_TOKEN != '' }}
+    steps:
+      - name: Not set up yet
+        if: env.READY != 'true'
+        run: echo "Secrets ADMIN_BOX_PRIVATE, ADMIN_SIGN_PRIVATE and MEYOR_BOT_TOKEN are not set yet. Nothing to do."
+      - uses: actions/checkout@v4
+        if: env.READY == 'true'
+        with:
+          sparse-checkout: accounts
+      - uses: actions/setup-node@v4
+        if: env.READY == 'true'
+        with:
+          node-version: '22'
+      - name: Test
+        if: env.READY == 'true'
+        run: cd accounts && node --test test/*.test.cjs
+      - name: Process
+        if: env.READY == 'true'
+        env:
+          MEYOR_BOT_TOKEN: ${{ secrets.MEYOR_BOT_TOKEN }}
+          ADMIN_BOX_PRIVATE: ${{ secrets.ADMIN_BOX_PRIVATE }}
+          ADMIN_SIGN_PRIVATE: ${{ secrets.ADMIN_SIGN_PRIVATE }}
+        run: cd accounts && node index.cjs
