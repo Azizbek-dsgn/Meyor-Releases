@@ -122,3 +122,15 @@ test('deleting an account frees its username and removes its data', () => {
   assert.equal(core.applyRecord(s, { ...body, sig: c.sign(d.private, body) }, ctx), 'deleted');
   assert.deepEqual(s.accounts, {}); assert.deepEqual(s.usernames, {});
 });
+
+test('support messages reach the admin with who sent them, and can be cleared', () => {
+  const s = core.emptyState(), d = device(), admin = c.generateKeys('sign');
+  core.applyRecord(s, record(d, 'u1', { username: 'aziz' }), ctx);
+  const body = { v: 1, type: 'support', account: c.accountHash('u1'), device: d.id, devicePub: d.public, at: now, kind: 'xato', text: 'Swible ochilmayapti' };
+  assert.equal(core.applyRecord(s, { ...body, sig: c.sign(d.private, body) }, ctx), 'support');
+  const st = core.stats(s, now);
+  assert.equal(st.support[0].text, 'Swible ochilmayapti'); assert.equal(st.support[0].email, 'u1@example.com'); assert.equal(st.support[0].username, 'aziz');
+  assert(!JSON.stringify(core.control(s, { adminSignPrivate: admin.private, now })).includes('ochilmayapti'), 'never in the public control file');
+  core.applyAdmin(s, (b => ({ ...b, adminSig: c.sign(admin.private, b) }))({ v: 1, type: 'clear-support', before: now, seq: 1 }), { adminSignPublic: admin.public, now });
+  assert.equal(core.stats(s, now).support.length, 0);
+});

@@ -70,6 +70,12 @@ jobs:
           fi
           pnpm dist --"$TARGET" --"$ARCH" >> "$RUNNER_TEMP/meyor-private-build.log" 2>&1
           node scripts/check-package.cjs >> "$RUNNER_TEMP/meyor-private-build.log" 2>&1
+          # Small update: the app's own code. Only when nothing is unpacked beside it (then one file is the whole app).
+          ASAR=$(ls dist/*/Hustler.app/Contents/Resources/app.asar dist/win-unpacked/resources/app.asar 2>/dev/null | head -1 || true)
+          if [ -n "$ASAR" ] && [ ! -e "$ASAR.unpacked" ]; then
+            cp "$ASAR" "dist/Meyor-$PRODUCT_VERSION-$PLATFORM-app.asar"
+            node -p "require('electron/package.json').version" > "dist/Meyor-$PRODUCT_VERSION-$PLATFORM-electron.txt"
+          fi
       - name: Windows installer smoke
         if: runner.os == 'Windows'
         shell: pwsh
@@ -122,6 +128,8 @@ jobs:
             ${{ runner.temp }}/meyor-private-build/meyor/dist/*.dmg
             ${{ runner.temp }}/meyor-private-build/meyor/dist/*.exe
             ${{ runner.temp }}/meyor-private-build/meyor/dist/Install-Meyor-mac.sh
+            ${{ runner.temp }}/meyor-private-build/meyor/dist/*-app.asar
+            ${{ runner.temp }}/meyor-private-build/meyor/dist/*-electron.txt
             ${{ runner.temp }}/meyor-private-build/meyor/SOURCE_REVISION
             ${{ runner.temp }}/Meyor-smoke-results/*.json
             ${{ runner.temp }}/Meyor-smoke-results/*.png

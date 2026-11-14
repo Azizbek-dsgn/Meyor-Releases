@@ -16,7 +16,7 @@ const DAY = 864e5;
 const PRODUCTS = new Set(['meyor', 'uzscribe', 'uzscribe-desktop', 'uzdictate', 'tempo']);
 const VERSION = /^\d+\.\d+\.\d+$/;
 
-function emptyState() { return { v: 1, seq: 0, adminSeq: 0, accounts: {}, usernames: {}, skills: {}, reports: [], updates: [], seen: {} }; }
+function emptyState() { return { v: 1, seq: 0, adminSeq: 0, accounts: {}, usernames: {}, skills: {}, reports: [], support: [], updates: [], seen: {} }; }
 
 function sanitizeApps(apps) {
   const out = {};
@@ -77,6 +77,11 @@ function applyRecord(state, record, { keys, audience, now }) {
       published: state.skills[key]?.published || null };
     return 'skill-pending';
   }
+  if (record.type === 'support') {
+    state.support ||= [];
+    if (state.support.length < 1000) state.support.push({ account: record.account, kind: text(record.kind, 20), text: String(record.text ?? '').replace(/[\u0000-\u0008\u000b-\u001f]/g, ' ').trim().slice(0, 2000), at });
+    return 'support';
+  }
   if (record.type === 'report') {
     if (state.reports.length < 500) state.reports.push({ account: record.account, skill: text(record.skill, 80), reason: text(record.reason, 300), at });
     return 'report';
@@ -113,6 +118,7 @@ function applyAdmin(state, cmd, { adminSignPublic, now }) {
       return body.type;
     }
     case 'clear-reports': state.reports = []; return 'reports-cleared';
+    case 'clear-support': state.support = (state.support || []).filter(m => m.at > Number(body.before || 0)); return 'support-cleared';
     default: return 'unknown-admin-command';
   }
 }
@@ -143,7 +149,8 @@ function stats(state, now) {
       devices: Object.entries(a.devices).map(([id, d]) => ({ id, os: d.os, apps: d.apps, seen: d.seen })) })),
     skills: Object.entries(state.skills).map(([key, s]) => ({ key, name: s.name, author: s.author, version: s.version, status: s.status, reason: s.reason || null,
       description: s.description, donate: s.donate, bytes: s.bytes, submitted: s.submitted })),
-    reports: state.reports };
+    reports: state.reports,
+    support: (state.support || []).map(m => ({ ...m, email: state.accounts[m.account]?.email || null, name: state.accounts[m.account]?.name || null, username: state.accounts[m.account]?.username || null })) };
 }
 
 // The public market catalog (same shape Hustler's store reads, plus author and donate).

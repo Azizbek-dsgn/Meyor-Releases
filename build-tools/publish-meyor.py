@@ -18,6 +18,15 @@ for key in ['mac-arm64', 'mac-x64', 'win-x64']:
     data = files[name].read_bytes()
     assets[key] = {'url': f'https://github.com/{REPO}/releases/download/v{VERSION}/{name}', 'sha256': hashlib.sha256(data).hexdigest(), 'bytes': len(data)}
     upload.append(files[name])
+# Small updates (app.asar) for apps that already have the same Electron.
+patch = {}
+for key in ['mac-arm64', 'mac-x64', 'win-x64']:
+    asar, electron = files.get(f'Meyor-{VERSION}-{key}-app.asar'), files.get(f'Meyor-{VERSION}-{key}-electron.txt')
+    if asar and electron and re.fullmatch(r'\d+\.\d+\.\d+', electron.read_text().strip()):
+        data = asar.read_bytes()
+        patch[key] = {'url': f'https://github.com/{REPO}/releases/download/v{VERSION}/{asar.name}', 'sha256': hashlib.sha256(data).hexdigest(),
+                      'bytes': len(data), 'electron': electron.read_text().strip()}
+        upload.append(asar)
 installer = files.get('Install-Meyor-mac.sh')
 sums = root/'SHA256SUMS'
 sums.write_text(''.join(f"{a['sha256']}  {pathlib.PurePosixPath(a['url']).name}\n" for a in assets.values()) +
@@ -31,14 +40,14 @@ if tag not in existing:
     gh('release', 'upload', tag, '--repo', REPO, *map(str, upload))
 release = json.loads(gh('api', f"repos/{REPO}/releases/{json.loads(gh('release', 'view', tag, '--repo', REPO, '--json', 'databaseId'))['databaseId']}"))
 published = {a['name']: a for a in release['assets']}
-for a in assets.values():
+for a in [*assets.values(), *patch.values()]:
     info = published[pathlib.PurePosixPath(a['url']).name]
     if info['size'] != a['bytes'] or info.get('digest') != 'sha256:' + a['sha256']:
         raise RuntimeError('Release asset integrity mismatch')
 gh('release', 'edit', tag, '--repo', REPO, '--draft=false', '--latest')
 current = json.loads(gh('api', f'repos/{REPO}/contents/catalog.json'))
 catalog = json.loads(base64.b64decode(current['content']))
-catalog['meyor'] = {'version': VERSION, 'revision': REVISION, 'assets': assets}
+catalog['meyor'] = {'version': VERSION, 'revision': REVISION, 'assets': assets, **({'patch': patch} if patch else {})}
 request = {'message': f'Publish Meyor {VERSION} update catalog', 'sha': current['sha'],
            'content': base64.b64encode((json.dumps(catalog, indent=2, ensure_ascii=False) + '\n').encode()).decode()}
 pathlib.Path('catalog-request.json').write_text(json.dumps(request), encoding='utf-8')

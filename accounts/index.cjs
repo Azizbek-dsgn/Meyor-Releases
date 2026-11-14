@@ -77,7 +77,7 @@ async function run({ env = process.env, gh = github(need('MEYOR_BOT_TOKEN')), no
     } catch { note = 'unreadable'; }
     tally[note] = (tally[note] || 0) + 1;
     // One-off records (skills, reports, deletes, junk) are closed; account issues stay open for heartbeats.
-    const oneOff = !/^(ok)$/.test(note) || labels.some(l => ['skill', 'report', 'delete'].includes(l));
+    const oneOff = !/^(ok)$/.test(note) || labels.some(l => ['skill', 'report', 'delete', 'support'].includes(l));
     if (oneOff && issue.state === 'open') await gh('PATCH', `/repos/${OWNER}/Meyor-Inbox/issues/${issue.number}`, { state: 'closed' }).catch(() => {});
   }
   for (const { issue, record } of admins.sort((a, b) => (a.record.seq || 0) - (b.record.seq || 0))) {
