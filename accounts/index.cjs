@@ -70,8 +70,14 @@ async function run({ env = process.env, gh = github(need('MEYOR_BOT_TOKEN')), no
       // The same content is applied once (closing an issue changes its date, not its record).
       const digest = require('node:crypto').createHash('sha256').update(sealed).digest('hex').slice(0, 32);
       if (state.seen[issue.number] === digest) continue;
+      let record;
+      try { record = JSON.parse(c.open(boxPrivate, sealed).toString('utf8')); }
+      catch (e) {
+        // A skill arrives in several comments: one read while they are still coming is retried, not closed.
+        if (Date.now() - Date.parse(issue.created_at || 0) < 30 * 60e3) { tally.incomplete = (tally.incomplete || 0) + 1; continue; }
+        throw e;
+      }
       state.seen[issue.number] = digest;
-      const record = JSON.parse(c.open(boxPrivate, sealed).toString('utf8'));
       if (labels.includes('admin') || record.adminSig) { admins.push({ issue, record }); continue; }
       note = core.applyRecord(state, record, { keys, audience: AUDIENCE, now });
     } catch { note = 'unreadable'; }
@@ -104,8 +110,14 @@ async function run({ env = process.env, gh = github(need('MEYOR_BOT_TOKEN')), no
   } else state.seq -= 1;
   state.lastRun = now;
   const seen = Object.keys(state.seen); if (seen.length > 20000) for (const k of seen.slice(0, seen.length - 20000)) delete state.seen[k];
-  await putFile(gh, 'Meyor-Control', 'state/state.enc', c.seal(boxPublic, JSON.stringify(state)) + '\n', 'State', { always: true });
-  await putFile(gh, 'Meyor-Control', 'state/stats.enc', c.seal(boxPublic, JSON.stringify(core.stats(state, now))) + '\n', 'Stats', { always: true });
+  // Runs every 5 minutes: write the encrypted state only when something changed (or once an hour).
+  const { lastRun: _l, seen: _seen, stateDigest: _d, savedAt: _a, ...meaning } = state;
+  const stateDigest = require('node:crypto').createHash('sha256').update(c.canonical(meaning)).digest('hex');
+  if (stateDigest !== state.stateDigest || now - (state.savedAt || 0) > 3600e3 || !saved) {
+    state.stateDigest = stateDigest; state.savedAt = now;
+    await putFile(gh, 'Meyor-Control', 'state/state.enc', c.seal(boxPublic, JSON.stringify(state)) + '\n', 'State', { always: true });
+    await putFile(gh, 'Meyor-Control', 'state/stats.enc', c.seal(boxPublic, JSON.stringify(core.stats(state, now))) + '\n', 'Stats', { always: true });
+  }
   console.log('Processed', issues.length, 'issues:', JSON.stringify(tally));  // counts only, never content
   return { tally, control: signed };
 }
