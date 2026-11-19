@@ -45,23 +45,43 @@
     }
   },
   "meyor": {
-    "version": "0.8.7",
-    "revision": "15e5ec988098217afd5f88be00ed01fe82c4a3b3",
+    "version": "0.8.8",
+    "revision": "a0e19c3b892cb4dcbed152ca634a54cd31cceaa2",
     "assets": {
       "mac-arm64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.8.7/Meyor-0.8.7-mac-arm64.dmg",
-        "sha256": "466867d1c1b9e6a0a36c57cc096e464406a2aa76c76908399c096b2c6d6e6bb9",
-        "bytes": 127992779
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.8.8/Meyor-0.8.8-mac-arm64.dmg",
+        "sha256": "ad20f2ad445c63488aa48ed4ace62655de36cb89025929cbe9dcad3d5e630b0b",
+        "bytes": 127992355
       },
       "mac-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.8.7/Meyor-0.8.7-mac-x64.dmg",
-        "sha256": "6d260f0ec8f17394ecefd1935a25fdb21fe6ea102083f56faa44b36b7079578b",
-        "bytes": 133607024
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.8.8/Meyor-0.8.8-mac-x64.dmg",
+        "sha256": "3dd5683cf131cfca286f31bab0806438c2d710a8dd9b6ba7fa5a9c36a81d7677",
+        "bytes": 133607039
       },
       "win-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.8.7/Meyor-0.8.7-win-x64.exe",
-        "sha256": "6503a291daebb2a2bcd1c1288619acd981af36949b88d6eeb0e5d7ee217d7c44",
-        "bytes": 111594830
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.8.8/Meyor-0.8.8-win-x64.exe",
+        "sha256": "f47ea99eda851728eaa58c48da89836c5d1dd2438ed43fb971a705ecef3389f1",
+        "bytes": 111594880
+      }
+    },
+    "appPatch": {
+      "mac-arm64": {
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.8.8/Meyor-0.8.8-mac-arm64-app.asar",
+        "sha256": "19829b33530d8e43c7d75baaa4c55e8af5fa4527bd6ea92118f3bd6670ff05dc",
+        "bytes": 542918,
+        "electron": "44.7.0"
+      },
+      "mac-x64": {
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.8.8/Meyor-0.8.8-mac-x64-app.asar",
+        "sha256": "19829b33530d8e43c7d75baaa4c55e8af5fa4527bd6ea92118f3bd6670ff05dc",
+        "bytes": 542918,
+        "electron": "44.7.0"
+      },
+      "win-x64": {
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.8.8/Meyor-0.8.8-win-x64-app.asar",
+        "sha256": "19829b33530d8e43c7d75baaa4c55e8af5fa4527bd6ea92118f3bd6670ff05dc",
+        "bytes": 542918,
+        "electron": "44.7.0"
       }
     }
   },
@@ -91,8 +111,8 @@
   "products": {
     "uzdictate": {
       "name": "Voxly",
-      "detail": "Tugmani bosib gapiring \u2014 matn istalgan dasturda kursor turgan joyga yoziladi. O\u2018zbekcha, shevalar va aralash nutq; lotin yoki kirill; internetsiz.",
-      "note": "Birinchi ochilishda o\u2018zbekcha nutq modeli (~2.3 GB) bir marta yuklanadi; Swible o\u2018rnatilgan bo\u2018lsa, uning modeli ishlatiladi.",
+      "detail": "Tugmani bosib gapiring — matn istalgan dasturda kursor turgan joyga yoziladi. O‘zbekcha, shevalar va aralash nutq; lotin yoki kirill; internetsiz.",
+      "note": "Birinchi ochilishda o‘zbekcha nutq modeli (~2.3 GB) bir marta yuklanadi; Swible o‘rnatilgan bo‘lsa, uning modeli ishlatiladi.",
       "host": "Mustaqil ilova",
       "mac": {
         "app": "Voxly.app",
