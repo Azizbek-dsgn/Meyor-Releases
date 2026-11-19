@@ -63,26 +63,6 @@
         "sha256": "6503a291daebb2a2bcd1c1288619acd981af36949b88d6eeb0e5d7ee217d7c44",
         "bytes": 111594830
       }
-    },
-    "patch": {
-      "mac-arm64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.8.7/Meyor-0.8.7-mac-arm64-app.asar",
-        "sha256": "f6717286d74d5affa8cbb7cc2317f063286113d1166c3ef3c4d37d08cc94da99",
-        "bytes": 542977,
-        "electron": "44.7.0"
-      },
-      "mac-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.8.7/Meyor-0.8.7-mac-x64-app.asar",
-        "sha256": "f6717286d74d5affa8cbb7cc2317f063286113d1166c3ef3c4d37d08cc94da99",
-        "bytes": 542977,
-        "electron": "44.7.0"
-      },
-      "win-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.8.7/Meyor-0.8.7-win-x64-app.asar",
-        "sha256": "f6717286d74d5affa8cbb7cc2317f063286113d1166c3ef3c4d37d08cc94da99",
-        "bytes": 542977,
-        "electron": "44.7.0"
-      }
     }
   },
   "uzscribeDesktop": {
