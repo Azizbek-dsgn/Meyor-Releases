@@ -4,7 +4,7 @@ name: Accounts and skill market
 # approved skills. Logs show counts only. See accounts/index.cjs.
 on:
   schedule:
-    - cron: '17 * * * *'
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 permissions:
   contents: read
