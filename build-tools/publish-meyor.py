@@ -47,7 +47,7 @@ for a in [*assets.values(), *patch.values()]:
 gh('release', 'edit', tag, '--repo', REPO, '--draft=false', '--latest')
 current = json.loads(gh('api', f'repos/{REPO}/contents/catalog.json'))
 catalog = json.loads(base64.b64decode(current['content']))
-catalog['meyor'] = {'version': VERSION, 'revision': REVISION, 'assets': assets, **({'patch': patch} if patch else {})}
+catalog['meyor'] = {'version': VERSION, 'revision': REVISION, 'assets': assets, **({'appPatch': patch} if patch else {})}
 request = {'message': f'Publish Meyor {VERSION} update catalog', 'sha': current['sha'],
            'content': base64.b64encode((json.dumps(catalog, indent=2, ensure_ascii=False) + '\n').encode()).decode()}
 pathlib.Path('catalog-request.json').write_text(json.dumps(request), encoding='utf-8')
