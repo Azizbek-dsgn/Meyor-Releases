@@ -15,12 +15,14 @@ const PART = /m1\.[A-Za-z0-9_-]+|[A-Za-z0-9_-]{20,}/g;
 function need(name) { const v = process.env[name]; if (!v || !v.trim()) throw new Error(`Secret ${name} yo‘q.`); return v.trim(); }
 
 function github(token, fetchImpl = fetch) {
-  return async function gh(method, url, body) {
+  return async function gh(method, url, body, { raw = false } = {}) {
+    // raw: the file's bytes (the JSON form leaves `content` empty for files over 1 MB).
     const res = await fetchImpl(url.startsWith('http') ? url : 'https://api.github.com' + url, { method,
-      headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', 'User-Agent': 'meyor-control' },
+      headers: { Authorization: 'Bearer ' + token, Accept: raw ? 'application/vnd.github.raw' : 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', 'User-Agent': 'meyor-control' },
       body: body ? JSON.stringify(body) : undefined });
     if (res.status === 404 && method === 'GET') return null;
     if (!res.ok) throw new Error(`GitHub ${method} ${url.split('?')[0]} → ${res.status}`);
+    if (raw) return res.text();
     return res.status === 204 ? null : res.json();
   };
 }
@@ -45,7 +47,8 @@ async function putFile(gh, repo, file, content, message, { always = false } = {}
   const url = `/repos/${OWNER}/${repo}/contents/${file}`;
   const existing = await gh('GET', url);
   const data = Buffer.isBuffer(content) ? content : Buffer.from(content);
-  if (!always && existing && Buffer.from(existing.content || '', 'base64').equals(data)) return false;
+  const sameSha = existing && existing.sha === require('node:crypto').createHash('sha1').update(`blob ${data.length}\0`).update(data).digest('hex');
+  if (!always && sameSha) return false;
   await gh('PUT', url, { message, content: data.toString('base64'), sha: existing?.sha });
   return true;
 }
@@ -55,8 +58,8 @@ async function run({ env = process.env, gh = github(need('MEYOR_BOT_TOKEN')), no
   const boxPublic = c.publicOf(boxPrivate), adminSignPublic = c.publicOf(signPrivate);
   // The encrypted state lives in the private Meyor-Control repo; this runs in the public Meyor-Releases
   // (free Actions minutes), so nothing private is ever written here.
-  const saved = await gh('GET', `/repos/${OWNER}/Meyor-Control/contents/state/state.enc`);
-  const state = saved ? JSON.parse(c.open(boxPrivate, Buffer.from(saved.content, 'base64').toString('utf8').trim())) : core.emptyState();
+  const saved = await gh('GET', `/repos/${OWNER}/Meyor-Control/contents/state/state.enc`, null, { raw: true });
+  const state = saved ? JSON.parse(c.open(boxPrivate, String(saved).trim())) : core.emptyState();
   const keys = await googleKeys(fetchJson || (async url => (await fetch(url)).json()));
   const since = state.lastRun ? `&since=${new Date(state.lastRun - 5 * 60e3).toISOString()}` : '';
   const issues = (await all(gh, `/repos/${OWNER}/Meyor-Inbox/issues?state=all&sort=updated&direction=asc${since}`)).filter(i => !i.pull_request);
@@ -99,6 +102,9 @@ async function run({ env = process.env, gh = github(need('MEYOR_BOT_TOKEN')), no
       s.published = s.version;
     }
   }
+  // Zips stay in the state only until the admin decides: keeps state.enc small.
+  for (const s of Object.values(state.skills)) if (s.status !== 'pending' && s.published === s.version) delete s.zip;
+  for (const s of Object.values(state.skills)) if (['rejected', 'unpublished'].includes(s.status)) delete s.zip;
   await putFile(gh, 'Swible-Skills', 'catalog.json', JSON.stringify(core.catalog(state, skillsBase), null, 1) + '\n', 'Update skill catalog');
   // Publish the signed control file only when its content changed (no hourly commits to the public repo).
   const signed = core.control(state, { adminSignPrivate: signPrivate, now });

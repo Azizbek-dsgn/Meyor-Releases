@@ -7,7 +7,7 @@ test('a full run reads the inbox, writes encrypted state and a signed control fi
   const box = c.generateKeys('box'), signKey = c.generateKeys('sign');
   process.env.ADMIN_BOX_PRIVATE = box.private; process.env.ADMIN_SIGN_PRIVATE = signKey.private;
   const written = {};
-  const gh = async (method, url, body) => {
+  const gh = async (method, url, body, opts = {}) => {
     if (method === 'GET' && url.includes('/Meyor-Inbox/issues?')) return url.includes('page=1') ? [{ number: 1, state: 'open', labels: [], comments: 0, body: c.seal(box.public, '{"v":1,"type":"account"}'), user: { login: 'x' } }, { number: 2, state: 'open', labels: [], comments: 0, body: 'spam', user: { login: 'x' } }] : [];
     if (method === 'GET') return null;
     if (method === 'PUT') { written[url] = Buffer.from(body.content, 'base64').toString('utf8'); return {}; }
