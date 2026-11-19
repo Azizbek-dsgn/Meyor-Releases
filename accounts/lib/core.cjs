@@ -102,7 +102,9 @@ function applyAdmin(state, cmd, { adminSignPublic, now }) {
     case 'update': {
       if (!PRODUCTS.has(body.product) || !VERSION.test(String(body.min))) return 'bad-update';
       const targets = body.targets === 'all' ? 'all' : (Array.isArray(body.targets) ? body.targets.filter(t => /^[a-f0-9]{40}$/.test(t)).slice(0, 1000) : []);
-      state.updates = state.updates.filter(u => u.product !== body.product || u.targets !== 'all' || targets !== 'all');
+      // One order per product and audience: a newer one replaces it (no piles of the same order).
+      const same = u => u.product === body.product && JSON.stringify(u.targets === 'all' ? 'all' : [...u.targets].sort()) === JSON.stringify(targets === 'all' ? 'all' : [...targets].sort());
+      state.updates = state.updates.filter(u => !same(u));
       state.updates.push({ id: 'u' + body.seq, product: body.product, min: body.min, targets, message: text(body.message, 300), at: now });
       state.updates = state.updates.slice(-50);
       return 'update';

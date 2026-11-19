@@ -60,6 +60,9 @@ async function run({ env = process.env, gh = github(need('MEYOR_BOT_TOKEN')), no
   // (free Actions minutes), so nothing private is ever written here.
   const saved = await gh('GET', `/repos/${OWNER}/Meyor-Control/contents/state/state.enc`, null, { raw: true });
   const state = saved ? JSON.parse(c.open(boxPrivate, String(saved).trim())) : core.emptyState();
+  const keep = new Map();
+  for (const u of state.updates || []) keep.set(u.product + '|' + JSON.stringify(u.targets === 'all' ? 'all' : [...u.targets].sort()), u);
+  state.updates = [...keep.values()];
   const keys = await googleKeys(fetchJson || (async url => (await fetch(url)).json()));
   const since = state.lastRun ? `&since=${new Date(state.lastRun - 5 * 60e3).toISOString()}` : '';
   const issues = (await all(gh, `/repos/${OWNER}/Meyor-Inbox/issues?state=all&sort=updated&direction=asc${since}`)).filter(i => !i.pull_request);
