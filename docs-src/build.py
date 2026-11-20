@@ -169,6 +169,8 @@ def main():
         pages.update({p["page"]: product_page(lang, p) for p in PRODUCTS})
         for name, html in pages.items():
             (out / f"{name}.html").write_text(html, encoding="utf-8")
+    # The newest notes for the apps' "what's new" window (Hustler reads it after an update).
+    (DOCS / "news.json").write_text(json.dumps({lang: [[a, b] for a, b in NEWS[lang][:8]] for lang in LANGS}, ensure_ascii=False), encoding="utf-8")
     print("built", ", ".join(LANGS))
 
 
