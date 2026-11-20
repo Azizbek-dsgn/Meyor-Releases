@@ -2,9 +2,8 @@ name: Accounts and skill market
 # Runs here (public repo: free Actions minutes). Reads the sealed records in the private Meyor-Inbox, keeps the
 # encrypted state in the private Meyor-Control, publishes the admin-signed control/control.json and the
 # approved skills. Logs show counts only. See accounts/index.cjs.
+# Retired: accounts now live on the Meyor Supabase API (Hustler 0.9.3+). Kept for a manual run only.
 on:
-  schedule:
-    - cron: '*/5 * * * *'
   workflow_dispatch:
 permissions:
   contents: read
