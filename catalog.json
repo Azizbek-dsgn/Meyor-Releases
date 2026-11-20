@@ -45,42 +45,42 @@
     }
   },
   "meyor": {
-    "version": "0.9.4",
-    "revision": "ea2591e34341fd7ae3e9c99b9807cda04c826243",
+    "version": "0.9.5",
+    "revision": "c09dcffb39afe057388b60aec1b8c6e8b682e065",
     "assets": {
       "mac-arm64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.9.4/Meyor-0.9.4-mac-arm64.dmg",
-        "sha256": "e28d163be62f2c989df0288ca42e267cbdf80d231de7b038df46bd93e3845725",
-        "bytes": 127992065
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.9.5/Meyor-0.9.5-mac-arm64.dmg",
+        "sha256": "6321771cb56a155ad6fe523c0948068cc4029e8575ec9b34ee2d270a6f575d18",
+        "bytes": 128019336
       },
       "mac-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.9.4/Meyor-0.9.4-mac-x64.dmg",
-        "sha256": "986a273c0e2ad889e898386969d975a4004336e9d1f64f37026dabebe9b66df2",
-        "bytes": 133606362
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.9.5/Meyor-0.9.5-mac-x64.dmg",
+        "sha256": "05b5a148f18f74409214b46448724153b7434e999bcf225d71f88d49949a60aa",
+        "bytes": 133614937
       },
       "win-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.9.4/Meyor-0.9.4-win-x64.exe",
-        "sha256": "6127e4203f170e019a05f74b1a9dda72df3f75e7645a02cdcc476dbdaf3a192a",
-        "bytes": 111594303
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.9.5/Meyor-0.9.5-win-x64.exe",
+        "sha256": "469947695df1e670d75651af3dc4ca2026641e856ffb8952196b315ebe25b1be",
+        "bytes": 111609982
       }
     },
     "appPatch": {
       "mac-arm64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.9.4/Meyor-0.9.4-mac-arm64-app.asar",
-        "sha256": "8ed29caf8c3bb65c7510394644cc39d3783b2283a40925e6db0478690a09aa08",
-        "bytes": 540859,
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.9.5/Meyor-0.9.5-mac-arm64-app.asar",
+        "sha256": "1cb5499bb27b950e7d722e5e8ded5abe90d731a122a57c5e5b8e9ed4521c0c23",
+        "bytes": 608954,
         "electron": "44.7.0"
       },
       "mac-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.9.4/Meyor-0.9.4-mac-x64-app.asar",
-        "sha256": "8ed29caf8c3bb65c7510394644cc39d3783b2283a40925e6db0478690a09aa08",
-        "bytes": 540859,
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.9.5/Meyor-0.9.5-mac-x64-app.asar",
+        "sha256": "1cb5499bb27b950e7d722e5e8ded5abe90d731a122a57c5e5b8e9ed4521c0c23",
+        "bytes": 608954,
         "electron": "44.7.0"
       },
       "win-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.9.4/Meyor-0.9.4-win-x64-app.asar",
-        "sha256": "8ed29caf8c3bb65c7510394644cc39d3783b2283a40925e6db0478690a09aa08",
-        "bytes": 540859,
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.9.5/Meyor-0.9.5-win-x64-app.asar",
+        "sha256": "1cb5499bb27b950e7d722e5e8ded5abe90d731a122a57c5e5b8e9ed4521c0c23",
+        "bytes": 608954,
         "electron": "44.7.0"
       }
     }
