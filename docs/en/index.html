@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Hustler — the AI ecosystem for video editors</title>
-<meta name="description" content="Swible cuts, orders, subtitles and animates in Premiere and After Effects — with your own AI and your own editing style. Voxly types what you say, Tempass tracks your time. All free, all on your computer.">
+<meta name="description" content="Swible (Premiere, After Effects, DaVinci) cuts, orders, subtitles and animates in Premiere and After Effects — with your own AI and your own editing style. Voxly types what you say, Tempass tracks your time. All free, all on your computer.">
 <link rel="icon" href="../hustler.png">
 <link rel="stylesheet" href="../site.css">
 </head>
@@ -16,7 +16,7 @@
   <details class="menu"><summary aria-label="Menu"><span></span><span></span><span></span></summary><nav><a href="index.html#apps">Apps</a><a href="../install.html">Install</a><a href="market.html">Skill market</a><a href="changelog.html">What’s new</a><a href="help.html">Help</a><div class="langs"><a href="../index.html">UZ</a><a href="../ru/index.html">RU</a><a href="../en/index.html" aria-current="true">EN</a></div></nav></details>
 </div></header>
 <main><section class="hero"><div class="wrap">
-  <p class="eyebrow">HUSTLER · BY MEYOR VISION</p><h1>AI does the edit.<br>You create.</h1><p class="lead">Swible cuts, orders, subtitles and animates in Premiere and After Effects — with your own AI and your own editing style. Voxly types what you say, Tempass tracks your time. All free, all on your computer.</p>
+  <p class="eyebrow">HUSTLER · BY MEYOR VISION</p><h1>AI does the edit.<br>You create.</h1><p class="lead">Swible (Premiere, After Effects, DaVinci) cuts, orders, subtitles and animates in Premiere and After Effects — with your own AI and your own editing style. Voxly types what you say, Tempass tracks your time. All free, all on your computer.</p>
   <div class="get" data-get>
   <a class="dl-main" data-main href="https://github.com/Azizbek-dsgn/Meyor-Releases/releases/latest"><b>Download</b><small data-main-label>Windows · macOS</small></a>
   <p class="others">Other system: <a data-asset="win-x64" href="https://github.com/Azizbek-dsgn/Meyor-Releases/releases/latest">Windows</a> · <a data-asset="mac-arm64" href="https://github.com/Azizbek-dsgn/Meyor-Releases/releases/latest">Mac (Apple Silicon)</a> · <a data-asset="mac-x64" href="https://github.com/Azizbek-dsgn/Meyor-Releases/releases/latest">Mac (Intel)</a></p>
@@ -26,10 +26,23 @@
     <p class="cmd-note">Downloads, checks the official SHA-256, installs and opens — no browser or system warnings.</p></div>
   <p class="hint"><span id="version">Hustler</span> · free · <a href="../install.html">Installation guide (with pictures) →</a></p>
 </div>
-  <figure class="frame hero-shot"><img src="../shots/hustler.jpg" alt="Hustler"></figure>
+  <figure class="frame hero-shot"><video src="../promo.mp4" poster="../promo-poster.jpg" controls playsinline preload="none" style="width:100%;display:block;border-radius:inherit" aria-label="Hustler — 25 soniyalik tanishtiruv"></video></figure>
 </div></section>
 <section class="points wrap"><div><b>Your AI — or a free one</b><p>Claude, Codex, Antigravity or a free AI on your computer. With several, they work as a team.</p></div><div><b>Your style</b><p>Follows your editing skills; the AI can write a skill for you. Get other people’s in the market.</p></div><div><b>Files stay on your computer</b><p>Video and audio are never uploaded. Your account record is encrypted.</p></div><div><b>Uzbek</b><p>Dialects, mixed speech, Latin and Cyrillic.</p></div></section>
 <section class="wrap highlights"><h2>New</h2><div class="hl-grid"><div class="hl"><b>AI team</b><p>With Claude and Antigravity subscriptions the work is split between them: one reads the transcript, one the skill — faster.</p></div><div class="hl"><b>Free AI</b><p>With Ollama, no subscription or internet: Hustler shows the size and load and downloads a model that fits.</p></div><div class="hl"><b>Skill market</b><p>Share your editing style as @username, with an optional donation link.</p></div><div class="hl"><b>Small updates</b><p>Hustler downloads only what changed — a few MB, not 122.</p></div></div></section>
+<section class="wrap quiz" id="quiz"><h2>Which one do I need?</h2>
+<p class="hint">Where do you edit?</p><div class="chip-row"><button type="button" class="chip-btn" data-q1="0">Premiere Pro or After Effects</button><button type="button" class="chip-btn" data-q1="1">DaVinci Resolve</button><button type="button" class="chip-btn" data-q1="2">No editing app — a simple app</button></div>
+<p class="hint">What else do you need?</p><div class="chip-row"><button type="button" class="chip-btn" data-q2="0">Typing by voice, meeting notes</button><button type="button" class="chip-btn" data-q2="1">Tracking editing time</button><button type="button" class="chip-btn" data-q2="2">Nothing else</button></div>
+<div id="quiz-result" class="cards" hidden></div>
+<p id="quiz-get" hidden><a class="dl-main" href="../install.html"><b>Download Hustler — everything in one click</b></a></p></section>
+<script>(function(){var D={"swible": ["Swible", "swible.html", "AI editing, subtitles and 66 animations inside Premiere and After Effects"], "resolve": ["Swible for DaVinci", "swible.html", "Uzbek subtitles and animation in DaVinci (Swible for DaVinci)"], "lab": ["Swible Lab", "swible-lab.html", "No Adobe: subtitles, reels and dubbing in one window"], "voxly": ["Voxly", "voxly.html", "Speak and it types; text from videos and meetings"], "tempass": ["Tempass", "tempass.html", "Tracks your editing time by itself"]},a=null,b=[];
+function pick(attr,v,multi){document.querySelectorAll('[data-'+attr+']').forEach(function(x){if(!multi||v==='2')x.classList.toggle('on',x.dataset[attr]===v);});}
+function draw(){if(a===null)return;var keys=[['swible','resolve','lab'][+a]];b.forEach(function(x){if(x==='0')keys.push('voxly');if(x==='1')keys.push('tempass');});
+var box=document.getElementById('quiz-result');box.textContent='';keys.forEach(function(k){var c=document.createElement('a');c.className='card';c.href=D[k][1];var t=document.createElement('b');t.textContent=D[k][0];var p=document.createElement('p');p.textContent=D[k][2];c.appendChild(t);c.appendChild(p);box.appendChild(c);});
+box.hidden=false;document.getElementById('quiz-get').hidden=false;}
+document.querySelectorAll('[data-q1]').forEach(function(x){x.onclick=function(){a=x.dataset.q1;pick('q1',a);draw();};});
+document.querySelectorAll('[data-q2]').forEach(function(x){x.onclick=function(){var v=x.dataset.q2;if(v==='2'){b=[];}else{var i=b.indexOf(v);if(i<0)b.push(v);else b.splice(i,1);}
+document.querySelectorAll('[data-q2]').forEach(function(y){y.classList.toggle('on',v==='2'?y.dataset.q2==='2':b.indexOf(y.dataset.q2)>=0);});draw();};});})();</script>
 <div class="wrap" id="apps"><section class="product-row tall" id="swible">
   <div class="copy"><div class="tag"><img src="../swible.png" alt=""><span>Premiere Pro, After Effects &amp; DaVinci Resolve plugin</span></div>
     <h2>Swible</h2><p class="pitch">Full auto montage: cuts the dead parts, orders the clips, adds zooms, subtitles and motion.</p><ul class="ticks"><li><b>Auto montage</b> One click: analyse → cut → order → zoom → subtitles → markers. The result is a new sequence; the original stays.</li><li><b>AI: auto, team or free</b> The connected AI is picked for you; several subscriptions work as a team; no subscription — the free AI.</li><li><b>Your motion style</b> Word-by-word text, entries and exits, bounce, glow in After Effects — measured from your own AE project.</li></ul>

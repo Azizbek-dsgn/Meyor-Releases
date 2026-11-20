@@ -87,13 +87,48 @@ def home(lang):
     body = f"""<section class="hero"><div class="wrap">
   <p class="eyebrow">{h['eyebrow']}</p><h1>{h['h1']}</h1><p class="lead">{escape(h['lead'])}</p>
   {downloads(lang)}
-  <figure class="frame hero-shot"><img src="{up}shots/hustler.jpg" alt="Hustler"></figure>
+  <figure class="frame hero-shot"><video src="{up}promo.mp4" poster="{up}promo-poster.jpg" controls playsinline preload="none" style="width:100%;display:block;border-radius:inherit" aria-label="Hustler — 25 soniyalik tanishtiruv"></video></figure>
 </div></section>
 <section class="points wrap">{points}</section>
 <section class="wrap highlights"><h2>{escape(h['highlights_title'])}</h2><div class="hl-grid">{highlights}</div></section>
+{quiz(lang)}
 <div class="wrap" id="apps">{products}</div>
 <section class="steps-band"><div class="wrap"><h2>{escape(h['steps_title'])}</h2><ol class="three">{steps}</ol>{downloads(lang)}</div></section>"""
     return layout(lang, h["title"], body, "index", h["lead"])
+
+
+QUIZ = {
+    "uz": {"title": "Qaysi biri menga kerak?", "q1": "Qayerda montaj qilasiz?", "q2": "Yana nima kerak?", "a1": ["Premiere Pro yoki After Effects", "DaVinci Resolve", "Montaj dasturisiz — oddiy ilova"],
+           "a2": ["Gapirib yozish, uchrashuv matni", "Montaj vaqtini o‘lchash", "Boshqa hech narsa"], "result": "Sizga:", "get": "Hustler’ni yuklab olish — hammasi bitta tugmada",
+           "why": {"swible": "Premiere va After Effects ichida AI montaj, subtitr va 66 animatsiya", "resolve": "DaVinci’da o‘zbekcha subtitr va animatsiya (Swible for DaVinci)", "lab": "Adobe’siz: subtitr, reels va dublyaj bitta oynada", "voxly": "Gapiring — matn yoziladi; video va uchrashuvlardan matn", "tempass": "Montajga ketgan vaqtni o‘zi o‘lchaydi"}},
+    "ru": {"title": "Что мне подходит?", "q1": "Где вы монтируете?", "q2": "Что ещё нужно?", "a1": ["Premiere Pro или After Effects", "DaVinci Resolve", "Без монтажной программы — простое приложение"],
+           "a2": ["Печать голосом, текст встреч", "Учёт времени монтажа", "Больше ничего"], "result": "Вам подойдут:", "get": "Скачать Hustler — всё одной кнопкой",
+           "why": {"swible": "AI-монтаж, субтитры и 66 анимаций в Premiere и After Effects", "resolve": "Узбекские субтитры и анимация в DaVinci (Swible for DaVinci)", "lab": "Без Adobe: субтитры, reels и дубляж в одном окне", "voxly": "Говорите — текст печатается; текст из видео и встреч", "tempass": "Сам считает время на монтаж"}},
+    "en": {"title": "Which one do I need?", "q1": "Where do you edit?", "q2": "What else do you need?", "a1": ["Premiere Pro or After Effects", "DaVinci Resolve", "No editing app — a simple app"],
+           "a2": ["Typing by voice, meeting notes", "Tracking editing time", "Nothing else"], "result": "For you:", "get": "Download Hustler — everything in one click",
+           "why": {"swible": "AI editing, subtitles and 66 animations inside Premiere and After Effects", "resolve": "Uzbek subtitles and animation in DaVinci (Swible for DaVinci)", "lab": "No Adobe: subtitles, reels and dubbing in one window", "voxly": "Speak and it types; text from videos and meetings", "tempass": "Tracks your editing time by itself"}},
+}
+
+
+def quiz(lang):
+    q, up = QUIZ[lang], prefix(lang)
+    b1 = "".join(f'<button type="button" class="chip-btn" data-q1="{i}">{escape(a)}</button>' for i, a in enumerate(q["a1"]))
+    b2 = "".join(f'<button type="button" class="chip-btn" data-q2="{i}">{escape(a)}</button>' for i, a in enumerate(q["a2"]))
+    links = {"swible": ("Swible", "swible.html"), "resolve": ("Swible for DaVinci", "swible.html"), "lab": ("Swible Lab", "swible-lab.html"), "voxly": ("Voxly", "voxly.html"), "tempass": ("Tempass", "tempass.html")}
+    data = json.dumps({k: [v[0], v[1], q["why"][k]] for k, v in links.items()}, ensure_ascii=False)
+    return f"""<section class="wrap quiz" id="quiz"><h2>{escape(q['title'])}</h2>
+<p class="hint">{escape(q['q1'])}</p><div class="chip-row">{b1}</div>
+<p class="hint">{escape(q['q2'])}</p><div class="chip-row">{b2}</div>
+<div id="quiz-result" class="cards" hidden></div>
+<p id="quiz-get" hidden><a class="dl-main" href="{up}install.html"><b>{escape(q['get'])}</b></a></p></section>
+<script>(function(){{var D={data},a=null,b=[];
+function pick(attr,v,multi){{document.querySelectorAll('[data-'+attr+']').forEach(function(x){{if(!multi||v==='2')x.classList.toggle('on',x.dataset[attr]===v);}});}}
+function draw(){{if(a===null)return;var keys=[['swible','resolve','lab'][+a]];b.forEach(function(x){{if(x==='0')keys.push('voxly');if(x==='1')keys.push('tempass');}});
+var box=document.getElementById('quiz-result');box.textContent='';keys.forEach(function(k){{var c=document.createElement('a');c.className='card';c.href=D[k][1];var t=document.createElement('b');t.textContent=D[k][0];var p=document.createElement('p');p.textContent=D[k][2];c.appendChild(t);c.appendChild(p);box.appendChild(c);}});
+box.hidden=false;document.getElementById('quiz-get').hidden=false;}}
+document.querySelectorAll('[data-q1]').forEach(function(x){{x.onclick=function(){{a=x.dataset.q1;pick('q1',a);draw();}};}});
+document.querySelectorAll('[data-q2]').forEach(function(x){{x.onclick=function(){{var v=x.dataset.q2;if(v==='2'){{b=[];}}else{{var i=b.indexOf(v);if(i<0)b.push(v);else b.splice(i,1);}}
+document.querySelectorAll('[data-q2]').forEach(function(y){{y.classList.toggle('on',v==='2'?y.dataset.q2==='2':b.indexOf(y.dataset.q2)>=0);}});draw();}};}});}})();</script>"""
 
 
 def product_page(lang, p):

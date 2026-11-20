@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="uz"><head><meta charset="utf-8">
+<style>
+  html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#07080a;font-family:"Inter Display","Inter",sans-serif;-webkit-font-smoothing:antialiased}
+  .scene{position:absolute;inset:0;display:grid;place-items:center;opacity:0}
+  .dark{background:radial-gradient(120% 80% at 50% 120%,#1c1d22 0%,#07080a 60%)}
+  .light{background:radial-gradient(110% 70% at 50% 115%,#e9e9ee 0%,#fafafa 55%);color:#0b0b0d}
+  .word{position:absolute;left:0;right:0;text-align:center;font-weight:600;letter-spacing:-.03em;will-change:transform,filter,opacity}
+  .w{display:inline-block;will-change:transform,filter,opacity}
+  .accent{background:linear-gradient(90deg,#fff 0%,#9a9aa4 100%);-webkit-background-clip:text;color:transparent}
+  .accent-dark{background:linear-gradient(90deg,#0b0b0d 0%,#6b6b75 100%);-webkit-background-clip:text;color:transparent}
+  .chip{position:absolute;display:flex;align-items:center;gap:12px;padding:12px 20px 12px 12px;border-radius:999px;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.12);font-weight:600;font-size:22px;color:#0b0b0d;will-change:transform,opacity}
+  .chip img{width:40px;height:40px;border-radius:11px}
+  .shot{position:absolute;left:50%;top:200px;height:480px;width:auto;border-radius:16px;box-shadow:0 40px 120px rgba(0,0,0,.6);transform-origin:50% 100%;will-change:transform,opacity}
+  .ring{position:absolute;left:50%;top:50%;border:2px solid rgba(255,255,255,.35);border-radius:50%;will-change:transform,opacity}
+  .cursor{display:inline-block;width:4px;height:1em;background:#0b0b0d;margin-left:4px;vertical-align:-.12em}
+</style></head>
+<body>
+<!-- 1. words, one by one -->
+<section class="scene dark" id="s1"><div class="word" id="w1" style="font-size:96px;color:#fff;top:300px"></div><div id="star" style="position:absolute;left:50%;top:50%;font-size:90px;color:#fff;will-change:transform">✦</div></section>
+<!-- 2. logo opening -->
+<section class="scene light" id="s2"><img id="mark" src="../../brand/hustler-mark-black.png" style="position:absolute;left:50%;top:50%;width:150px;will-change:transform"><div class="word" id="brand" style="font-size:72px;top:410px"></div><div class="word" id="by" style="font-size:24px;top:500px;font-weight:500;color:#6b6b75">by Meyor Vision</div></section>
+<!-- 3. all the tools around one app -->
+<section class="scene light" id="s3"><div class="word" id="t3" style="font-size:52px;top:96px"></div>
+  <img id="hub" src="../../brand/hustler-mark-black.png" style="position:absolute;left:590px;top:330px;width:100px">
+  <div class="chip" id="c1"><img src="../../docs/swible.png">Swible</div><div class="chip" id="c2"><img src="../../docs/swible-lab.png">Swible Lab</div>
+  <div class="chip" id="c3"><img src="../../docs/voxly.png">Voxly</div><div class="chip" id="c4"><img src="../../docs/tempass.png">Tempass</div></section>
+<!-- 4. Swible UI, tilted -->
+<section class="scene dark" id="s4"><div class="word" id="t4" style="font-size:50px;top:70px;color:#fff"></div><div class="word" id="t4b" style="font-size:24px;top:140px;color:#9a9aa4;font-weight:500"></div><img class="shot" id="shot" src="../../docs/shots/swible.jpg"></section>
+<!-- 5. 66 animations -->
+<section class="scene dark" id="s5"><div class="word" id="big" style="font-size:260px;top:150px"><span class="accent">66</span></div><div class="word" id="t5" style="font-size:44px;top:470px;color:#fff"></div><div class="word" id="demo" style="font-size:40px;top:560px;color:#fff"></div><div id="rings"></div></section>
+<!-- 6. Voxly typing -->
+<section class="scene light" id="s6"><div class="word" id="t6" style="font-size:52px;top:200px"></div><div class="word" id="type" style="font-size:40px;top:330px;font-weight:500;color:#3a3a40"></div></section>
+<!-- 7. Tempass clock -->
+<section class="scene light" id="s7"><div class="word" id="t7" style="font-size:52px;top:190px"></div><div class="word" id="clock" style="font-size:150px;top:290px;font-variant-numeric:tabular-nums"><span class="accent-dark"></span></div></section>
+<!-- 8. call to action -->
+<section class="scene dark" id="s8"><img id="mark2" src="../../brand/hustler-mark-white.png" style="position:absolute;left:50%;top:210px;width:110px;transform:translateX(-50%)"><div class="word" id="t8" style="font-size:60px;top:350px;color:#fff"></div><div class="word" id="url" style="font-size:30px;top:450px;font-weight:500;color:#9a9aa4"></div></section>
+<script>
+const $ = id => document.getElementById(id);
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const ease = p => 1 - Math.pow(1 - clamp(p), 3), expo = p => clamp(p) >= 1 ? 1 : 1 - Math.pow(2, -10 * clamp(p));
+const back = p => { p = clamp(p); const s = 1.9, q = p - 1; return 1 + (s + 1) * q * q * q + s * q * q; };
+const span = (t, a, b) => clamp((t - a) / (b - a));
+function show(id, t, a, b, fade = .25) { $(id).style.opacity = String(Math.min(span(t, a, a + fade), 1 - span(t, b - fade, b))); }
+// One word at a time: blurred in, the newest word highlighted (SaaS promo style, black and white).
+function build(id, words, t, start, step, accentClass = 'accent') {
+  const el = $(id); el.textContent = '';
+  words.forEach((w, i) => {
+    const p = span(t, start + i * step, start + i * step + .22); if (p <= 0) return;
+    const s = document.createElement('span'); s.className = 'w' + (i === Math.min(words.length - 1, Math.floor((t - start) / step)) ? ' ' + accentClass : '');
+    s.textContent = w + (i < words.length - 1 ? ' ' : '');
+    s.style.opacity = p; s.style.filter = `blur(${(1 - p) * 12}px)`; s.style.transform = `translateY(${(1 - ease(p)) * 24}px)`;
+    el.appendChild(s);
+  });
+}
+window.render = function (t) {
+  // 1 · 0–2.6 s
+  show('s1', t, -1, 2.75, .15);
+  const w = ['Montaj.', 'Tezroq.', 'O‘zbekcha.'], k = Math.min(2, Math.floor(t / .7)), p1 = span(t, k * .7, k * .7 + .2);
+  $('w1').innerHTML = `<span class="w accent" style="opacity:${p1};filter:blur(${(1 - p1) * 14}px);transform:scale(${.92 + .08 * ease(p1)})">${w[k]}</span>`;
+  $('w1').style.opacity = t < 2.1 ? 1 : 1 - span(t, 2.1, 2.3);
+  const sg = span(t, 2.1, 2.75); $('star').style.transform = `translate(-50%,-50%) rotate(${sg * 220}deg) scale(${.4 + expo(sg) * 38})`; $('star').style.opacity = t > 2.1 ? 1 : 0;
+  // 2 · 2.6–4.8 s
+  show('s2', t, 2.6, 4.9, .12);
+  const m = expo(span(t, 2.6, 3.4)); $('mark').style.transform = `translate(-50%,-62%) scale(${12 - 11 * m})`;
+  const letters = 'Hustler'.split(''), tr = 1 - ease(span(t, 3.3, 3.9));
+  $('brand').innerHTML = `<span class="w" style="letter-spacing:${-.03 + tr * .5}em;opacity:${span(t, 3.3, 3.6)}">${letters.join('')}</span>`;
+  $('by').style.opacity = span(t, 3.8, 4.1);
+  // 3 · 4.8–8.4 s
+  show('s3', t, 4.8, 8.5);
+  build('t3', ['Bitta', 'ilova', '—', 'barcha', 'vositalar'], t, 4.9, .3, 'accent-dark');
+  const chips = ['c1', 'c2', 'c3', 'c4'], cx = 640, cy = 380;
+  chips.forEach((id, i) => {
+    const p = back(span(t, 5.6 + i * .18, 6.1 + i * .18)), ang = i * Math.PI / 2 + (t - 5.6) * .35, r = 250 * p;
+    const el = $(id); el.style.opacity = clamp(p * 1.4); el.style.left = (cx + Math.cos(ang) * r * 1.25 - 90) + 'px'; el.style.top = (cy + Math.sin(ang) * r * .55 - 32) + 'px';
+    el.style.transform = `scale(${.6 + .4 * clamp(p)})`;
+  });
+  $('hub').style.transform = `scale(${1 + .06 * Math.sin(t * 6)})`;
+  // 4 · 8.4–12 s
+  show('s4', t, 8.4, 12.1);
+  build('t4', ['Swible', '—', 'AI', 'montaj'], t, 8.5, .28);
+  $('t4b').textContent = 'Premiere Pro · After Effects · DaVinci Resolve'; $('t4b').style.opacity = span(t, 9.4, 9.8);
+  const sh = ease(span(t, 8.8, 9.9)); $('shot').style.transform = `translate(-50%, ${(1 - sh) * 260}px) perspective(1400px) rotateX(${24 - 16 * sh}deg) rotateZ(${-3 * (1 - sh)}deg) scale(${.92 + .08 * sh})`;
+  $('shot').style.opacity = sh;
+  // 5 · 12–15.4 s
+  show('s5', t, 12, 15.5);
+  const b5 = back(span(t, 12.1, 12.7)); $('big').style.transform = `translateY(${(1 - clamp(b5)) * 120}px) scale(${.7 + .3 * b5 + .02 * span(t, 12.7, 15)})`; $('big').style.opacity = span(t, 12.1, 12.35);
+  build('t5', ['ta', 'matn', 'animatsiyasi'], t, 12.6, .3);
+  const demo = ['Apple', 'bounce', 'spring', 'slam', 'glitch', 'karaoke'];
+  $('demo').innerHTML = demo.map((d, i) => { const q = span(t, 13.6 + i * .22, 14.0 + i * .22), y = (1 - back(q)) * 40; return `<span class="w" style="opacity:${clamp(q * 2)};transform:translateY(${y}px) scale(${.6 + .4 * back(q)});margin:0 14px;color:#9a9aa4">${d}</span>`; }).join('');
+  // 6 · 15.4–18.6 s
+  show('s6', t, 15.4, 18.7);
+  build('t6', ['Voxly', '—', 'gapiring,', 'matn', 'yoziladi'], t, 15.5, .26, 'accent-dark');
+  const sentence = 'Assalomu alaykum, bugungi uchrashuvni boshlaymiz.', n = Math.floor(span(t, 16.6, 18.1) * sentence.length);
+  $('type').innerHTML = sentence.slice(0, n) + `<span class="cursor" style="opacity:${Math.floor(t * 3) % 2 ? 1 : .2}"></span>`;
+  // 7 · 18.6–21 s
+  show('s7', t, 18.6, 21.1);
+  build('t7', ['Tempass', '—', 'vaqtingizni', 'o‘lchaydi'], t, 18.7, .26, 'accent-dark');
+  const secs = Math.floor(222 * ease(span(t, 19.3, 20.6))); $('clock').firstElementChild.textContent = String(Math.floor(secs / 60)).padStart(2, '0') + ':' + String(secs % 60).padStart(2, '0');
+  // 8 · 21–25 s
+  show('s8', t, 21, 25.5, .2);
+  $('mark2').style.transform = `translateX(-50%) scale(${.5 + .5 * back(span(t, 21.1, 21.7))})`; $('mark2').style.opacity = span(t, 21.1, 21.3);
+  build('t8', ['Bepul.', 'Bitta', 'tugmada', 'o‘rnating.'], t, 21.6, .3);
+  $('url').textContent = 'meyor-vision.vercel.app'; $('url').style.opacity = span(t, 23, 23.4);
+};
+window.render(0);
+</script>
+</body></html>

@@ -108,3 +108,5 @@ footer:not(.foot){border-top:1px solid var(--line);padding:24px 0 40px;color:var
 .hl b{display:block;font-size:17px;margin-bottom:8px}.hl p{margin:0;color:#a3a7ae;font-size:14px;line-height:1.6}
 .search{width:100%;max-width:520px;margin-top:14px;padding:12px 14px;border-radius:12px;border:1px solid var(--line,#2b2b33);background:transparent;color:inherit;font:inherit}
 #market .card small{display:block;margin:4px 0 10px}#market .card a{display:inline-block;margin-top:6px}
+
+.quiz{margin:56px auto}.quiz h2{margin-bottom:6px}.chip-row{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 18px}.chip-btn{font:inherit;font-size:15px;padding:10px 16px;border-radius:999px;border:1px solid var(--line,#2b2b33);background:transparent;color:inherit;cursor:pointer}.chip-btn.on{background:#fff;color:#000;border-color:#fff}#quiz-result .card{text-decoration:none;color:inherit}

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Hustler — AI-экосистема для монтажа</title>
-<meta name="description" content="Swible в Premiere и After Effects режет, расставляет, добавляет субтитры и моушн — вашим AI и в вашем стиле монтажа. Voxly пишет то, что вы говорите, Tempass считает время. Всё бесплатно и на вашем компьютере.">
+<meta name="description" content="Swible в Premiere, After Effects и DaVinci режет, расставляет, добавляет субтитры и моушн — вашим AI и в вашем стиле монтажа. Voxly пишет то, что вы говорите, Tempass считает время. Всё бесплатно и на вашем компьютере.">
 <link rel="icon" href="../hustler.png">
 <link rel="stylesheet" href="../site.css">
 </head>
@@ -16,7 +16,7 @@
   <details class="menu"><summary aria-label="Menu"><span></span><span></span><span></span></summary><nav><a href="index.html#apps">Приложения</a><a href="../install.html">Установка</a><a href="market.html">Магазин скиллов</a><a href="changelog.html">Новости</a><a href="help.html">Помощь</a><div class="langs"><a href="../index.html">UZ</a><a href="../ru/index.html" aria-current="true">RU</a><a href="../en/index.html">EN</a></div></nav></details>
 </div></header>
 <main><section class="hero"><div class="wrap">
-  <p class="eyebrow">HUSTLER · BY MEYOR VISION</p><h1>Монтирует AI.<br>Создаёте вы.</h1><p class="lead">Swible в Premiere и After Effects режет, расставляет, добавляет субтитры и моушн — вашим AI и в вашем стиле монтажа. Voxly пишет то, что вы говорите, Tempass считает время. Всё бесплатно и на вашем компьютере.</p>
+  <p class="eyebrow">HUSTLER · BY MEYOR VISION</p><h1>Монтирует AI.<br>Создаёте вы.</h1><p class="lead">Swible в Premiere, After Effects и DaVinci режет, расставляет, добавляет субтитры и моушн — вашим AI и в вашем стиле монтажа. Voxly пишет то, что вы говорите, Tempass считает время. Всё бесплатно и на вашем компьютере.</p>
   <div class="get" data-get>
   <a class="dl-main" data-main href="https://github.com/Azizbek-dsgn/Meyor-Releases/releases/latest"><b>Скачать</b><small data-main-label>Windows · macOS</small></a>
   <p class="others">Другая система: <a data-asset="win-x64" href="https://github.com/Azizbek-dsgn/Meyor-Releases/releases/latest">Windows</a> · <a data-asset="mac-arm64" href="https://github.com/Azizbek-dsgn/Meyor-Releases/releases/latest">Mac (Apple Silicon)</a> · <a data-asset="mac-x64" href="https://github.com/Azizbek-dsgn/Meyor-Releases/releases/latest">Mac (Intel)</a></p>
@@ -26,10 +26,23 @@
     <p class="cmd-note">Сам скачает, проверит официальным SHA-256, установит и откроет — без предупреждений браузера и системы.</p></div>
   <p class="hint"><span id="version">Hustler</span> · бесплатно · <a href="../install.html">Инструкция по установке (с картинками) →</a></p>
 </div>
-  <figure class="frame hero-shot"><img src="../shots/hustler.jpg" alt="Hustler"></figure>
+  <figure class="frame hero-shot"><video src="../promo.mp4" poster="../promo-poster.jpg" controls playsinline preload="none" style="width:100%;display:block;border-radius:inherit" aria-label="Hustler — 25 soniyalik tanishtiruv"></video></figure>
 </div></section>
 <section class="points wrap"><div><b>Ваш AI — или бесплатный</b><p>Claude, Codex, Antigravity или бесплатный AI на компьютере. Если их несколько — работают командой.</p></div><div><b>Ваш стиль</b><p>По вашим скиллам монтажа; AI сам напишет скилл. В магазине — скиллы других авторов.</p></div><div><b>Файлы на компьютере</b><p>Видео и звук никуда не загружаются. Запись аккаунта зашифрована.</p></div><div><b>Узбекский</b><p>Диалекты, смешанная речь, латиница и кириллица.</p></div></section>
 <section class="wrap highlights"><h2>Новое</h2><div class="hl-grid"><div class="hl"><b>Команда AI</b><p>Если есть подписки Claude и Antigravity, работа делится между ними: один разбирает транскрипт, другой — скилл. Быстрее.</p></div><div class="hl"><b>Бесплатный AI</b><p>С Ollama без подписки и интернета: Hustler покажет размер и нагрузку и скачает подходящую модель.</p></div><div class="hl"><b>Магазин скиллов</b><p>Делитесь своим стилем монтажа под @username, по желанию со ссылкой на донат.</p></div><div class="hl"><b>Маленькие обновления</b><p>Hustler скачивает только изменённую часть — несколько МБ вместо 122.</p></div></div></section>
+<section class="wrap quiz" id="quiz"><h2>Что мне подходит?</h2>
+<p class="hint">Где вы монтируете?</p><div class="chip-row"><button type="button" class="chip-btn" data-q1="0">Premiere Pro или After Effects</button><button type="button" class="chip-btn" data-q1="1">DaVinci Resolve</button><button type="button" class="chip-btn" data-q1="2">Без монтажной программы — простое приложение</button></div>
+<p class="hint">Что ещё нужно?</p><div class="chip-row"><button type="button" class="chip-btn" data-q2="0">Печать голосом, текст встреч</button><button type="button" class="chip-btn" data-q2="1">Учёт времени монтажа</button><button type="button" class="chip-btn" data-q2="2">Больше ничего</button></div>
+<div id="quiz-result" class="cards" hidden></div>
+<p id="quiz-get" hidden><a class="dl-main" href="../install.html"><b>Скачать Hustler — всё одной кнопкой</b></a></p></section>
+<script>(function(){var D={"swible": ["Swible", "swible.html", "AI-монтаж, субтитры и 66 анимаций в Premiere и After Effects"], "resolve": ["Swible for DaVinci", "swible.html", "Узбекские субтитры и анимация в DaVinci (Swible for DaVinci)"], "lab": ["Swible Lab", "swible-lab.html", "Без Adobe: субтитры, reels и дубляж в одном окне"], "voxly": ["Voxly", "voxly.html", "Говорите — текст печатается; текст из видео и встреч"], "tempass": ["Tempass", "tempass.html", "Сам считает время на монтаж"]},a=null,b=[];
+function pick(attr,v,multi){document.querySelectorAll('[data-'+attr+']').forEach(function(x){if(!multi||v==='2')x.classList.toggle('on',x.dataset[attr]===v);});}
+function draw(){if(a===null)return;var keys=[['swible','resolve','lab'][+a]];b.forEach(function(x){if(x==='0')keys.push('voxly');if(x==='1')keys.push('tempass');});
+var box=document.getElementById('quiz-result');box.textContent='';keys.forEach(function(k){var c=document.createElement('a');c.className='card';c.href=D[k][1];var t=document.createElement('b');t.textContent=D[k][0];var p=document.createElement('p');p.textContent=D[k][2];c.appendChild(t);c.appendChild(p);box.appendChild(c);});
+box.hidden=false;document.getElementById('quiz-get').hidden=false;}
+document.querySelectorAll('[data-q1]').forEach(function(x){x.onclick=function(){a=x.dataset.q1;pick('q1',a);draw();};});
+document.querySelectorAll('[data-q2]').forEach(function(x){x.onclick=function(){var v=x.dataset.q2;if(v==='2'){b=[];}else{var i=b.indexOf(v);if(i<0)b.push(v);else b.splice(i,1);}
+document.querySelectorAll('[data-q2]').forEach(function(y){y.classList.toggle('on',v==='2'?y.dataset.q2==='2':b.indexOf(y.dataset.q2)>=0);});draw();};});})();</script>
 <div class="wrap" id="apps"><section class="product-row tall" id="swible">
   <div class="copy"><div class="tag"><img src="../swible.png" alt=""><span>Плагин для Premiere Pro, After Effects и DaVinci Resolve</span></div>
     <h2>Swible</h2><p class="pitch">Полный автомонтаж: вырезает лишнее, расставляет клипы, добавляет зум, субтитры и моушн.</p><ul class="ticks"><li><b>Автомонтаж</b> Одна кнопка: анализ → нарезка → порядок → зум → субтитры → маркеры. Результат — новая секвенция, оригинал не меняется.</li><li><b>AI: авто, команда или бесплатный</b> Подключённый AI выбирается сам; несколько подписок работают командой; без подписки — бесплатный AI.</li><li><b>Ваш моушн</b> В After Effects — текст по словам, появления, bounce, glow — язык движения из вашего проекта AE.</li></ul>
