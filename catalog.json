@@ -23,24 +23,24 @@
     }
   },
   "uzscribe": {
-    "version": "1.6.1",
-    "revision": "05663a119722b23210c3f3a5b14377c8ce6c8035",
+    "version": "1.6.2",
+    "revision": "1b9df095d23260ae88350049c68f5beb1b045c67",
     "channel": "beta",
     "assets": {
       "win-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzscribe-v1.6.1-05663a1/UzScribe-1.6.1-win-x64.zip",
-        "bytes": 11536371,
-        "sha256": "b1592aa0a54aa5d761a2ef689d9310b3ccf9be1618a3a71ed42745728733dfe9"
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzscribe-v1.6.2-1b9df09/UzScribe-1.6.2-win-x64.zip",
+        "bytes": 11540722,
+        "sha256": "e36572ca7f4cc4af0ba7a4444542c28563ca55cff4253d3a3b6633e572a0f777"
       },
       "mac-arm64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzscribe-v1.6.1-05663a1/UzScribe-1.6.1-mac-arm64.zip",
-        "bytes": 14840631,
-        "sha256": "ff7a731bcb67fcdc3a82727400accb02b03d367b1a4f6587508442201641a9e2"
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzscribe-v1.6.2-1b9df09/UzScribe-1.6.2-mac-arm64.zip",
+        "bytes": 14852809,
+        "sha256": "71ed020b59732e01f8f9ec29244efab31330766a69bf2c3d6d76858b36e6c9d4"
       },
       "mac-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzscribe-v1.6.1-05663a1/UzScribe-1.6.1-mac-x64.zip",
-        "bytes": 14840622,
-        "sha256": "ee1a1137ae2b4f45aacf8c8f63ea73c1c0935840e5546cb1a6e18fc9772428d3"
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzscribe-v1.6.2-1b9df09/UzScribe-1.6.2-mac-x64.zip",
+        "bytes": 14852794,
+        "sha256": "0b5c1cc648f01a8c95b7d16bbcf259c223050a61a8eccefc85245ac56b79f075"
       }
     }
   },
@@ -86,24 +86,24 @@
     }
   },
   "uzscribeDesktop": {
-    "version": "1.6.1",
-    "revision": "05663a119722b23210c3f3a5b14377c8ce6c8035",
+    "version": "1.6.2",
+    "revision": "1b9df095d23260ae88350049c68f5beb1b045c67",
     "channel": "beta",
     "assets": {
       "win-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzscribe-v1.6.1-05663a1/UzScribe-1.6.1-win-x64.zip",
-        "bytes": 11536371,
-        "sha256": "b1592aa0a54aa5d761a2ef689d9310b3ccf9be1618a3a71ed42745728733dfe9"
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzscribe-v1.6.2-1b9df09/UzScribe-1.6.2-win-x64.zip",
+        "bytes": 11540722,
+        "sha256": "e36572ca7f4cc4af0ba7a4444542c28563ca55cff4253d3a3b6633e572a0f777"
       },
       "mac-arm64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzscribe-v1.6.1-05663a1/UzScribe-1.6.1-mac-arm64.zip",
-        "bytes": 14840631,
-        "sha256": "ff7a731bcb67fcdc3a82727400accb02b03d367b1a4f6587508442201641a9e2"
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzscribe-v1.6.2-1b9df09/UzScribe-1.6.2-mac-arm64.zip",
+        "bytes": 14852809,
+        "sha256": "71ed020b59732e01f8f9ec29244efab31330766a69bf2c3d6d76858b36e6c9d4"
       },
       "mac-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzscribe-v1.6.1-05663a1/UzScribe-1.6.1-mac-x64.zip",
-        "bytes": 14840622,
-        "sha256": "ee1a1137ae2b4f45aacf8c8f63ea73c1c0935840e5546cb1a6e18fc9772428d3"
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/uzscribe-v1.6.2-1b9df09/UzScribe-1.6.2-mac-x64.zip",
+        "bytes": 14852794,
+        "sha256": "0b5c1cc648f01a8c95b7d16bbcf259c223050a61a8eccefc85245ac56b79f075"
       }
     },
     "desktop": true
@@ -111,8 +111,8 @@
   "products": {
     "uzdictate": {
       "name": "Voxly",
-      "detail": "Tugmani bosib gapiring — matn istalgan dasturda kursor turgan joyga yoziladi. O‘zbekcha, shevalar va aralash nutq; lotin yoki kirill; internetsiz.",
-      "note": "Birinchi ochilishda o‘zbekcha nutq modeli (~2.3 GB) bir marta yuklanadi; Swible o‘rnatilgan bo‘lsa, uning modeli ishlatiladi.",
+      "detail": "Tugmani bosib gapiring \u2014 matn istalgan dasturda kursor turgan joyga yoziladi. O\u2018zbekcha, shevalar va aralash nutq; lotin yoki kirill; internetsiz.",
+      "note": "Birinchi ochilishda o\u2018zbekcha nutq modeli (~2.3 GB) bir marta yuklanadi; Swible o\u2018rnatilgan bo\u2018lsa, uning modeli ishlatiladi.",
       "host": "Mustaqil ilova",
       "mac": {
         "app": "Voxly.app",
