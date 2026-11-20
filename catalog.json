@@ -45,42 +45,42 @@
     }
   },
   "meyor": {
-    "version": "0.9.3",
-    "revision": "93200a2b1660bd57896730a9a454a2393b4f3368",
+    "version": "0.9.4",
+    "revision": "ea2591e34341fd7ae3e9c99b9807cda04c826243",
     "assets": {
       "mac-arm64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.9.3/Meyor-0.9.3-mac-arm64.dmg",
-        "sha256": "2372c17bc21bbbbf43d50682abe110c44a08dc9b7e6b52004b18268e2a470812",
-        "bytes": 127993287
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.9.4/Meyor-0.9.4-mac-arm64.dmg",
+        "sha256": "e28d163be62f2c989df0288ca42e267cbdf80d231de7b038df46bd93e3845725",
+        "bytes": 127992065
       },
       "mac-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.9.3/Meyor-0.9.3-mac-x64.dmg",
-        "sha256": "188438ee0550e0c88fb8a2ac7163e749e5f6a96e1b8d966585c1ac4c72b6bf3f",
-        "bytes": 133635878
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.9.4/Meyor-0.9.4-mac-x64.dmg",
+        "sha256": "986a273c0e2ad889e898386969d975a4004336e9d1f64f37026dabebe9b66df2",
+        "bytes": 133606362
       },
       "win-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.9.3/Meyor-0.9.3-win-x64.exe",
-        "sha256": "6b54946402895fd3e15187c74d8f1c58b5ffc56183b5ca1a88b9017e8e9c26ef",
-        "bytes": 111593312
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.9.4/Meyor-0.9.4-win-x64.exe",
+        "sha256": "6127e4203f170e019a05f74b1a9dda72df3f75e7645a02cdcc476dbdaf3a192a",
+        "bytes": 111594303
       }
     },
     "appPatch": {
       "mac-arm64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.9.3/Meyor-0.9.3-mac-arm64-app.asar",
-        "sha256": "2c4af38e4f91a3a0628efea6dd0dac6b9ec63ad919cffad416813300df928b04",
-        "bytes": 537036,
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.9.4/Meyor-0.9.4-mac-arm64-app.asar",
+        "sha256": "8ed29caf8c3bb65c7510394644cc39d3783b2283a40925e6db0478690a09aa08",
+        "bytes": 540859,
         "electron": "44.7.0"
       },
       "mac-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.9.3/Meyor-0.9.3-mac-x64-app.asar",
-        "sha256": "2c4af38e4f91a3a0628efea6dd0dac6b9ec63ad919cffad416813300df928b04",
-        "bytes": 537036,
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.9.4/Meyor-0.9.4-mac-x64-app.asar",
+        "sha256": "8ed29caf8c3bb65c7510394644cc39d3783b2283a40925e6db0478690a09aa08",
+        "bytes": 540859,
         "electron": "44.7.0"
       },
       "win-x64": {
-        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.9.3/Meyor-0.9.3-win-x64-app.asar",
-        "sha256": "2c4af38e4f91a3a0628efea6dd0dac6b9ec63ad919cffad416813300df928b04",
-        "bytes": 537036,
+        "url": "https://github.com/Azizbek-dsgn/Meyor-Releases/releases/download/v0.9.4/Meyor-0.9.4-win-x64-app.asar",
+        "sha256": "8ed29caf8c3bb65c7510394644cc39d3783b2283a40925e6db0478690a09aa08",
+        "bytes": 540859,
         "electron": "44.7.0"
       }
     }
@@ -111,8 +111,8 @@
   "products": {
     "uzdictate": {
       "name": "Voxly",
-      "detail": "Tugmani bosib gapiring \u2014 matn istalgan dasturda kursor turgan joyga yoziladi. O\u2018zbekcha, shevalar va aralash nutq; lotin yoki kirill; internetsiz.",
-      "note": "Birinchi ochilishda o\u2018zbekcha nutq modeli (~2.3 GB) bir marta yuklanadi; Swible o\u2018rnatilgan bo\u2018lsa, uning modeli ishlatiladi.",
+      "detail": "Tugmani bosib gapiring — matn istalgan dasturda kursor turgan joyga yoziladi. O‘zbekcha, shevalar va aralash nutq; lotin yoki kirill; internetsiz.",
+      "note": "Birinchi ochilishda o‘zbekcha nutq modeli (~2.3 GB) bir marta yuklanadi; Swible o‘rnatilgan bo‘lsa, uning modeli ishlatiladi.",
       "host": "Mustaqil ilova",
       "mac": {
         "app": "Voxly.app",
