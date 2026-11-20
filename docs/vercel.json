@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- .",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    { "source": "/(.*)", "headers": [
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+      { "key": "X-Frame-Options", "value": "DENY" }
+    ] },
+    { "source": "/(.*)\\.(png|jpg|svg|css|js)", "headers": [ { "key": "Cache-Control", "value": "public, max-age=86400" } ] },
+    { "source": "/install.(sh|ps1)", "headers": [ { "key": "Cache-Control", "value": "no-cache" }, { "key": "Content-Type", "value": "text/plain; charset=utf-8" } ] }
+  ]
+}
