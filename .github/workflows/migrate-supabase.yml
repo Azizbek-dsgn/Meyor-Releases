@@ -1,0 +1,19 @@
+name: Move accounts to Supabase
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Move accounts
+        env:
+          MEYOR_BOT_TOKEN: ${{ secrets.MEYOR_BOT_TOKEN }}
+          ADMIN_BOX_PRIVATE: ${{ secrets.ADMIN_BOX_PRIVATE }}
+          ADMIN_SIGN_PRIVATE: ${{ secrets.ADMIN_SIGN_PRIVATE }}
+        run: node accounts/migrate.cjs
