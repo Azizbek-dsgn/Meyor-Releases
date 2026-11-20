@@ -111,7 +111,9 @@ PRODUCTS = [
 ]
 
 NEWS = {
- "uz": [("Swible 1.5.0", "AI tanlovida “Avto” (ulangan AI o‘zi tanlanadi) va “Jamoa” — bir nechta obuna ishni bo‘lishib, parallel bajaradi; Codex ulash xatosi tuzatildi."),
+ "uz": [("Swible 1.5.2", "DaVinci Resolve: Workspace → Scripts → Swible — timeline’dan o‘zbekcha subtitr (lotin/kirill, internetsiz) va uzun pauzalarga marker. “Avto” AI’da suhbat almashganda xato tuzatildi."),
+        ("Hustler 0.9.1", "Skill bozoridan yuklash ishlaydi; akkaunt yozuvi o‘chib ketsa o‘zi qayta yaratiladi; eski Google tasdig‘i yangilanadi; Swible kartasida DaVinci Resolve."),
+        ("Swible 1.5.0", "AI tanlovida “Avto” (ulangan AI o‘zi tanlanadi) va “Jamoa” — bir nechta obuna ishni bo‘lishib, parallel bajaradi; Codex ulash xatosi tuzatildi."),
         ("Hustler 0.8.6", "Kichik yangilanishlar (faqat o‘zgargan qism), birinchi ochilishda qisqa yo‘riqnoma, “Yordam va shikoyat”, AI skill qoidalarini o‘zi yozadi, tartibli sozlamalar."),
         ("Hustler 0.8.3", "Google bilan kirish va username; skill bozori (@username, ixtiyoriy donat havolasi); admin panel; bepul AI kompyuterda (Ollama); model yuklashdan oldin hajmi va ruxsat; Swible Lab yangilanishda Adobe yopilmaydi."),
         ("Swible 1.4.2", "“Bepul AI · kompyuterda” — obunasiz, internetsiz montaj yordamchisi; bloklangan akkauntda to‘xtaydi."),
@@ -133,7 +135,9 @@ NEWS = {
         ("Voxly 0.2.0", "Ovozli buyruqlar, shaxsiy lug‘at, ruscha va inglizcha tarjima."),
         ("Hustler 0.7.6", "O‘zini o‘zi yangilaydi — installer oynasisiz, qayta ochiladi."),
         ("Swible 1.1.0", "Avto montaj, sizning skill’laringiz, After Effects va Premiere’da motion, Gemini modellari.")],
- "ru": [("Swible 1.5.0", "В выборе AI — «Авто» (подключённый AI выбирается сам) и «Команда»: несколько подписок делят работу и выполняют её параллельно; исправлено подключение Codex."),
+ "ru": [("Swible 1.5.2", "DaVinci Resolve: Workspace → Scripts → Swible — узбекские субтитры с таймлайна (латиница/кириллица, без интернета) и маркеры на длинных паузах. Исправлена смена сессии в режиме «Авто»."),
+        ("Hustler 0.9.1", "Загрузка из магазина скиллов работает; запись аккаунта создаётся заново, если её удалили; устаревшее подтверждение Google обновляется; DaVinci Resolve в карточке Swible."),
+        ("Swible 1.5.0", "В выборе AI — «Авто» (подключённый AI выбирается сам) и «Команда»: несколько подписок делят работу и выполняют её параллельно; исправлено подключение Codex."),
         ("Hustler 0.8.6", "Маленькие обновления (только изменённая часть), короткий гид при первом запуске, «Помощь и жалобы», AI сам пишет правила скилла, понятные настройки."),
         ("Hustler 0.8.3", "Вход через Google и username; магазин скиллов (@username, ссылка на донат по желанию); панель администратора; бесплатный AI на компьютере (Ollama); перед загрузкой моделей — размер и разрешение; Swible Lab обновляется без закрытия Adobe."),
         ("Swible 1.4.2", "«Бесплатный AI · на компьютере» — помощник монтажа без подписки и интернета; останавливается для заблокированного аккаунта."),
@@ -155,7 +159,9 @@ NEWS = {
         ("Voxly 0.2.0", "Голосовые команды, личный словарь, перевод на русский и английский."),
         ("Hustler 0.7.6", "Обновляется сам — без окна установщика, перезапускается."),
         ("Swible 1.1.0", "Автомонтаж, ваши скиллы, моушн в After Effects и Premiere, модели Gemini.")],
- "en": [("Swible 1.5.0", "“Auto” in the AI picker (the connected AI is chosen for you) and “Team”: several subscriptions split the work and run it in parallel; Codex connect fixed."),
+ "en": [("Swible 1.5.2", "DaVinci Resolve: Workspace → Scripts → Swible — Uzbek subtitles from the timeline (Latin/Cyrillic, offline) and markers on long pauses. Fixed session switching in “Auto” AI."),
+        ("Hustler 0.9.1", "Skill market downloads work; the account record is recreated if it was deleted; a stale Google proof is renewed; DaVinci Resolve on the Swible card."),
+        ("Swible 1.5.0", "“Auto” in the AI picker (the connected AI is chosen for you) and “Team”: several subscriptions split the work and run it in parallel; Codex connect fixed."),
         ("Hustler 0.8.6", "Small updates (only what changed), a short first-run guide, “Help and feedback”, the AI writes skill rules for you, clearer settings."),
         ("Hustler 0.8.3", "Sign in with Google and a username; skill market (@username, optional donation link); admin panel; free AI on your computer (Ollama); size and permission before model downloads; Swible Lab updates without closing Adobe."),
         ("Swible 1.4.2", "“Free AI · on this computer” — a montage assistant with no subscription or internet; stops for a blocked account."),
