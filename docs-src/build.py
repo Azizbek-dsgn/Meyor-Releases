@@ -23,7 +23,7 @@ def layout(lang, title, body, page, description=""):
     install = up + "install.html"
     home = ("index.html" if lang != "uz" or not up else "index.html")
     links = (f'<a href="{home}#apps">{t['nav_apps']}</a><a href="{install}">{t['nav_install']}</a>'
-             f'<a href="changelog.html">{t['nav_news']}</a><a href="help.html">{t['nav_help']}</a>')
+             f'<a href="market.html">{t['nav_market']}</a><a href="changelog.html">{t['nav_news']}</a><a href="help.html">{t['nav_help']}</a>')
     return f"""<!doctype html>
 <html lang="{lang}">
 <head>
@@ -49,8 +49,9 @@ def layout(lang, title, body, page, description=""):
 """
 
 
-PS = "irm https://azizbek-dsgn.github.io/Meyor-Releases/install.ps1 | iex"
-SH = "curl -fsSL https://azizbek-dsgn.github.io/Meyor-Releases/install.sh | bash"
+SITE = "https://meyor-vision.vercel.app"
+PS = f"irm {SITE}/install.ps1 | iex"
+SH = f"curl -fsSL {SITE}/install.sh | bash"
 
 
 def downloads(lang):
@@ -121,6 +122,24 @@ document.getElementById('versions').textContent={json.dumps(t['current'])}+': '+
     return layout(lang, f"{t['nav_news']} — Hustler", body, "changelog")
 
 
+def market(lang):
+    """The skill market, read live from the Meyor API (Supabase) in the visitor's browser."""
+    t = UI[lang]
+    body = f"""<section class="hero small"><div class="wrap"><h1>{t['nav_market']}</h1><p class="lead">{t['market_lead']}</p>
+<p class="hint">{t['market_how']}</p><input id="q" class="search" type="search" placeholder="{escape(t['market_search'])}" aria-label="{escape(t['market_search'])}"></div></section>
+<section class="wrap cards" id="market" aria-live="polite"><p class="hint">…</p></section>
+<script>(function(){{var box=document.getElementById('market'),q=document.getElementById('q'),all=[];
+function el(tag,cls,text){{var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;}}
+function draw(){{var s=q.value.trim().toLowerCase().replace(/^@/,''),list=all.filter(function(k){{return !s||[k.name,k.author,k.description].concat(k.tags||[]).join(' ').toLowerCase().indexOf(s)>=0;}});box.textContent='';
+if(!list.length){{box.appendChild(el('p','hint',all.length?'—':{json.dumps(t['market_empty'])}));return;}}
+list.forEach(function(k){{var c=el('div','card');c.appendChild(el('b','',k.name));c.appendChild(el('small','hint','@'+k.author+' · v'+k.version));c.appendChild(el('p','',k.description||''));
+if((k.tags||[]).length)c.appendChild(el('p','hint',(k.tags||[]).map(function(x){{return '#'+x;}}).join(' ')));
+if(k.donate&&k.donate.indexOf('https://')===0){{var a=el('a','',{json.dumps(t['market_donate'])}+' →');a.href=k.donate;a.rel='noopener nofollow';a.target='_blank';c.appendChild(a);}}box.appendChild(c);}});}}
+q.addEventListener('input',draw);
+fetch('https://jqlqsejoblnzxbnwpvvr.supabase.co/functions/v1/api/catalog').then(function(r){{return r.json();}}).then(function(c){{all=(c&&c.skills)||[];draw();}}).catch(function(){{box.textContent='';box.appendChild(el('p','hint',{json.dumps(t['market_error'])}));}});}})();</script>"""
+    return layout(lang, f"{t['nav_market']} — Hustler", body, "market", t['market_lead'])
+
+
 def help_page(lang):
     t = UI[lang]
     items = "".join(f"<details class=\"faq\"><summary>{escape(q)}</summary><p>{escape(a)}</p></details>" for q, a in HELP[lang])
@@ -146,7 +165,7 @@ def main():
     for lang in LANGS:
         out = DOCS if lang == "uz" else DOCS / lang
         out.mkdir(parents=True, exist_ok=True)
-        pages = {"index": home(lang), "changelog": changelog(lang), "help": help_page(lang)}
+        pages = {"index": home(lang), "changelog": changelog(lang), "help": help_page(lang), "market": market(lang)}
         pages.update({p["page"]: product_page(lang, p) for p in PRODUCTS})
         for name, html in pages.items():
             (out / f"{name}.html").write_text(html, encoding="utf-8")

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Skill market — Hustler</title>
+<meta name="description" content="Skills made by editors: Swible AI uses them in auto-editing. Every one is checked by the admin.">
+<link rel="icon" href="../hustler.png">
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+<header class="top"><div class="wrap bar">
+  <a class="brand" href="index.html"><img src="../hustler.png" alt=""><span><strong>Hustler</strong><small>by Meyor Vision</small></span></a>
+  <nav class="links"><a href="index.html#apps">Apps</a><a href="../install.html">Install</a><a href="market.html">Skill market</a><a href="changelog.html">What’s new</a><a href="help.html">Help</a></nav>
+  <div class="langs"><a href="../market.html">UZ</a><a href="../ru/market.html">RU</a><a href="../en/market.html" aria-current="true">EN</a></div>
+  <details class="menu"><summary aria-label="Menu"><span></span><span></span><span></span></summary><nav><a href="index.html#apps">Apps</a><a href="../install.html">Install</a><a href="market.html">Skill market</a><a href="changelog.html">What’s new</a><a href="help.html">Help</a><div class="langs"><a href="../market.html">UZ</a><a href="../ru/market.html">RU</a><a href="../en/market.html" aria-current="true">EN</a></div></nav></details>
+</div></header>
+<main><section class="hero small"><div class="wrap"><h1>Skill market</h1><p class="lead">Skills made by editors: Swible AI uses them in auto-editing. Every one is checked by the admin.</p>
+<p class="hint">Install: Hustler → Skills → Market → “Install”. Publish your own skill from there too.</p><input id="q" class="search" type="search" placeholder="Search: name, author or tag" aria-label="Search: name, author or tag"></div></section>
+<section class="wrap cards" id="market" aria-live="polite"><p class="hint">…</p></section>
+<script>(function(){var box=document.getElementById('market'),q=document.getElementById('q'),all=[];
+function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;}
+function draw(){var s=q.value.trim().toLowerCase().replace(/^@/,''),list=all.filter(function(k){return !s||[k.name,k.author,k.description].concat(k.tags||[]).join(' ').toLowerCase().indexOf(s)>=0;});box.textContent='';
+if(!list.length){box.appendChild(el('p','hint',all.length?'—':"Nothing here yet \u2014 publish the first skill!"));return;}
+list.forEach(function(k){var c=el('div','card');c.appendChild(el('b','',k.name));c.appendChild(el('small','hint','@'+k.author+' · v'+k.version));c.appendChild(el('p','',k.description||''));
+if((k.tags||[]).length)c.appendChild(el('p','hint',(k.tags||[]).map(function(x){return '#'+x;}).join(' ')));
+if(k.donate&&k.donate.indexOf('https://')===0){var a=el('a','',"Support the author"+' →');a.href=k.donate;a.rel='noopener nofollow';a.target='_blank';c.appendChild(a);}box.appendChild(c);});}
+q.addEventListener('input',draw);
+fetch('https://jqlqsejoblnzxbnwpvvr.supabase.co/functions/v1/api/catalog').then(function(r){return r.json();}).then(function(c){all=(c&&c.skills)||[];draw();}).catch(function(){box.textContent='';box.appendChild(el('p','hint',"The market did not load. Check the internet and reload the page."));});})();</script></main>
+<footer class="foot"><div class="wrap"><p>Everything runs on your computer. Video, audio and text never leave it.</p><div><span>© 2026 Meyor Vision</span><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="https://t.me/Abdulaziz_kbv" rel="noopener">Contact: Telegram @Abdulaziz_kbv</a></div></div></footer>
+<script src="../download.js"></script>
+</body>
+</html>

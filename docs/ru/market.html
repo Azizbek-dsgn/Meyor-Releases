@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Магазин скиллов — Hustler</title>
+<meta name="description" content="Скиллы от монтажёров: Swible AI использует их в автомонтаже. Все проверены админом.">
+<link rel="icon" href="../hustler.png">
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+<header class="top"><div class="wrap bar">
+  <a class="brand" href="index.html"><img src="../hustler.png" alt=""><span><strong>Hustler</strong><small>by Meyor Vision</small></span></a>
+  <nav class="links"><a href="index.html#apps">Приложения</a><a href="../install.html">Установка</a><a href="market.html">Магазин скиллов</a><a href="changelog.html">Новости</a><a href="help.html">Помощь</a></nav>
+  <div class="langs"><a href="../market.html">UZ</a><a href="../ru/market.html" aria-current="true">RU</a><a href="../en/market.html">EN</a></div>
+  <details class="menu"><summary aria-label="Menu"><span></span><span></span><span></span></summary><nav><a href="index.html#apps">Приложения</a><a href="../install.html">Установка</a><a href="market.html">Магазин скиллов</a><a href="changelog.html">Новости</a><a href="help.html">Помощь</a><div class="langs"><a href="../market.html">UZ</a><a href="../ru/market.html" aria-current="true">RU</a><a href="../en/market.html">EN</a></div></nav></details>
+</div></header>
+<main><section class="hero small"><div class="wrap"><h1>Магазин скиллов</h1><p class="lead">Скиллы от монтажёров: Swible AI использует их в автомонтаже. Все проверены админом.</p>
+<p class="hint">Установка: Hustler → Скиллы → Магазин → «Установить». Свой скилл публикуйте там же.</p><input id="q" class="search" type="search" placeholder="Поиск: название, автор или тег" aria-label="Поиск: название, автор или тег"></div></section>
+<section class="wrap cards" id="market" aria-live="polite"><p class="hint">…</p></section>
+<script>(function(){var box=document.getElementById('market'),q=document.getElementById('q'),all=[];
+function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;}
+function draw(){var s=q.value.trim().toLowerCase().replace(/^@/,''),list=all.filter(function(k){return !s||[k.name,k.author,k.description].concat(k.tags||[]).join(' ').toLowerCase().indexOf(s)>=0;});box.textContent='';
+if(!list.length){box.appendChild(el('p','hint',all.length?'—':"\u041f\u043e\u043a\u0430 \u043f\u0443\u0441\u0442\u043e \u2014 \u043e\u043f\u0443\u0431\u043b\u0438\u043a\u0443\u0439\u0442\u0435 \u043f\u0435\u0440\u0432\u044b\u0439 \u0441\u043a\u0438\u043b\u043b!"));return;}
+list.forEach(function(k){var c=el('div','card');c.appendChild(el('b','',k.name));c.appendChild(el('small','hint','@'+k.author+' · v'+k.version));c.appendChild(el('p','',k.description||''));
+if((k.tags||[]).length)c.appendChild(el('p','hint',(k.tags||[]).map(function(x){return '#'+x;}).join(' ')));
+if(k.donate&&k.donate.indexOf('https://')===0){var a=el('a','',"\u041f\u043e\u0434\u0434\u0435\u0440\u0436\u0430\u0442\u044c \u0430\u0432\u0442\u043e\u0440\u0430"+' →');a.href=k.donate;a.rel='noopener nofollow';a.target='_blank';c.appendChild(a);}box.appendChild(c);});}
+q.addEventListener('input',draw);
+fetch('https://jqlqsejoblnzxbnwpvvr.supabase.co/functions/v1/api/catalog').then(function(r){return r.json();}).then(function(c){all=(c&&c.skills)||[];draw();}).catch(function(){box.textContent='';box.appendChild(el('p','hint',"\u041c\u0430\u0433\u0430\u0437\u0438\u043d \u043d\u0435 \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u043b\u0441\u044f. \u041f\u0440\u043e\u0432\u0435\u0440\u044c\u0442\u0435 \u0438\u043d\u0442\u0435\u0440\u043d\u0435\u0442 \u0438 \u043e\u0431\u043d\u043e\u0432\u0438\u0442\u0435 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0443."));});})();</script></main>
+<footer class="foot"><div class="wrap"><p>Всё работает на вашем компьютере. Видео, звук и текст никуда не отправляются.</p><div><span>© 2026 Meyor Vision</span><a href="../privacy.html">Конфиденциальность</a><a href="../terms.html">Условия</a><a href="https://t.me/Abdulaziz_kbv" rel="noopener">Связь: Telegram @Abdulaziz_kbv</a></div></div></footer>
+<script src="../download.js"></script>
+</body>
+</html>

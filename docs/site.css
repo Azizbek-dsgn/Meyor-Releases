@@ -106,3 +106,5 @@ footer:not(.foot){border-top:1px solid var(--line);padding:24px 0 40px;color:var
 .hl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
 .hl{border:1px solid #26282d;border-radius:18px;padding:24px;background:linear-gradient(180deg,#141518,#0e0f11)}
 .hl b{display:block;font-size:17px;margin-bottom:8px}.hl p{margin:0;color:#a3a7ae;font-size:14px;line-height:1.6}
+.search{width:100%;max-width:520px;margin-top:14px;padding:12px 14px;border-radius:12px;border:1px solid var(--line,#2b2b33);background:transparent;color:inherit;font:inherit}
+#market .card small{display:block;margin:4px 0 10px}#market .card a{display:inline-block;margin-top:6px}
