@@ -114,7 +114,8 @@ PRODUCTS = [
 ]
 
 NEWS = {
- "uz": [("Swible 1.6.2 · Hustler 0.9.4", "O‘zbekcha nutq modellari alohida karta: plaginlar tez o‘rnatiladi, ~7 GB modellar faqat kerak bo‘lsa. AI bilan ishlaydiganlarga modellar shart emas."),
+ "uz": [("Hustler 0.9.5", "Interfeys tili: o‘zbekcha, ruscha yoki inglizcha. Birinchi ochilishda yordamchi kerakli ilovalarni bir tugmada o‘rnatadi; yangilangandan keyin “nima yangi” ko‘rsatiladi; xatolarni avtomatik yuborish (ixtiyoriy)."),
+        ("Swible 1.6.2 · Hustler 0.9.4", "O‘zbekcha nutq modellari alohida karta: plaginlar tez o‘rnatiladi, ~7 GB modellar faqat kerak bo‘lsa. AI bilan ishlaydiganlarga modellar shart emas."),
         ("Hustler 0.9.3", "Akkaunt, username, skill bozori va admin tasdiqlashlari endi darhol ishlaydi (Meyor serveri, Supabase) — 1–3 daqiqa kutish yo‘q."),
         ("Hustler 0.9.2", "Swible endi ikki xil: Swible for Adobe (Premiere, After Effects) va Swible for DaVinci — alohida o‘rnatiladi, modellar umumiy; har kartada qaysi dasturga o‘rnatilishi belgilar bilan."),
         ("Swible 1.6.0", "Yangi “Vositalar”: ovozni tozalash, parazit so‘zlar va reels qismlarini topish, B-roll qidirish, musiqa ducking, o‘z SFX’lar va bitlar, rangni ko‘chirish (LUT), thumbnail, mijoz ko‘rib chiqishi, subtitr tarjimasi va loyiha arxivi. AI ham bularni o‘zi ishlatadi."),
@@ -143,7 +144,8 @@ NEWS = {
         ("Voxly 0.2.0", "Ovozli buyruqlar, shaxsiy lug‘at, ruscha va inglizcha tarjima."),
         ("Hustler 0.7.6", "O‘zini o‘zi yangilaydi — installer oynasisiz, qayta ochiladi."),
         ("Swible 1.1.0", "Avto montaj, sizning skill’laringiz, After Effects va Premiere’da motion, Gemini modellari.")],
- "ru": [("Swible 1.6.2 · Hustler 0.9.4", "Узбекские речевые модели — отдельная карточка: плагины ставятся быстро, ~7 ГБ моделей — только при необходимости. Тем, кто работает с AI, модели не нужны."),
+ "ru": [("Hustler 0.9.5", "Язык интерфейса: узбекский, русский или английский. При первом запуске помощник ставит нужное одной кнопкой; после обновления — «что нового»; автоотправка ошибок (по желанию)."),
+        ("Swible 1.6.2 · Hustler 0.9.4", "Узбекские речевые модели — отдельная карточка: плагины ставятся быстро, ~7 ГБ моделей — только при необходимости. Тем, кто работает с AI, модели не нужны."),
         ("Hustler 0.9.3", "Аккаунт, username, магазин скиллов и решения админа теперь мгновенно (сервер Meyor на Supabase) — без ожидания 1–3 минуты."),
         ("Hustler 0.9.2", "Swible теперь в двух вариантах: Swible for Adobe (Premiere, After Effects) и Swible for DaVinci — ставятся отдельно, модели общие; на карточке видно, в какие программы ставится."),
         ("Swible 1.6.0", "Новые «Инструменты»: очистка звука, поиск слов-паразитов и моментов для reels, поиск B-roll, приглушение музыки под голос, свои SFX и биты, перенос цвета (LUT), обложки, просмотр клиентом, перевод субтитров и архив проекта. AI использует их сам."),
@@ -172,7 +174,8 @@ NEWS = {
         ("Voxly 0.2.0", "Голосовые команды, личный словарь, перевод на русский и английский."),
         ("Hustler 0.7.6", "Обновляется сам — без окна установщика, перезапускается."),
         ("Swible 1.1.0", "Автомонтаж, ваши скиллы, моушн в After Effects и Premiere, модели Gemini.")],
- "en": [("Swible 1.6.2 · Hustler 0.9.4", "Uzbek speech models are their own card: plugins install fast, the ~7 GB of models only if you need them. Working with AI needs no models."),
+ "en": [("Hustler 0.9.5", "Interface language: Uzbek, Russian or English. A first-run helper installs what you need in one click; “what’s new” after updates; optional automatic error reports."),
+        ("Swible 1.6.2 · Hustler 0.9.4", "Uzbek speech models are their own card: plugins install fast, the ~7 GB of models only if you need them. Working with AI needs no models."),
         ("Hustler 0.9.3", "Account, username, skill market and admin decisions are now instant (Meyor server on Supabase) — no 1–3 minute wait."),
         ("Hustler 0.9.2", "Swible now comes as Swible for Adobe (Premiere, After Effects) and Swible for DaVinci — installed separately with shared models; each card shows which apps it goes into."),
         ("Swible 1.6.0", "New “Tools”: audio clean-up, filler words and reel moments, B-roll search, music ducking, original SFX and beats, colour match (LUT), thumbnails, client review, subtitle translation and project archive. The AI uses them too."),
