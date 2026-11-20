@@ -66,6 +66,19 @@ jobs:
             python packaging/validate-windows-bootstrap.py native-smoke "$RUNNER_TEMP/product-release/windows-bootstrap.json" >> "$RUNNER_TEMP/uzscribe-private-build.log" 2>&1
           fi
           echo "$SOURCE_REVISION" > "$RUNNER_TEMP/product-release/SOURCE_REVISION"
+      - name: Cross-platform tests (panel, animations, tools, installer, DaVinci, dubbing)
+        # Report only for now: names of failing tests become warnings; the release is not blocked.
+        continue-on-error: true
+        shell: bash
+        run: |
+          cd "$RUNNER_TEMP/meyor-private-build/uzscribe"
+          python -m pip install lupa==2.8 > /dev/null 2>&1 || true
+          failed=""
+          for f in tests/*.js; do node "$f" > /dev/null 2>&1 || failed="$failed $(basename "$f")"; done
+          python -m unittest tests.test_animations tests.test_toolkit tests.test_installer tests.test_resolve_script tests.test_dub_uzbek tests.test_mcp_server > "$RUNNER_TEMP/py-tests.log" 2>&1 || failed="$failed $(grep -E '^(FAIL|ERROR):' "$RUNNER_TEMP/py-tests.log" | sed -E 's/^(FAIL|ERROR): ([a-z_]+).*/\2/' | sort -u | tr '\n' ' ')"
+          if [ -n "$failed" ]; then echo "::warning::Tests failed on $PLATFORM:$failed"; else echo "::notice::All cross-platform tests passed on $PLATFORM"; fi
+        env:
+          PLATFORM: ${{ matrix.platform }}
       - name: Encrypt failure diagnostics
         if: failure()
         shell: bash
