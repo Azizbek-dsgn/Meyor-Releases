@@ -114,7 +114,8 @@ PRODUCTS = [
 ]
 
 NEWS = {
- "uz": [("Hustler 0.9.6 · Swible 1.6.5", "Soddaroq: Hustler’da AI yordamchi alohida bo‘limda, ilovalar ixcham ro‘yxatda, modellar “Qo‘shimcha”da. Swible’da vositalar birma-bir ochiladigan ro‘yxat, animatsiya sozlamalari yig‘iladi. Saytda faqat sizning tizimingiz buyrug‘i."),
+ "uz": [("Swible 1.6.6", "Swible endi uchta panel, bitta o‘rnatish: Swible (subtitr va ✦ AI), Swible Montaj (podcast, reels) va Swible Vositalar (5 ta kundalik vosita). Premiere’da Window → Extensions. LUT, thumbnail, mijoz sahifasi va arxiv — ✦ AI orqali."),
+        ("Hustler 0.9.6 · Swible 1.6.5", "Soddaroq: Hustler’da AI yordamchi alohida bo‘limda, ilovalar ixcham ro‘yxatda, modellar “Qo‘shimcha”da. Swible’da vositalar birma-bir ochiladigan ro‘yxat, animatsiya sozlamalari yig‘iladi. Saytda faqat sizning tizimingiz buyrug‘i."),
         ("Swible 1.6.4", "AI kesishdan oldin rejani ko‘rsatadi — keraksiz bandni olib tashlaysiz. Swible Lab’da 66 animatsiya va o‘zbekcha ovozli dublyaj (Meta MMS). DaVinci’da animatsiyali subtitr (V2) va ovozni tozalash."),
         ("Voxly 0.3.4 · Swible 1.6.3", "Voxly video yoki audio faylni matnga aylantiradi. Matn Word, PDF, TXT yoki SRT bo‘lib saqlanadi — vaqt kodlari bilan yoki ularsiz. Swible Lab ham subtitrni Word, PDF yoki TXT qilib beradi."),
         ("Hustler 0.9.5", "Interfeys tili: o‘zbekcha, ruscha yoki inglizcha. Birinchi ochilishda yordamchi kerakli ilovalarni bir tugmada o‘rnatadi; yangilangandan keyin “nima yangi” ko‘rsatiladi; xatolarni avtomatik yuborish (ixtiyoriy)."),
@@ -147,7 +148,8 @@ NEWS = {
         ("Voxly 0.2.0", "Ovozli buyruqlar, shaxsiy lug‘at, ruscha va inglizcha tarjima."),
         ("Hustler 0.7.6", "O‘zini o‘zi yangilaydi — installer oynasisiz, qayta ochiladi."),
         ("Swible 1.1.0", "Avto montaj, sizning skill’laringiz, After Effects va Premiere’da motion, Gemini modellari.")],
- "ru": [("Hustler 0.9.6 · Swible 1.6.5", "Проще: в Hustler AI-помощник в своём разделе, приложения — компактным списком, модели — в «Дополнительно». В Swible инструменты открываются по одному, тонкие настройки анимации свёрнуты. На сайте — только команда для вашей системы."),
+ "ru": [("Swible 1.6.6", "Swible теперь три панели, одна установка: Swible (субтитры и ✦ AI), Swible Montaj (подкаст, reels) и Swible Vositalar (5 повседневных инструментов). В Premiere: Window → Extensions. LUT, обложки, страница для клиента и архив — через ✦ AI."),
+        ("Hustler 0.9.6 · Swible 1.6.5", "Проще: в Hustler AI-помощник в своём разделе, приложения — компактным списком, модели — в «Дополнительно». В Swible инструменты открываются по одному, тонкие настройки анимации свёрнуты. На сайте — только команда для вашей системы."),
         ("Swible 1.6.4", "AI показывает план склеек до монтажа — лишнее снимаете галочкой. В Swible Lab — 66 анимаций и узбекский дубляж голосом (Meta MMS). В DaVinci — анимированные субтитры (V2) и очистка звука."),
         ("Voxly 0.3.4 · Swible 1.6.3", "Voxly превращает видео или аудиофайл в текст. Сохранение в Word, PDF, TXT или SRT — с таймкодами или без. Swible Lab тоже сохраняет субтитры в Word, PDF или TXT."),
         ("Hustler 0.9.5", "Язык интерфейса: узбекский, русский или английский. При первом запуске помощник ставит нужное одной кнопкой; после обновления — «что нового»; автоотправка ошибок (по желанию)."),
@@ -180,7 +182,8 @@ NEWS = {
         ("Voxly 0.2.0", "Голосовые команды, личный словарь, перевод на русский и английский."),
         ("Hustler 0.7.6", "Обновляется сам — без окна установщика, перезапускается."),
         ("Swible 1.1.0", "Автомонтаж, ваши скиллы, моушн в After Effects и Premiere, модели Gemini.")],
- "en": [("Hustler 0.9.6 · Swible 1.6.5", "Simpler: Hustler gives the AI assistant its own page, a compact app list and models under Add-ons. Swible’s tools open one at a time and animation fine-tuning folds away. The site shows only your system’s command."),
+ "en": [("Swible 1.6.6", "Swible is now three panels from one install: Swible (subtitles and ✦ AI), Swible Montaj (podcast, reels) and Swible Vositalar (five everyday tools). In Premiere: Window → Extensions. LUTs, thumbnails, client review and archive — ask ✦ AI."),
+        ("Hustler 0.9.6 · Swible 1.6.5", "Simpler: Hustler gives the AI assistant its own page, a compact app list and models under Add-ons. Swible’s tools open one at a time and animation fine-tuning folds away. The site shows only your system’s command."),
         ("Swible 1.6.4", "The AI shows its cut plan before cutting — untick what to keep. Swible Lab gets the 66 animations and an Uzbek dubbing voice (Meta MMS). DaVinci gets animated subtitles (V2) and voice clean-up."),
         ("Voxly 0.3.4 · Swible 1.6.3", "Voxly turns a video or audio file into text. Save it as Word, PDF, TXT or SRT — with or without timecodes. Swible Lab also saves subtitles as Word, PDF or TXT."),
         ("Hustler 0.9.5", "Interface language: Uzbek, Russian or English. A first-run helper installs what you need in one click; “what’s new” after updates; optional automatic error reports."),
