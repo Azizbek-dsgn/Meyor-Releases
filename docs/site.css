@@ -97,7 +97,7 @@ footer:not(.foot){border-top:1px solid var(--line);padding:24px 0 40px;color:var
 .cmd{margin:0 0 10px}.cmd span{display:block;color:var(--muted);font-size:13px;margin-bottom:6px}
 .cmd .line{display:flex;gap:8px;align-items:stretch}.cmd code{flex:1;min-width:0;overflow-x:auto;white-space:nowrap;padding:10px 12px;font-size:13px;border-radius:10px;background:#0c0c0e;display:block}
 .cmd button{border:1px solid var(--line);background:var(--card2);color:var(--text);border-radius:10px;padding:0 14px;font:inherit;font-size:13px;cursor:pointer;white-space:nowrap}
-.cmd.other{opacity:.7}.cmd-note{margin:4px 0 0;color:var(--muted);font-size:12.5px}
+.cmd.other{display:none}.cmd-note{margin:4px 0 0;color:var(--muted);font-size:12.5px}
 .hero.small .get,.doc .get{align-items:flex-start}
 .contact a{font-weight:600}
 @media(max-width:520px){.dl-main{min-width:0;width:100%}.cmd .line{flex-direction:column}.cmd button{padding:9px}}
@@ -110,3 +110,5 @@ footer:not(.foot){border-top:1px solid var(--line);padding:24px 0 40px;color:var
 #market .card small{display:block;margin:4px 0 10px}#market .card a{display:inline-block;margin-top:6px}
 
 .quiz{margin:56px auto}.quiz h2{margin-bottom:6px}.chip-row{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 18px}.chip-btn{font:inherit;font-size:15px;padding:10px 16px;border-radius:999px;border:1px solid var(--line,#2b2b33);background:transparent;color:inherit;cursor:pointer}.chip-btn.on{background:#fff;color:#000;border-color:#fff}#quiz-result .card{text-decoration:none;color:inherit}
+.quiz{max-width:880px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px 28px 14px;text-align:center}.quiz .chip-row{justify-content:center}.quiz .hint{margin-top:14px}#quiz-result{text-align:left;margin:6px 0 16px}#quiz-get{margin:0 0 18px}
+@media(max-width:600px){.quiz{padding:20px 16px 8px;border-radius:18px;margin:32px 16px}}

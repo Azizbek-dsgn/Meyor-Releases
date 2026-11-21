@@ -82,17 +82,15 @@ def home(lang):
     h, up = HOME[lang], prefix(lang)
     points = "".join(f"<div><b>{escape(a)}</b><p>{escape(b)}</p></div>" for a, b in h["points"])
     steps = "".join(f"<li><b>{escape(a)}</b><p>{escape(b)}</p></li>" for a, b in h["steps"])
-    highlights = "".join(f"<div class=\"hl\"><b>{escape(a)}</b><p>{escape(b)}</p></div>" for a, b in h["highlights"])
     products = "".join(product_block(lang, p, i % 2 == 1) for i, p in enumerate(PRODUCTS))
     body = f"""<section class="hero"><div class="wrap">
   <p class="eyebrow">{h['eyebrow']}</p><h1>{h['h1']}</h1><p class="lead">{escape(h['lead'])}</p>
   {downloads(lang)}
   <figure class="frame hero-shot"><video src="{up}promo.mp4" poster="{up}promo-poster.jpg" controls playsinline preload="none" style="width:100%;display:block;border-radius:inherit" aria-label="Hustler — 25 soniyalik tanishtiruv"></video></figure>
 </div></section>
-<section class="points wrap">{points}</section>
-<section class="wrap highlights"><h2>{escape(h['highlights_title'])}</h2><div class="hl-grid">{highlights}</div></section>
 {quiz(lang)}
 <div class="wrap" id="apps">{products}</div>
+<section class="points wrap">{points}</section>
 <section class="steps-band"><div class="wrap"><h2>{escape(h['steps_title'])}</h2><ol class="three">{steps}</ol>{downloads(lang)}</div></section>"""
     return layout(lang, h["title"], body, "index", h["lead"])
 
